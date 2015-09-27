@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<%=	render 'layouts/globalMenu' %>
+<div class="ui main text container globalContainer">
+  <%= yield %>
+</div>
+<%=	render 'layouts/globalFooter' %>
 
 </body>
 </html>
