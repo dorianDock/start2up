@@ -34,6 +34,9 @@ gem 'semantic-ui-sass'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# have good pagination
+gem 'will_paginate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -46,6 +49,8 @@ group :development, :test do
 
   # make easier to create custom objects during tests
   gem 'factory_girl_rails'
+  # fake a lot of data
+  gem 'faker'
 
 end
 

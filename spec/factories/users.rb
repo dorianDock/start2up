@@ -19,7 +19,7 @@
 #
 
 FactoryGirl.define do
-  factory :user do
+  factory :users do
 
     name                  "MrTruite"
     email                 "truite@truite.com"

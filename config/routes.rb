@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  get 'user/index'
+
+  resources :users do
+    member do
+      get :friends
+    end
+  end
+
+  resources :friend_links
+
 
 
 

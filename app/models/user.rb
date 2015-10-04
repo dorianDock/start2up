@@ -19,6 +19,23 @@
 #
 
 class User < ActiveRecord::Base
+
+  #handle relationships
+
+
+
+  has_many :askedFriendships, :foreign_key => "askerId",
+           :class_name => "FriendLink",
+           :dependent => :destroy
+  has_many :friendsAsked, :through => :askedFriendships
+  has_many :acceptedFriendships, :foreign_key => "answeredId",
+           :class_name => "FriendLink",
+           :dependent => :destroy
+  has_many :friendsAccepted, :through => :acceptedFriendships
+
+
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -32,5 +49,9 @@ class User < ActiveRecord::Base
   # password validatons
   validates :password, presence: true
 
+  def createFriendship(new_friend)
+    askedFriendships.create!(:answeredId => new_friend.id)
+    # relationships.create!(:followed_id => followed.id)
+  end
 
 end
