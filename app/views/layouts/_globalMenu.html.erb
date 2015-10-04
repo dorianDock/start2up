@@ -9,7 +9,26 @@
     <%= link_to 'Contact', home_contact_path, class: "item" %>
     <%= link_to 'About', home_about_path, class: "item" %>
     <%= link_to 'Help', home_howto_path, class: "item" %>
+    <div class="right menu">
+      <%=	if user_signed_in?
+                  link_to current_user.email, home_howto_path, class: "item"
 
+                else
+                  link_to 'Login', new_user_session_path, class: "item"
+
+                end
+    %>
+      <%=	if user_signed_in?
+
+               link_to 'Logout', user_logout_path, class: "item"
+             else
+
+               link_to 'Register', new_user_registration_path, class: "item"
+             end
+      %>
+
+
+    </div>
 
 
 

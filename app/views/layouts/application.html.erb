@@ -8,15 +8,35 @@
 </head>
 <body>
 <%=	render 'layouts/globalMenu' %>
+
+
 <div class="ui main text container globalContainer">
+  <%- if notice != nil && notice != "" %>
+      <div class="ui info message">
+        <i class="close icon"></i>
+        <div class="header notice">
+          <%= notice %>
+        </div>
+      </div>
+  <% end -%>
+
+  <%- if alert != nil && alert != "" %>
+  <div class="ui warning message">
+    <i class="close icon"></i>
+    <div class=" alert">
+      <%= alert %>
+    </div>
+  </div>
+  <% end -%>
   <%= yield %>
 </div>
-<p class="notice">
-  <%= notice %>
-</p>
-<p class="alert">
-  <%= alert %>
-</p>
+<!--<p class="notice">-->
+  <!--<%= notice %>-->
+<!--</p>-->
+
+<!--<p class="alert">-->
+  <!--<%= alert %>-->
+<!--</p>-->
 <%=	render 'layouts/globalFooter' %>
 
 </body>

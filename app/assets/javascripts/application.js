@@ -17,3 +17,18 @@
 // Loads all Semantic javascripts
 //= require semantic-ui
 //= require_tree .
+
+// load checkboxes
+//$('.ui.checkbox')
+//    .checkbox()
+//;
+$( document ).ready(function() {
+    $('.message > .close')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+            ;
+        })
+    ;
+});
