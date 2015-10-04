@@ -18,12 +18,12 @@
 #  last_sign_in_ip        :string
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+FactoryGirl.define do
+  factory :user do
 
-one:
-  name: MyString
-  mail: MyString
-
-two:
-  name: MyString
-  mail: MyString
+    name                  "MrTruite"
+    email                 "truite@truite.com"
+    password              "truite"
+    password_confirmation "truite"
+  end
+end

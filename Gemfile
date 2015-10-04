@@ -44,6 +44,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'annotate'
 
+  # make easier to create custom objects during tests
+  gem 'factory_girl_rails'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

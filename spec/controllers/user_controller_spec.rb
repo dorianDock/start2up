@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe UserController, type: :controller do
+  before(:each) do
+    @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite' }
+    @user=FactoryGirl.create(:user)
+    sign_in @user
+  end
+
 
   describe "GET #index" do
     it "returns http success" do
