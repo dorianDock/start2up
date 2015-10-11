@@ -6,10 +6,128 @@
 }
 .globalContainer{
   margin-top: 8%;
-  margin-bottom: 3%;
+  margin-bottom: 10%;
 }
 
 //.globalFooter{
 //  bottom: -5%;
 //}
 
+.homeSquare{
+  width: 31%;
+  //border: 1px solid black;
+
+  display: inline-block;
+  margin-right: 1%;
+  margin-top: 1%;
+  height: 170px;
+  //padding: 2%;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.homeSquare > h2{
+  position: relative;
+  bottom: 42%;
+  padding: 10px;
+}
+
+
+.homeSquare > img{
+  width: 100%;
+  height: 100%;
+}
+
+.pictureSquare{
+  //opacity: 0.3;
+}
+
+.homeTitle{
+  text-align: center;
+}
+
+//.godfatherSquare{
+//  background-image: url('parrainImage.PNG');
+//  background-repeat: no-repeat;
+//}
+//
+.findHomeSquare > h2{
+
+}
+.findHomeSquare > img{
+  //opacity: 0.5;
+}
+
+
+
+.usefulInfoSquare > h2{
+
+  position: relative;
+  bottom: 95%;
+}
+.usefulInfoSquare > img{
+  //opacity: 0.3;
+}
+
+.billetsSquare > h2{
+  bottom: 75%;
+  color: whitesmoke !important;
+}
+.billetsSquare > img{
+  //opacity: 0.6;
+  //background-color: black;
+}
+
+.lawIsLawSquare > h2{
+  bottom: 122%;
+  padding: 30% !important;
+}
+
+.lawIsLawSquare > img{
+  //opacity: 0.6;
+}
+
+.godfatherSquare > h2{
+  bottom: 37%;
+  color: whitesmoke !important;
+
+}
+
+.godfatherSquare > img{
+  //opacity: 1;
+  //background-color: black;
+}
+
+.findYourSoulSquare > h2{
+  position: relative;
+  bottom: 102%;
+  padding: 12% !important;
+  color: whitesmoke !important;
+}
+
+.findYourSoulSquare > img{
+  //opacity: 0.5;
+}
+
+
+.goodOrBadIdeaSquare > h2 {
+
+}
+.goodOrBadIdeaSquare > img{
+  //opacity: 0.6;
+}
+
+.lowConsultingSquare > h2{
+
+  bottom: 130%;
+  padding: 10% !important;
+
+}
+
+.lowConsultingSquare > img{
+  //opacity: 0.6;
+}
+
+.homeDestination{
+  font-size: 1.5em;
+}

@@ -8,6 +8,9 @@
 </head>
 <body>
 <%=	render 'layouts/globalMenu' %>
+<%- if !(controller_name == "home" && action_name =="index") %>
+    <%=	render 'layouts/squareMenu' %>
+<% end -%>
 
 
 <div class="ui main text container globalContainer">

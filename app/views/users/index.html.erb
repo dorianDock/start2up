@@ -2,12 +2,37 @@
 
 <%= will_paginate %>
 
-<ul class="users">
+<div class="ui three stackable special cards">
   <% @users.each do |user| %>
-      <li>
-        <%= link_to user.name, user %>
-      </li>
+      <div class="card">
+        <div class="blurring dimmable image">
+          <div class="ui dimmer">
+            <div class="content">
+              <div class="center">
+                <div class=""><%= render 'becomeFriend', :user => user %></div>
+              </div>
+            </div>
+          </div>
+          <img src="<%= image_url "avatarHomme.png"%>">
+        </div>
+        <div class="content">
+          <%= link_to user.name, user , class: "header"%>
+
+          <div class="meta">
+            <span class="date"> <%= user.created_at.strftime("Since here %m/%d/%Y") %></span>
+          </div>
+        </div>
+        <div class="extra content">
+          <a>
+            <i class="users icon"></i>
+            2 Members
+          </a>
+        </div>
+      </div>
+
   <% end %>
-</ul>
+</div>
+
+
 
 <%= will_paginate %>
