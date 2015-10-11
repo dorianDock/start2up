@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :users do
+  devise_for :users, :path_prefix => 'session'
+
+  resources :users  do
     member do
       get :friends
     end
@@ -11,9 +13,9 @@ Rails.application.routes.draw do
 
 
 
-  get 'user/logout'
+  get 'users/logout'
 
-  devise_for :users
+
   get 'home/index'
 
   get 'home/about'

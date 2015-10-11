@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def friends
     @user = User.find(params[:id])
-    @users = @user.askedFriendships.paginate(:page => params[:page])
+    @users = @user.friendsAsked.paginate(:page => params[:page])
     render 'index'
   end
 

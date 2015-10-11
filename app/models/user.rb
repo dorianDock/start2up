@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :askedFriendships, :foreign_key => "askerId",
            :class_name => "FriendLink",
            :dependent => :destroy
-  has_many :friendsAsked, :through => :askedFriendships
+  has_many :friendsAsked, :through => :askedFriendships, :source => :user
   has_many :acceptedFriendships, :foreign_key => "answeredId",
            :class_name => "FriendLink",
            :dependent => :destroy
@@ -49,8 +49,8 @@ class User < ActiveRecord::Base
   # password validatons
   validates :password, presence: true
 
-  def createFriendship(new_friend)
-    askedFriendships.create!(:answeredId => new_friend.id)
+  def become_friend_with(new_friend)
+    self.askedFriendships.create!(:answererId => new_friend.id)
     # relationships.create!(:followed_id => followed.id)
   end
 
