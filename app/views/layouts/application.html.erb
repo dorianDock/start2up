@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Start2up</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%=	render 'layouts/globalMenu' %>
+<%- if !(controller_name == "home" && action_name =="index") %>
+    <%=	render 'layouts/squareMenu' %>
+<% end -%>
+
+
+<div class="ui main text container globalContainer">
+  <%- if notice != nil && notice != "" %>
+      <div class="ui info message">
+        <i class="close icon"></i>
+        <div class="header notice">
+          <%= notice %>
+        </div>
+      </div>
+  <% end -%>
+
+  <%- if alert != nil && alert != "" %>
+  <div class="ui warning message">
+    <i class="close icon"></i>
+    <div class=" alert">
+      <%= alert %>
+    </div>
+  </div>
+  <% end -%>
+  <%= params.inspect %>
+  <%= yield %>
+</div>
+<!--<p class="notice">-->
+  <!--<%= notice %>-->
+<!--</p>-->
+
+<!--<p class="alert">-->
+  <!--<%= alert %>-->
+<!--</p>-->
+<%=	render 'layouts/globalFooter' %>
+
+</body>
+</html>

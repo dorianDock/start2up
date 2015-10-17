@@ -1,0 +1,2 @@
+module Concerns::FriendLinksControllerHelper
+end
