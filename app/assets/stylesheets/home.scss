@@ -26,6 +26,10 @@
   text-align: center;
 }
 
+.homeSquare:hover{
+  opacity: 0.8;
+}
+
 .homeSquare > h2{
   position: relative;
   bottom: 42%;
@@ -130,4 +134,12 @@
 
 .homeDestination{
   font-size: 1.5em;
+}
+
+
+.homeSectionDescription{
+  font-weight: bold;
+
+  height: 50px;
+
 }
