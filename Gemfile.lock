@@ -41,6 +41,10 @@ GEM
       rake (~> 10.4)
     arel (6.0.3)
     bcrypt (3.1.10-x64-mingw32)
+<<<<<<< HEAD
+=======
+    bcrypt (3.1.10-x86-mingw32)
+>>>>>>> improvedMenuPage
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -73,7 +77,11 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+<<<<<<< HEAD
     jbuilder (2.3.1)
+=======
+    jbuilder (2.3.2)
+>>>>>>> improvedMenuPage
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (4.0.5)
@@ -91,6 +99,11 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.6.2-x64-mingw32)
       mini_portile (~> 0.6.0)
+<<<<<<< HEAD
+=======
+    nokogiri (1.6.6.2-x86-mingw32)
+      mini_portile (~> 0.6.0)
+>>>>>>> improvedMenuPage
     orm_adapter (0.5.0)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -145,7 +158,11 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+<<<<<<< HEAD
     sass (3.4.18)
+=======
+    sass (3.4.19)
+>>>>>>> improvedMenuPage
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -157,13 +174,22 @@ GEM
       rdoc (~> 4.0)
     semantic-ui-sass (2.1.3.0)
       sass (>= 3.2)
+<<<<<<< HEAD
     sprockets (3.3.5)
+=======
+    sprockets (3.4.0)
+>>>>>>> improvedMenuPage
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+<<<<<<< HEAD
     sqlite3 (1.3.10-x64-mingw32)
+=======
+    sqlite3 (1.3.11-x64-mingw32)
+    sqlite3 (1.3.11-x86-mingw32)
+>>>>>>> improvedMenuPage
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -171,7 +197,11 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+<<<<<<< HEAD
     tzinfo-data (1.2015.6)
+=======
+    tzinfo-data (1.2015.7)
+>>>>>>> improvedMenuPage
       tzinfo (>= 1.0.0)
     uglifier (2.7.2)
       execjs (>= 0.3.0)
@@ -187,6 +217,10 @@ GEM
 
 PLATFORMS
   x64-mingw32
+<<<<<<< HEAD
+=======
+  x86-mingw32
+>>>>>>> improvedMenuPage
 
 DEPENDENCIES
   annotate
@@ -209,6 +243,9 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   will_paginate
+<<<<<<< HEAD
 
 BUNDLED WITH
    1.10.6
+=======
+>>>>>>> improvedMenuPage
