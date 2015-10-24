@@ -3,17 +3,14 @@
 $(document).
     on('page:change', function () {
 
-    //$('.homeSquare')
-    //    .popup({
-    //        inline   : true,
-    //        hoverable: false,
-    //        position : 'top center',
-    //        delay: {
-    //            show: 100,
-    //            hide: 100
-    //        }
-    //    })
-    //;
+    $('.homeSquareMenu')
+        .popup({
+            inline   : true,
+            hoverable: false,
+            position : 'right center',
+
+        })
+    ;
 
     function handlerIn(element){
         console.log(element);

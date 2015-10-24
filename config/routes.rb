@@ -17,12 +17,17 @@ Rails.application.routes.draw do
 
 
   get 'home/index'
-
   get 'home/about'
-
   get 'home/howto'
-
   get 'home/contact'
+  get 'home/good_or_bad_idea'
+  get 'home/find_your_soul'
+  get 'home/law_is_law'
+  get 'home/money_broke'
+  get 'home/useful_information'
+  get 'home/the_godfather'
+  get 'home/find_your_roof'
+  get 'home/low_cost_consulting'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
