@@ -5,12 +5,6 @@ class HomeController < ApplicationController
   def index
   end
 
-<<<<<<< HEAD
-
-  def about
-  end
-
-=======
   def good_or_bad_idea
   end
 
@@ -37,7 +31,6 @@ class HomeController < ApplicationController
 
   def about
   end
->>>>>>> improvedMenuPage
   def howto
   end
 

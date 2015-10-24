@@ -17,14 +17,12 @@ Rails.application.routes.draw do
 
 
   get 'home/index'
-<<<<<<< HEAD
 
   get 'home/about'
 
   get 'home/howto'
 
   get 'home/contact'
-=======
   get 'home/about'
   get 'home/howto'
   get 'home/contact'
@@ -36,7 +34,6 @@ Rails.application.routes.draw do
   get 'home/the_godfather'
   get 'home/find_your_roof'
   get 'home/low_cost_consulting'
->>>>>>> improvedMenuPage
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
