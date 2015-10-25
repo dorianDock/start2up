@@ -1,0 +1,53 @@
+<h1>Liste des requetes</h1>
+
+
+<div class="">
+  <h1>Envoyees</h1>
+  <table class="ui celled table">
+    <thead>
+    <tr>
+      <th>A</th>
+      <th>Quand ?</th>
+      <th>Vous avez accepte ?</th>
+      <th>Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @sent_requests.each do |request| %>
+        <tr>
+          <td><%= request.answerer.name %></td>
+          <td><%= request.created_at.strftime("Envoyee le %d/%m/%Y a %H:%M") %></td>
+          <td><%=
+              request.isAccepted != nil ? request.isAccepted : 'En attente de reponse'
+          %></td>
+          <td><%= request.user_link_type.title %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <h1>Recues</h1>
+  <table class="ui celled table">
+    <thead>
+    <tr>
+      <th>De</th>
+      <th>Quand ?</th>
+      <th>Vous avez accepte ?</th>
+      <th>Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @received_requests.each do |user_link| %>
+        <tr>
+          <td>  <%= user_link.asker.name %></td>
+          <td><%= user_link.created_at.strftime("Envoyee le %d/%m/%Y a %H:%M") %></td>
+          <td><%=
+              user_link.isAccepted != nil ? user_link.isAccepted : 'En attente'
+          %></td>
+          <td><%= user_link.user_link_type.title %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+

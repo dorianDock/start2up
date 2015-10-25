@@ -33,6 +33,16 @@ class User < ActiveRecord::Base
            :dependent => :destroy
   has_many :friendsAccepted, :through => :acceptedFriendships
 
+  has_many :userLinksAsked, :foreign_key => "askerId",
+           :class_name => "UserLink",
+           :dependent => :destroy
+  has_many :linkedUsersAsked, :through => :userLinksAsked
+
+  has_many :userLinksAnswered, :foreign_key => "answeredId",
+           :class_name => "UserLink",
+           :dependent => :destroy
+  has_many :linkedUsersAnswered, :through => :userLinksAnswered
+
 
 
 
@@ -52,6 +62,84 @@ class User < ActiveRecord::Base
   def become_friend_with(new_friend)
     self.askedFriendships.create!(:answererId => new_friend.id)
     # relationships.create!(:followed_id => followed.id)
+  end
+
+  def ask_mentoring_to(future_mentor)
+    aType=UserLinkType.where(title: "Mentor").first
+    self.userLinksAsked.create!(:answererId => future_mentor.id, :user_link_type_id => aType.id)
+  end
+
+
+
+  def ask_partnership_to(future_partner)
+    aType=UserLinkType.where(title: "Partner")
+    self.userLinksAsked.create!(:answererId => future_partner.id, :user_link_type => aType)
+  end
+
+  def accept_mentoring(a_user_link)
+    aType=UserLinkType.where(title: "Mentor")
+    if a_user_link.user_link_type==aType
+      link_to_update=UserLink.where(id: a_user_link.id)
+      link_to_update.isAccepted=true
+      link_to_update.save
+    end
+  end
+
+  def refuse_mentoring(a_user_link)
+    aType=UserLinkType.where(title: "Mentor")
+    if a_user_link.user_link_type==aType
+      link_to_update=UserLink.where(id: a_user_link.id)
+      link_to_update.isAccepted=false
+      link_to_update.save
+    end
+  end
+
+  def accept_partnership(a_user_link)
+    aType=UserLinkType.where(title: "Partner")
+    if a_user_link.user_link_type==aType
+      link_to_update=UserLink.where(id: a_user_link.id)
+      link_to_update.isAccepted=true
+      link_to_update.save
+    end
+  end
+
+  def refuse_partnership(a_user_link)
+    aType=UserLinkType.where(title: "Partner")
+    if a_user_link.user_link_type==aType
+      link_to_update=UserLink.where(id: a_user_link.id)
+      link_to_update.isAccepted=false
+      link_to_update.save
+    end
+  end
+
+  # get all the mentors of the current employee
+  def mentors()
+    aType=UserLinkType.where(title: "Mentor")
+    mentors=current_user.linkedUsersAsked.where(:user_link_type => aType,:isAccepted => true)
+
+  end
+
+  # get all the users for who the current employee is a mentor
+  def mentorees()
+
+
+
+  end
+
+  # get all the partners of the current employee
+  # (those who accepted when the current user asked
+  # AND
+  # those who asked the current user and for who the current user has accepted)
+  def partners()
+
+
+
+  end
+
+  # get all the users who were refused by the current employee as partners
+  def refused_partners()
+
+
   end
 
 end

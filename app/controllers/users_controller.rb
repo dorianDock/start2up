@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     render 'index'
   end
 
+  # def requests
+  #   @user = User.find(params[:id])
+  #   @users = @user.friendsAsked.paginate(:page => params[:page])
+  #   render 'user_links/index'
+  # end
+
 
 
 

@@ -1,0 +1,6 @@
+<%= form_for current_user.userLinksAsked.build(:answererId => user.id) do |f| %>
+    <%= f.hidden_field :answererId %>
+    <!--<%= f.hidden_field :type_label, :value => "Mentor" %>-->
+    <%= f.submit "Demander comme Mentor", class: "ui inverted button" %>
+<% end %>
+

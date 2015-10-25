@@ -10,6 +10,7 @@
             <div class="content">
               <div class="center">
                 <div class=""><%= render 'becomeFriend', :user => user %></div>
+                <div class=""><%= render 'askForMentorship', :user => user %></div>
               </div>
             </div>
           </div>
@@ -19,11 +20,9 @@
           <%= link_to user.name, user , class: "header"%>
 
           <div class="meta">
-<<<<<<< HEAD
-            <span class="date"> <%= user.created_at.strftime("Since here %m/%d/%Y") %></span>
-=======
+
             <span class="date"> <%= user.created_at.strftime("Here since %d/%m/%Y") %></span>
->>>>>>> improvedMenuPage
+
           </div>
         </div>
         <div class="extra content">
@@ -39,8 +38,5 @@
 
 
 
-<<<<<<< HEAD
+
 <%= will_paginate %>
-=======
-<%= will_paginate %>
->>>>>>> improvedMenuPage

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :friend_links
+  resources :user_links
 
 
 
