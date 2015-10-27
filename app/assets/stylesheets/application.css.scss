@@ -14,6 +14,10 @@
  *= require_self
  */
 @import "semantic-ui";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
 
 
 .squareMenuContainer{
@@ -44,4 +48,8 @@
 .pagination{
   margin-bottom: 15px;
   margin-top: 15px;
+}
+
+.fa {
+  cursor: pointer;
 }

@@ -1,0 +1,14 @@
+<tr class="requestLine requestLine<%= user_link.id %>">
+  <td>
+    <!--<%= link_to "", user_links_accept_or_refuse_request_path, remote: true, class: "fa fa-check validateRequests" %>-->
+<a class="fa fa-check validateRequests" data-url="<%= user_links_accept_or_refuse_request_path %>"
+   data-id="<%= user_link.id %>"></a>
+
+
+    <%= user_link.asker.name %></td>
+  <td><%= user_link.created_at.strftime("Envoyee le %d/%m/%Y a %H:%M") %></td>
+  <td><%=
+      user_link.isAccepted != nil ? user_link.isAccepted : 'En attente'
+  %></td>
+  <td><%= user_link.user_link_type.title %></td>
+</tr>

@@ -59,3 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #Authentification
 gem 'devise'
+
+#Font-awesome > have nice icons in the app
+gem 'font-awesome-sass'

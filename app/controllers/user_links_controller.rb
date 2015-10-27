@@ -14,4 +14,18 @@ class UserLinksController < ApplicationController
     # received_requests = raw_requests.paginate(:page => params[:page],:per_page => 10)
   end
 
+  def accept_or_refuse_request
+
+    id=params[:id]
+    myBool=params[:myBool]
+    respond_to do |format|
+
+      format.json {
+        render json: {:id => id, :myBool => myBool }
+      }
+
+    end
+  end
+
+
 end

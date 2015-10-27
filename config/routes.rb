@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   end
 
   resources :friend_links
-  resources :user_links
+  resources :user_links, :only => [:new, :create,:index]
+  #   member do
+  #     get :truite
+  #   end
+  # end
+  get 'user_links/accept_or_refuse_request'
 
 
 
