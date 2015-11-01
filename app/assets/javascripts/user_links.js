@@ -4,22 +4,35 @@
  */
 $(document).
     on('page:change', function () {
-        $('.validateRequests').click(function () {
 
-            var url = $(this).data('url');
-            var requestId = $(this).data('id');
-            $.ajax({
-                url: url,
-                data: {
-                    id: requestId,
-                    myBool: false
-                }
-            }).done(function (data) {
-                console.log('good ol ajax method');
-                console.log(data);
+        function BindStatusChangingBehaviour(aSelector){
+
+            $(aSelector).click(function () {
+
+                var url = $(this).data('url');
+                var requestId = $(this).data('id');
+                var myBool = $(this).data('accept');
+                $.ajax({
+                    url: url,
+                    data: {
+                        id: requestId,
+                        isAccepted: myBool
+                    }
+                }).done(function (data) {
+                    $('.requestLine'+data.id).after(data.partial_view);
+                    $('.receivedRequestsTBody > .requestLine'+data.id).first().remove();
+                    BindStatusChangingBehaviour('.requestLine'+data.id+' > td > .validateRequests');
+                    showSuccess('Votre choix', 'Votre decision est maintenant effective');
+                    console.log(data);
+                });
+
             });
+        }
 
-        });
+        BindStatusChangingBehaviour('.validateRequests');
+
+
+
     });
 
 

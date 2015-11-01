@@ -12,8 +12,15 @@
     <%= link_to 'Users', users_path, class: "item" %>
     <%=	if user_signed_in?
              link_to 'Friends', friends_user_path(current_user.id), class: "item"
-
              end
+    %>
+    <%=	if user_signed_in?
+             link_to 'Mentors', mentors_user_path(current_user.id), class: "item"
+           end
+    %>
+    <%=	if user_signed_in?
+             link_to 'Padawans', mentorees_user_path(current_user.id), class: "item"
+           end
     %>
     <div class="right menu">
       <%=	if user_signed_in?

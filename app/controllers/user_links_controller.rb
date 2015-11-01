@@ -17,11 +17,18 @@ class UserLinksController < ApplicationController
   def accept_or_refuse_request
 
     id=params[:id]
-    myBool=params[:myBool]
+    isAccepted=params[:isAccepted]
+    # we update the request
+    @new_request=UserLink.find(id)
+    @new_request.isAccepted=isAccepted
+    @new_request.save
+
+
+    my_html=render_to_string("_requestLine", :formats => [:html], :layout => false, :locals => {:user_link => @new_request})
     respond_to do |format|
 
       format.json {
-        render json: {:id => id, :myBool => myBool }
+        render json: {:id => id, :myBool => isAccepted, :partial_view => my_html }
       }
 
     end

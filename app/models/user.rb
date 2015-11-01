@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
            :dependent => :destroy
   has_many :linkedUsersAsked, :through => :userLinksAsked
 
-  has_many :userLinksAnswered, :foreign_key => "answeredId",
+  has_many :userLinksAnswered, :foreign_key => "answererId",
            :class_name => "UserLink",
            :dependent => :destroy
   has_many :linkedUsersAnswered, :through => :userLinksAnswered
@@ -113,18 +113,18 @@ class User < ActiveRecord::Base
   end
 
   # get all the mentors of the current employee
-  def mentors()
-    aType=UserLinkType.where(title: "Mentor")
-    mentors=current_user.linkedUsersAsked.where(:user_link_type => aType,:isAccepted => true)
-
-  end
+  # def mentors()
+  #   aType=UserLinkType.where(title: "Mentor")
+  #   mentors=current_user.linkedUsersAsked.where(:user_link_type => aType,:isAccepted => true)
+  #
+  # end
 
   # get all the users for who the current employee is a mentor
-  def mentorees()
-
-
-
-  end
+  # def mentorees()
+  #
+  #
+  #
+  # end
 
   # get all the partners of the current employee
   # (those who accepted when the current user asked

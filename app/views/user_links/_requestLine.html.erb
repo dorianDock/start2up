@@ -1,9 +1,26 @@
-<tr class="requestLine requestLine<%= user_link.id %>">
+<tr class="requestLine requestLine<%= user_link.id %>
+<%- if (user_link.isAccepted == true) %>
+positive
+<% end -%>
+<%- if (user_link.isAccepted == false) %>
+negative
+<% end -%> ">
   <td>
     <!--<%= link_to "", user_links_accept_or_refuse_request_path, remote: true, class: "fa fa-check validateRequests" %>-->
-<a class="fa fa-check validateRequests" data-url="<%= user_links_accept_or_refuse_request_path %>"
-   data-id="<%= user_link.id %>"></a>
 
+
+
+        <%- if (user_link.isAccepted == nil) %>
+            <a class="fa fa-check validateRequests"
+               data-url="<%= user_links_accept_or_refuse_request_path %>"
+               data-id="<%= user_link.id %>" data-accept="true" >
+
+            </a>
+            <a class="fa fa-times validateRequests"
+               data-url="<%= user_links_accept_or_refuse_request_path %>"
+               data-id="<%= user_link.id %>" data-accept="false" >
+            </a>
+        <% end -%>
 
     <%= user_link.asker.name %></td>
   <td><%= user_link.created_at.strftime("Envoyee le %d/%m/%Y a %H:%M") %></td>
@@ -12,3 +29,4 @@
   %></td>
   <td><%= user_link.user_link_type.title %></td>
 </tr>
+

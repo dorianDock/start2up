@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   resources :users  do
     member do
       get :friends
+      get :mentors
+      # get :linkedUsersAnswered
+
+
+      get :mentorees
     end
   end
 

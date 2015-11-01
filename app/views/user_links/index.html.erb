@@ -29,14 +29,14 @@
   <h1>Recues</h1>
   <table class="ui celled table">
     <thead>
-    <tr>
+    <tr class="blue column">
       <th>De</th>
       <th>Quand ?</th>
       <th>Vous avez accepte ?</th>
       <th>Type</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="receivedRequestsTBody">
     <% @received_requests.each do |user_link| %>
 
         <%= render partial: "requestLine", locals: { user_link: user_link } %>

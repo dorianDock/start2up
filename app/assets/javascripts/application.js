@@ -22,7 +22,7 @@
 //$('.ui.checkbox')
 //    .checkbox()
 //;
-$( document ).ready(function() {
+$( document).on('page:change', function () {
     $('.message > .close')
         .on('click', function() {
             $(this)
@@ -31,4 +31,14 @@ $( document ).ready(function() {
             ;
         })
     ;
+
+    $('.myCustomSuccessMessage').hide();
+
 });
+
+function showSuccess(headerText, contentText){
+    $('.myCustomSuccessMessage > .myCustomSuccessMessageHeader').html(headerText);
+    $('.myCustomSuccessMessage > .myCustomSuccessMessageContent').html(contentText);
+    $('.myCustomSuccessMessage').show();
+
+}
