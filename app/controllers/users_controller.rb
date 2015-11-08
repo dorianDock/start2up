@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
 
-  
+
 
 
   # def requests
