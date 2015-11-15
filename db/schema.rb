@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025112805) do
+ActiveRecord::Schema.define(version: 20151114183253) do
+
+  create_table "concept_categories", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "concept_statuses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "concept_types", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "concepts", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "associate_number"
+    t.integer  "associate_wished_number"
+    t.integer  "concept_type_id"
+    t.integer  "concept_status_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "friend_links", force: :cascade do |t|
     t.integer  "askerId"
