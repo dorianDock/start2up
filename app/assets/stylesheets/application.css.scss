@@ -23,11 +23,13 @@ body{
   background-color: rgb(43,43,43) !important;
   background: url(outilsGarage2.jpg);
   background-size: cover;
-  //color: whitesmoke;
+  color: whitesmoke;
 }
 
 
-
+.longText{
+  text-align: justify;
+}
 //body::after {
 //  content: "";
 //  background: url(oeufsEclos.png);

@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
   has_many :linkedUsersAnswered, :through => :userLinksAnswered
 
 
+  #handle concepts
+  has_many :concepts
 
 
   # Include default devise modules. Others available are:

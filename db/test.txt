@@ -1,0 +1,30 @@
+﻿# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# ConceptCategory.create(label:'Services')
+# ConceptCategory.create(label:"Informatique et Telecom")
+# ConceptCategory.create(label:'Commerce')
+ConceptCategory.create(label:'Créativité, arts et spectacle')
+# ConceptCategory.create(label:'Éducation – formation – Emplois')
+# ConceptCategory.create(label:'Activités financières – Assurance')
+# ConceptCategory.create(label:'Transport')
+# ConceptCategory.create(label:'Tourisme')
+# ConceptCategory.create(label:'Activités immobilières')
+# ConceptCategory.create(label:'Mode & beauté')
+# ConceptCategory.create(label:'Santé et action sociale')
+# ConceptCategory.create(label:'Hôtel – café – restaurant')
+# ConceptCategory.create(label:'Economie sociale et solidaire')
+# ConceptCategory.create(label:'Industrie')
+# ConceptCategory.create(label:'Artisanat')
+# ConceptCategory.create(label:'Environnement')
+# ConceptCategory.create(label:'Agriculture, sylviculture, pêche')
+# ConceptCategory.create(label:'Réparation')
+# ConceptCategory.create(label:'Construction – Btp')
+# ConceptCategory.create(label:'Profession libérale')
+# ConceptCategory.create(label:'Maison-Habitat')
+

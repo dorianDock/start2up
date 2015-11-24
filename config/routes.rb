@@ -1,38 +1,25 @@
 Rails.application.routes.draw do
 
+  # get 'data_source/category_list/:query', :controller => 'data_source', :action => 'category_list'
+  get 'data_source/category_list'
   devise_for :users, :path_prefix => 'session'
 
   resources :users  do
     member do
       get :friends
       get :mentors
-      # get :linkedUsersAnswered
-
-
       get :mentorees
     end
   end
 
   resources :friend_links
   resources :user_links, :only => [:new, :create,:index]
-  #   member do
-  #     get :truite
-  #   end
-  # end
+
   get 'user_links/accept_or_refuse_request'
-
-
-
 
   get 'users/logout'
 
-
   get 'home/index'
-
-  get 'home/about'
-
-  get 'home/howto'
-
   get 'home/contact'
   get 'home/about'
   get 'home/howto'
