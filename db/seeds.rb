@@ -1,4 +1,6 @@
 # encoding: utf-8
+
+# Concept categories
 ConceptCategory.delete_all
 ConceptCategory.create(label: "Services")
 ConceptCategory.create(label: "Informatique et Telecom")
@@ -21,3 +23,22 @@ ConceptCategory.create(label: "Réparation")
 ConceptCategory.create(label: "Construction, Btp")
 ConceptCategory.create(label: "Profession Libérale")
 ConceptCategory.create(label: "Maison, Habitat")
+
+# Skills
+Skill.delete_all
+Skill.create(label: "Analytics")
+Skill.create(label: "Analytical")
+Skill.create(label: "Applications")
+Skill.create(label: "Application Development")
+Skill.create(label: "Attention to Detail")
+Skill.create(label: "Architecture")
+Skill.create(label: "Big Data")
+Skill.create(label: "Business Analytics")
+Skill.create(label: "Business Intelligence")
+Skill.create(label: "Business Process Modeling")
+Skill.create(label: "Cloud Computing")
+Skill.create(label: "Code")
+Skill.create(label: "Coding")
+Skill.create(label: "Computer")
+Skill.create(label: "Communication")
+Skill.create(label: "Content Strategy")

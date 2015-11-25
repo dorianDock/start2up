@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'skill/update_user_skills'
+
   # get 'data_source/category_list/:query', :controller => 'data_source', :action => 'category_list'
   get 'data_source/category_list'
+  get 'data_source/skill_list'
+
+
+
+
+
+
+
+
+
   devise_for :users, :path_prefix => 'session'
 
   resources :users  do

@@ -40,5 +40,35 @@ function showSuccess(headerText, contentText){
     $('.myCustomSuccessMessage > .myCustomSuccessMessageHeader').html(headerText);
     $('.myCustomSuccessMessage > .myCustomSuccessMessageContent').html(contentText);
     $('.myCustomSuccessMessage').show();
-
 }
+
+// Initialize function for select lists
+function InitializeSelect(aCssClass, placeHolder){
+
+    var myUrl=$('.'+aCssClass).data('url');
+    $.ajax({
+        url: myUrl,
+        data: {
+        }
+    }).done(function (data) {
+        for (i = 0; i < data.results.length; i++) {
+            $('.'+aCssClass+' > select').append('<option value="'+data.results[i].value+'">'+data.results[i].name+'</option>');
+        }
+    });
+    $('.'+aCssClass)
+        .dropdown({
+            placeholder: placeHolder,
+            apiSettings: {
+                url:myUrl+'?query={query}'
+            }
+        });
+}
+
+function AjaxRequest(targetUrl, parameters, callBackFunction){
+    $.ajax({
+        url: targetUrl,
+        data: parameters
+    }).done(callBackFunction);
+}
+
+

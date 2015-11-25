@@ -1,14 +1,14 @@
 <% # encoding: utf-8 %>
 <h1>Profil de <%= @user.name %></h1>
 <p></p>
-<div class="userProfile">
+<div class="userProfile" data-userid="<%= @user.id %>">
 
 
   <div class="ui grid">
     <%= render 'userCard', :user => @user %>
 
     <div class="eight wide column">
-      <%= render 'talentsForProfile', :user => @user %>
+      <%= render 'talentsEditForProfile', :user => @user %>
       <%= render 'friendsForProfile', :user => @user %>
     </div>
   </div>

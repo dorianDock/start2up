@@ -3,7 +3,15 @@
 <div class="talentsForProfile">
   <h2>Les talents de <%= @user.name %></h2>
   <div class="userTalents">
-    LLaalala, alaldsdlsd, al d,ksadksad ,
-    sadojasdo,  asodkasodkas , asdokasdokas ,d asodkasodk as,das dokasdo , asdasd
+    <select name="skills" multiple="" class="ui dropdown search userSkills fluid" data-url="<%= data_source_skill_list_url %>">
+    </select>
+<br>
+
+    <button class="ui primary button right floated validationForUserSkills" data-url="<%= skill_update_user_skills_path %>">
+      Save
+    </button>
+    <button class="ui button right floated">
+      Discard
+    </button>
   </div>
 </div>
