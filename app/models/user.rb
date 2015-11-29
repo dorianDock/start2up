@@ -48,7 +48,11 @@ class User < ActiveRecord::Base
   has_many :concepts
 
   #handle skills
-  has_and_belongs_to_many :skills
+  has_and_belongs_to_many :skills,
+                          join_table: "user_skills",
+                          class_name: "Skill",
+                          foreign_key: "user_id",
+                          association_foreign_key: "skill_id"
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
