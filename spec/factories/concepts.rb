@@ -15,7 +15,7 @@
 #
 
 FactoryGirl.define do
-  factory :concept do
+  factory :concepts do
     title "MyString"
 associate_number 1
 associate_wished_number 1

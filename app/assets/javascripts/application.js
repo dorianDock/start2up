@@ -36,6 +36,13 @@ $( document).on('page:change', function () {
 
 });
 
+function AjaxRequest(targetUrl, parameters, callBackFunction){
+    $.ajax({
+        url: targetUrl,
+        data: parameters
+    }).done(callBackFunction);
+}
+
 function showSuccess(headerText, contentText){
     $('.myCustomSuccessMessage > .myCustomSuccessMessageHeader').html(headerText);
     $('.myCustomSuccessMessage > .myCustomSuccessMessageContent').html(contentText);
@@ -43,9 +50,10 @@ function showSuccess(headerText, contentText){
 }
 
 // Initialize function for select lists
-function InitializeSelect(aCssClass, placeHolder){
+function InitializeSelectList(aCssClass, placeHolder){
 
     var myUrl=$('.'+aCssClass).data('url');
+
     $.ajax({
         url: myUrl,
         data: {
@@ -54,6 +62,23 @@ function InitializeSelect(aCssClass, placeHolder){
         for (i = 0; i < data.results.length; i++) {
             $('.'+aCssClass+' > select').append('<option value="'+data.results[i].value+'">'+data.results[i].name+'</option>');
         }
+
+        // objectLink is the entity by which we are going to take the data already set
+        var objectLink=$('.'+aCssClass+' > select').data('objectlinkid');
+        if(objectLink!=undefined && objectLink!=""){
+            var initializeUrl=$('.'+aCssClass+' > select').data('initializeurl');
+            var changeTheDropDown=function(data){
+                // we change the data from [] to [""]
+                for (i = 0; i < data.length; i++) {
+                    data[i]=data[i].toString();
+                }
+                $('.'+aCssClass).dropdown('set selected', data);
+            };
+            var parameters={ userid: objectLink};
+            AjaxRequest(initializeUrl,parameters,changeTheDropDown);
+        }
+
+
     });
     $('.'+aCssClass)
         .dropdown({
@@ -62,13 +87,23 @@ function InitializeSelect(aCssClass, placeHolder){
                 url:myUrl+'?query={query}'
             }
         });
+
 }
 
-function AjaxRequest(targetUrl, parameters, callBackFunction){
-    $.ajax({
-        url: targetUrl,
-        data: parameters
-    }).done(callBackFunction);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

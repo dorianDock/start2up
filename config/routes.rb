@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
 
+
+
   get 'skill/update_user_skills'
+
+  get 'skill/skills_for_user'
+
+
 
   # get 'data_source/category_list/:query', :controller => 'data_source', :action => 'category_list'
   get 'data_source/category_list'
   get 'data_source/skill_list'
+
+  get 'concepts/add_concept_for_user'
+
+  post 'concepts/edit_user_concept'
 
 
 

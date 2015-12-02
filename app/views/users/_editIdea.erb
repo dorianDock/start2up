@@ -1,0 +1,67 @@
+<% # encoding: utf-8  %>
+
+<div class="item">
+  <div class="image">
+    <img src="<%= image_url 'house.png' %>">
+
+    <div class="meta">
+      <span><%= user_concept.created_at.strftime("Imaginee le  %d/%m/%Y") %></span>
+
+    </div>
+  </div>
+  <div class="content">
+    <a class="header">Des machines a remonter le temps</a>
+
+    <div class="meta">
+      <span>Description</span>
+
+    </div>
+    <div class="description ">
+      <%= form_tag(controller: "concepts", action: "edit_user_concept", method: "post", class: "ui form") do %>
+
+      <div class="field">
+
+            <textarea>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.
+          Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.
+          Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
+          Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
+          Donec ut libero sed arcu vehicula ultricies a non tortor.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.
+          Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet.
+          Ut convallis libero in urna ultrices accumsan. Donec sed odio eros.
+          Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus.
+          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          In rutrum accumsan ultricies.
+          Mauris vitae nisi at sem facilisis semper ac in est.</textarea>
+      </div>
+      <!--<div class="ui blue labeled submit icon button right floated">-->
+      <!--<i class="icon edit"></i> Editer la description-->
+      <!--</div>-->
+      <br>
+      <h4>Categories</h4>
+      <select name="categories" multiple="" class="ui dropdown search customTry" data-url="<%= data_source_category_list_url %>">
+      </select>
+      <button class="ui primary button right floated validationForUserConcepts">
+        Save
+      </button>
+
+        <% end %>
+    </div>
+    <div class="description ">
+      <%= form_for user_concept, url: {controller: "concepts", action: "edit_user_concept"}, method: "post", html: {class: "ui form"} do |f| %>
+          <%= f.text_field :title %>
+          <%= f.text_area :content, size: "60x12" %>
+          <h4>Actuellement, </h4>
+          <%= f.number_field(:associate_number, in: 0..100, step: 1) %> <P> Personnes travaillent pour nous.</P>
+          <h4>Il nous manque encore </h4>
+          <%= f.number_field(:associate_wished_number, in: 0..100, step: 1) %> <P> Personnes.</P>
+          <h4>Categories</h4>
+          <%= select_tag(:category_ids,"" ,multiple: true, class: "ui dropdown search customTry", data: { :url => data_source_category_list_url} ) %>
+
+          <%= f.submit "Save2", class: "ui primary button right floated validationForUserConcepts"  %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

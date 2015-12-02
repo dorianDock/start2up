@@ -1,82 +1,13 @@
 <% # encoding: utf-8 %>
 
 <div class="ui items">
-  <h2>Idées de <%= @user.name %></h2>
-  <div class="item">
-    <div class="image">
-      <img src="<%= image_url 'house.png' %>">
-      <div class="meta">
-        <span>Tags</span>
+  <h2>Idées de <%= @user.name %> <div class="ui green icon button addIdea" data-url="<%= concepts_add_concept_for_user_path %>">
+    <i class="icon plus"></i>
+  </div></h2>
 
-      </div>
-    </div>
-    <div class="content">
-      <a class="header">Des machines a remonter le temps</a>
-      <div class="meta">
-        <span>Description</span>
-
-      </div>
-      <div class="description ">
-        <form class="ui reply form">
-          <div class="field">
-            <textarea>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.
-          Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.
-          Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
-          Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
-          Donec ut libero sed arcu vehicula ultricies a non tortor.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.
-          Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet.
-          Ut convallis libero in urna ultrices accumsan. Donec sed odio eros.
-          Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus.
-          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          In rutrum accumsan ultricies.
-          Mauris vitae nisi at sem facilisis semper ac in est.</textarea>
-          </div>
-          <div class="ui blue labeled submit icon button right floated">
-            <i class="icon edit"></i> Add Reply
-          </div>
-        </form>
+  <% @user.concepts.each do |concept| %>
+      <%= render 'editIdea', :user_concept => concept %>
+  <% end %>
 
 
-      </div>
-      <div class="description ">
-        <select name="categories" multiple="" class="ui dropdown search customTry" data-url="<%= data_source_category_list_url %>">
-        </select>
-      </div>
-
-    </div>
-  </div>
-  <div class="item">
-    <div class="image">
-      <img src="<%= image_url 'house.png' %>">
-      <div class="meta">
-        <span>Tags</span>
-      </div>
-    </div>
-    <div class="content">
-      <a class="header">Des truites arc-en-ciel</a>
-      <div class="meta">
-        <span>Description</span>
-      </div>
-      <div class="description ">
-        <p class="longText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.
-          Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.
-          Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
-          Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
-          Donec ut libero sed arcu vehicula ultricies a non tortor.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.
-          Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet.
-          Ut convallis libero in urna ultrices accumsan. Donec sed odio eros.
-          Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus.
-          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          In rutrum accumsan ultricies.
-          Mauris vitae nisi at sem facilisis semper ac in est.</p>
-      </div>
-      <div class="extra">
-        Additional Details
-      </div>
-    </div>
-  </div>
 </div>

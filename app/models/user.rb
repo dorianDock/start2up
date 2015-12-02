@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
 
   #handle concepts
-  has_many :concepts
+  has_many :concepts, foreign_key: "author_id"
 
   #handle skills
   has_and_belongs_to_many :skills,
