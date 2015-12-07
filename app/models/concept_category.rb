@@ -10,6 +10,11 @@
 
 class ConceptCategory < ActiveRecord::Base
 
+
   # handle categories
-  has_and_belongs_to_many :concepts
+  has_and_belongs_to_many :concepts,
+                          join_table: "concepts",
+                          class_name: "Concept",
+                          foreign_key: "category_id",
+                          association_foreign_key: "concept_id"
 end

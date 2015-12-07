@@ -24,7 +24,7 @@ class SkillController < ApplicationController
 
   def skills_for_user
 
-    user_id=params[:userid]
+    user_id=params[:objectid]
 
     # we get all the skills of the user, and we select only the ids
     @the_user=User.find_by(id: user_id)

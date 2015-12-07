@@ -25,7 +25,13 @@ class Concept < ActiveRecord::Base
   belongs_to :concept_status
 
   # handle categories
-  has_and_belongs_to_many :concept_categories
+  has_and_belongs_to_many :concept_categories,
+                          join_table: "concept_category_links",
+                          class_name: "ConceptCategory",
+                          foreign_key: "concept_id",
+                          association_foreign_key: "category_id"
+
+
 
 
 end

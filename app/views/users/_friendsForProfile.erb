@@ -3,28 +3,14 @@
 <div class="friendsForProfile">
   <h2>Ils lui font deja confiance</h2>
   <div class="userTalents">
-    <div class="ui four stackable cards">
+    <div class="ui three stackable cards">
 
-      <div class="card">
-        <div class="image">
-          <img src="<%= image_url "avatarHomme.png" %>">
-        </div>
-      </div>
-      <div class="card">
-        <div class="image">
-          <img src="<%= image_url "avatarHomme.png" %>">
-        </div>
-      </div>
-      <div class="card">
-        <div class="image">
-          <img src="<%= image_url "avatarHomme.png" %>">
-        </div>
-      </div>
-      <div class="card">
-        <div class="image">
-          <img src="<%= image_url "avatarHomme.png" %>">
-        </div>
-      </div>
+      <% @user.friendsAsked.limit(3).each do |friend| %>
+          <%= render 'friendCard', :user => friend %>
+      <% end %>
+
     </div>
+    <br>
+    <a class="linkForFriends" href="<%= friends_user_url %>">Voir les autres personnes</a>
   </div>
 </div>

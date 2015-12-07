@@ -1,6 +1,6 @@
-<% # encoding: utf-8  %>
+<% # encoding: utf-8   %>
 
-<div class="item">
+<div class="item conceptItem concept<%= user_concept.id %>">
   <div class="image">
     <img src="<%= image_url 'house.png' %>">
 
@@ -11,55 +11,75 @@
   </div>
   <div class="content">
     <a class="header">Des machines a remonter le temps</a>
+    <!--<i class="fa fa-2x fa-toggle-off"></i>-->
+
+    <a class="ui icon red button right floated removeConcept"
+       data-conceptid="<%= user_concept.id %>" data-url="<%= concepts_remove_concept_for_user_path %>">
+      <i class="icon fa fa-times"></i>
+    </a>
+    <a class="ui icon orange button right floated askForConceptReview"
+       data-conceptid="<%= user_concept.id %>" data-url="<%= concepts_ask_for_concept_review_path %>">
+      <i class="icon fa fa-share-alt"></i>
+    </a>
+    <!--<a class="ui icon button right floated publishConcept"-->
+       <!--data-conceptid="<%= user_concept.id %>" data-url="<%= concepts_publish_concept_path %>">-->
+      <!--<i class="icon fa fa-toggle-off"></i>-->
+    <!--</a>-->
+
+
+
 
     <div class="meta">
-      <span>Description</span>
+      <span></span>
 
     </div>
     <div class="description ">
-      <%= form_tag(controller: "concepts", action: "edit_user_concept", method: "post", class: "ui form") do %>
 
-      <div class="field">
-
-            <textarea>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.
-          Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.
-          Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
-          Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
-          Donec ut libero sed arcu vehicula ultricies a non tortor.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.
-          Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet.
-          Ut convallis libero in urna ultrices accumsan. Donec sed odio eros.
-          Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus.
-          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          In rutrum accumsan ultricies.
-          Mauris vitae nisi at sem facilisis semper ac in est.</textarea>
-      </div>
-      <!--<div class="ui blue labeled submit icon button right floated">-->
-      <!--<i class="icon edit"></i> Editer la description-->
-      <!--</div>-->
-      <br>
-      <h4>Categories</h4>
-      <select name="categories" multiple="" class="ui dropdown search customTry" data-url="<%= data_source_category_list_url %>">
-      </select>
-      <button class="ui primary button right floated validationForUserConcepts">
-        Save
-      </button>
-
-        <% end %>
-    </div>
-    <div class="description ">
       <%= form_for user_concept, url: {controller: "concepts", action: "edit_user_concept"}, method: "post", html: {class: "ui form"} do |f| %>
-          <%= f.text_field :title %>
-          <%= f.text_area :content, size: "60x12" %>
-          <h4>Actuellement, </h4>
-          <%= f.number_field(:associate_number, in: 0..100, step: 1) %> <P> Personnes travaillent pour nous.</P>
-          <h4>Il nous manque encore </h4>
-          <%= f.number_field(:associate_wished_number, in: 0..100, step: 1) %> <P> Personnes.</P>
-          <h4>Categories</h4>
-          <%= select_tag(:category_ids,"" ,multiple: true, class: "ui dropdown search customTry", data: { :url => data_source_category_list_url} ) %>
+          <% theStringId=user_concept.id.to_s %>
 
-          <%= f.submit "Save2", class: "ui primary button right floated validationForUserConcepts"  %>
+          <%= f.hidden_field :id %>
+            <div class="field">
+              <label>Titre</label>
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <label>Description</label>
+              <%= f.text_area :content, size: "60x12" %>
+            </div>
+
+          <div class="inline fields">
+            <div class="three wide field">
+              <label>Actuellement, </label>
+            </div>
+            <div class="two wide field">
+              <%= f.number_field(:associate_number, in: 0..100, step: 1) %>
+            </div>
+            <div class="ten wide field">
+              <label>Personnes travaillent pour nous.</label>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="four wide field">
+              <label>Il nous manque encore </label>
+            </div>
+            <div class="two wide field">
+              <%= f.number_field(:associate_wished_number, in: 0..100, step: 1) %>
+            </div>
+            <div class="ten wide field">
+              <label>Personnes.</label>
+            </div>
+          </div>
+
+          <h4>Categories</h4>
+          <%= select_tag(:category_ids, "", multiple: true, class: "ui dropdown search conceptCategorySelect conceptCategory"+theStringId,
+                         data: {:url => data_source_category_list_url,
+                                :initializeurl => concepts_categories_for_concepts_url, :objectlinkid => user_concept.id}) %>
+
+          <br>
+          <br>
+          <%= f.submit "Valider", class: "ui primary button right floated validationForUserConcepts" %>
       <% end %>
     </div>
 

@@ -22,9 +22,9 @@
 //$('.ui.checkbox')
 //    .checkbox()
 //;
-$( document).on('page:change', function () {
+$(document).on('page:change', function () {
     $('.message > .close')
-        .on('click', function() {
+        .on('click', function () {
             $(this)
                 .closest('.message')
                 .transition('fade')
@@ -36,57 +36,54 @@ $( document).on('page:change', function () {
 
 });
 
-function AjaxRequest(targetUrl, parameters, callBackFunction){
+function AjaxRequest(targetUrl, parameters, callBackFunction) {
     $.ajax({
         url: targetUrl,
         data: parameters
     }).done(callBackFunction);
 }
 
-function showSuccess(headerText, contentText){
+function showSuccess(headerText, contentText) {
     $('.myCustomSuccessMessage > .myCustomSuccessMessageHeader').html(headerText);
     $('.myCustomSuccessMessage > .myCustomSuccessMessageContent').html(contentText);
     $('.myCustomSuccessMessage').show();
 }
 
 // Initialize function for select lists
-function InitializeSelectList(aCssClass, placeHolder){
+function InitializeSelectList(aCssClass, placeHolder) {
 
-    var myUrl=$('.'+aCssClass).data('url');
 
+    var myUrl = $('.' + aCssClass).data('url');
     $.ajax({
         url: myUrl,
-        data: {
-        }
+        data: {}
     }).done(function (data) {
         for (i = 0; i < data.results.length; i++) {
-            $('.'+aCssClass+' > select').append('<option value="'+data.results[i].value+'">'+data.results[i].name+'</option>');
+            $('.' + aCssClass + ' > select').append('<option value="' + data.results[i].value + '">' + data.results[i].name + '</option>');
         }
-
         // objectLink is the entity by which we are going to take the data already set
-        var objectLink=$('.'+aCssClass+' > select').data('objectlinkid');
-        if(objectLink!=undefined && objectLink!=""){
-            var initializeUrl=$('.'+aCssClass+' > select').data('initializeurl');
-            var changeTheDropDown=function(data){
+        var objectLink = $('.' + aCssClass + ' > select').data('objectlinkid');
+        if (objectLink != undefined && objectLink != "") {
+            var initializeUrl = $('.' + aCssClass + ' > select').data('initializeurl');
+            var changeTheDropDown = function (data) {
                 // we change the data from [] to [""]
                 for (i = 0; i < data.length; i++) {
-                    data[i]=data[i].toString();
+                    data[i] = data[i].toString();
                 }
-                $('.'+aCssClass).dropdown('set selected', data);
+                $('.' + aCssClass).dropdown('set selected', data);
             };
-            var parameters={ userid: objectLink};
-            AjaxRequest(initializeUrl,parameters,changeTheDropDown);
+            var parameters = {objectid: objectLink};
+            AjaxRequest(initializeUrl, parameters, changeTheDropDown);
         }
-
-
     });
-    $('.'+aCssClass)
+    $('.' + aCssClass)
         .dropdown({
             placeholder: placeHolder,
             apiSettings: {
-                url:myUrl+'?query={query}'
+                url: myUrl + '?query={query}'
             }
         });
+
 
 }
 

@@ -4,7 +4,18 @@ $(document).
 
         // when page is loading: we fill those lists
         InitializeSelectList('userSkills', 'Choisir des skills');
-        InitializeSelectList('customTry', 'Choisir une categorie');
+
+        // We initialize each category component
+        var numberOfConcepts=$('.conceptCategorySelect').length;
+
+        $('.conceptCategorySelect').each(function(index, element){
+            var conceptId=$(element).data('objectlinkid');
+            var nameOfTheElementClass="conceptCategory"+conceptId;
+            InitializeSelectList(nameOfTheElementClass, 'Choisir une categorie'+conceptId);
+        });
+
+
+
 
         $('.special.cards .image').dimmer({
             on: 'hover'
@@ -34,10 +45,32 @@ $(document).
         $('.addIdea').click(function () {
             var myReturnFunction=function(data){
                 $(".ui.items").append(data.partial_view);
+                // we load the category components for the concept
+                if(data.conceptid){
+                    var conceptId=data.conceptid;
+                    var nameOfTheElementClass="conceptCategory"+conceptId;
+                    InitializeSelectList(nameOfTheElementClass, 'Choisir une categorie'+conceptId);
+                }
+
             };
             var parameters={userid: userId};
             AjaxRequest($(this).data('url'), parameters, myReturnFunction);
         });
+
+        $('.removeConcept').click(function () {
+            var myReturnFunction=function(data){
+                if(data.message){
+                    showSuccess(data.message,'')
+                    $('.concept'+data.conceptid).hide();
+                }
+
+            };
+            var conceptid=$(this).data('conceptid');
+            var parameters={conceptid: conceptid};
+            AjaxRequest($(this).data('url'), parameters, myReturnFunction);
+        });
+
+
 
 
     });

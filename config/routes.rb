@@ -13,8 +13,13 @@ Rails.application.routes.draw do
   get 'data_source/skill_list'
 
   get 'concepts/add_concept_for_user'
-
+  get 'concepts/remove_concept_for_user'
+  get 'concepts/categories_for_concepts'
   post 'concepts/edit_user_concept'
+  get 'concepts/ask_for_concept_review'
+  get 'concepts/publish_concept'
+
+
 
 
 

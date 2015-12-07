@@ -3,11 +3,13 @@
 <div class="talentsForProfile">
   <h2>Les talents de <%= @user.name %></h2>
   <div class="userTalents">
-    <div class="ui label">LLaalala</div>
-    <div class="ui label">LLaalala</div>
-    <div class="ui label">LLaalala</div><div class="ui label">LLaalala</div>
+    <div class="ui large blue labels">
+      <% @user.skills.each do |skill| %>
+          <%= render 'showSkill', :user_skill => skill %>
+      <% end %>
+    </div>
 
-    , alaldsdlsd, al d,ksadksad ,
-    sadojasdo,  asodkasodkas , asdokasdokas ,d asodkasodk as,das dokasdo , asdasd
+
+
   </div>
 </div>
