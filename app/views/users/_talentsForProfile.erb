@@ -4,8 +4,10 @@
   <h2>Les talents de <%= @user.name %></h2>
   <div class="userTalents">
     <div class="ui large blue labels">
-      <% @user.skills.each do |skill| %>
-          <%= render 'showSkill', :user_skill => skill %>
+      <% if(@user.skills.count>0) %>
+          <% @user.skills.each do |skill| %>
+              <%= render 'showSkill', :user_skill => skill %>
+          <% end %>
       <% end %>
     </div>
 
