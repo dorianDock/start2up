@@ -10,9 +10,35 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    User.each do |user|
+      user.avatar.reprocess!
+      user.save
+    end
 
   end
 
+  def update
+
+
+  end
+
+  # def create
+  #   @user = User.create( user_params )
+  # end
+
+  def update_profile_picture
+    @user=User.find(params[:id])
+    trueParams=params[:user].permit(:avatar)
+
+    if @user.update_attribute(:avatar, trueParams[:avatar])
+      redirect_to show
+    else
+      @message=@user.errors
+      render 'test'
+      end
+
+
+  end
 
   def friends
     @user = User.find(params[:id])
@@ -48,13 +74,22 @@ class UsersController < ApplicationController
 
 
 
+
+
   # def requests
   #   @user = User.find(params[:id])
   #   @users = @user.friendsAsked.paginate(:page => params[:page])
   #   render 'user_links/index'
   # end
 
+  private
 
+  # Use strong_parameters for attribute whitelisting
+  # Be sure to update your create() and update() controller methods.
+
+  def user_params
+    params.require(:user).permit(:avatar, :name)
+  end
 
 
   def logout

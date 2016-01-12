@@ -11,12 +11,26 @@
             </div>
           </div>
         </div>
-        <img src="<%= image_url "avatarHomme.png" %>">
+        <%= image_tag @user.avatar.url(:medium) %>
+
       </div>
       <div class="content">
         <span class="header"><%= @user.name %></span>
         <div class="meta">
           <span class="date"> <%= @user.created_at.strftime("Here since %d/%m/%Y") %></span>
+          <%= form_for(@user, :method => "post",html:{ multipart:true, class: "ui form customFormForSessions"}, url: update_profile_picture_user_path) do |f| %>
+              <div class="field">
+                <%= f.label :avatar %>
+                <div class="one fields">
+                  <div class="field">
+                    <%= f.file_field :avatar %>
+                  </div>
+                </div>
+              </div>
+              <div class="actions">
+                <%= f.submit "Change Picture",class: "ui button" %>
+              </div>
+          <% end %>
         </div>
       </div>
       <div class="extra content">

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
 
+  get 'registrations/update_resource'
+
   get 'skill/update_user_skills'
 
   get 'skill/skills_for_user'
@@ -27,15 +29,16 @@ Rails.application.routes.draw do
 
 
 
-
-
   devise_for :users, :path_prefix => 'session'
+
+  # devise_for :users, :path_prefix => 'session', controllers: {registrations: 'registrations'}
 
   resources :users  do
     member do
       get :friends
       get :mentors
       get :mentorees
+      post :update_profile_picture
     end
   end
 

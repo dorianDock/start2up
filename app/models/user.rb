@@ -20,9 +20,13 @@
 
 class User < ActiveRecord::Base
 
+  #handle attachments
+  has_attached_file :avatar, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png",
+                    url: "/system/users/:id/:style/:filename"
+  validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
+
   #handle relationships
-
-
 
   has_many :askedFriendships, :foreign_key => "askerId",
            :class_name => "FriendLink",
@@ -62,8 +66,8 @@ class User < ActiveRecord::Base
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # validates :nom, presence: true, :length   => { :maximum => 50 }
   validates :email, presence: true,
-            :format   => { :with => email_regex },
-            :uniqueness => { :case_sensitive => false }
+  :format   => { :with => email_regex },
+      :uniqueness => { :case_sensitive => false }
   # password validatons
   validates :password, presence: true
 

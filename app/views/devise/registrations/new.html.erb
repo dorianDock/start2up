@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name,html:{ class: "ui form customFormForSessions"}, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name,html:{ multipart:true, class: "ui form customFormForSessions"}, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
 
@@ -9,6 +9,15 @@
       <div class="one fields">
         <div class="field">
           <%= f.email_field :email, autofocus: true %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :avatar %>
+      <div class="one fields">
+        <div class="field">
+          <%= f.file_field :avatar %>
         </div>
       </div>
     </div>

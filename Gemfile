@@ -62,3 +62,6 @@ gem 'devise'
 
 #Font-awesome > have nice icons in the app
 gem 'font-awesome-sass'
+
+#paperclip > handle upload of images, etc
+gem "paperclip", '4.2.0'
