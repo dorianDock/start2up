@@ -1,0 +1,28 @@
+<div class="ui inverted top fixed menu">
+
+  <div class="ui container">
+    <div href="#" class="header item">
+      <img class="logo customLogo" src="<%= image_url "fakeLogo.png" %>"> Start2Up
+    </div>
+    <!--<%= link_to 'Home', home_index_path, class: "item active" %>-->
+
+    <div class="right menu">
+      <%=	if user_signed_in?
+               link_to current_user.email, current_user, class: "item"
+                else
+                  link_to 'Login', new_user_session_path, class: "item"
+                end
+      %>
+      <%=	if user_signed_in?
+               link_to 'Logout', destroy_user_session_path, method: 'delete', class: "item"
+             else
+               link_to 'Register', new_user_registration_path, class: "item"
+             end
+      %>
+    </div>
+
+
+
+
+  </div>
+</div>

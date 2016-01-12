@@ -8,13 +8,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%=	render 'layouts/globalMenu' %>
-<%- if !(controller_name == "home" && action_name =="index") %>
-    <%=	render 'layouts/squareMenu' %>
-<% end -%>
 
+<%=	if user_signed_in?
+      render 'layouts/globalMenu'
+       else
+    render 'layouts/globalWelcomeMenu'
+       end
+%>
+<div class="ui container
+<%- if (controller_name == "home" && action_name =="index") %>
+    globalWelcomeContainer
+<%-   else %>
+    globalContainer
+<%  end %>
+">
 
-<div class="ui container globalContainer">
   <!--<div class="ui main text container globalContainer">-->
   <div class="ui positive message myCustomSuccessMessage">
     <i class="close icon"></i>

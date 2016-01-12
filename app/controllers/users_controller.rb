@@ -10,10 +10,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    User.each do |user|
-      user.avatar.reprocess!
-      user.save
-    end
+
 
   end
 
