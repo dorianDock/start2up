@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class UsersController < ApplicationController
   def index
     @users = User.paginate(:page => params[:page],:per_page => 50)
@@ -33,13 +35,29 @@ class UsersController < ApplicationController
       @message=@user.errors
       render 'test'
       end
+  end
 
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.friendsAccepted.paginate(:page => params[:page])
+    render 'index'
+  end
 
+  def followed
+    @user = User.find(params[:id])
+    @users = @user.friendsAsked.paginate(:page => params[:page])
+    render 'index'
   end
 
   def friends
     @user = User.find(params[:id])
-    @users = @user.friendsAsked.paginate(:page => params[:page])
+    # @users = @user.friendsAccepted.paginate(:page => params[:page])
+    # @users += @user.friendsAsked.paginate(:page => params[:page])
+    friendsAcceptedByUser=@user.friendsAccepted
+    friendsAskedByUser=@user.friendsAsked
+    @users=(friendsAcceptedByUser+friendsAskedByUser)
+    @users=@users.sort_by { |el| el.name }
+    .paginate(:page => params[:page])
     render 'index'
   end
 

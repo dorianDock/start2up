@@ -17,6 +17,21 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
+$red            : #B03060;
+$orange         : #FE9A76;
+$yellow         : #FFD700;
+$olive          : #32CD32;
+$green          : #016936;
+$teal           : #008080;
+$blue           : #0E6EB8;
+$violet         : #EE82EE;
+$purple         : #B413EC;
+$pink           : #FF1493;
+$brown          : #A52A2A;
+$grey           : #A0A0A0;
+$black          : #000000;
+
 body{
   //background-image: url(bleunoirdegrade.jpg);
   //opacity: 0.7;
@@ -95,3 +110,29 @@ body{
   top: 5%;
   right: 1%;
 }
+
+
+.acceptedItem{
+  color: $green;
+}
+.funkyText{
+  color: $yellow;
+  font-weight: bold;
+}
+
+.notImportantText{
+  font-size: 0.8em;
+  color: whitesmoke;
+}
+
+.statusIcon{
+  margin-right: 5px;
+}
+.normalText{
+  color: $black !important;
+}
+
+
+
+
+

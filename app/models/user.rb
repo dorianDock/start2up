@@ -25,17 +25,16 @@ class User < ActiveRecord::Base
                     url: "/system/users/:id/:style/:filename"
   validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
-
   #handle relationships
 
   has_many :askedFriendships, :foreign_key => "askerId",
            :class_name => "FriendLink",
            :dependent => :destroy
-  has_many :friendsAsked, :through => :askedFriendships, :source => :user
-  has_many :acceptedFriendships, :foreign_key => "answeredId",
+  has_many :friendsAsked, :through => :askedFriendships, :source => :answerer
+  has_many :acceptedFriendships,:foreign_key => "answererId",
            :class_name => "FriendLink",
            :dependent => :destroy
-  has_many :friendsAccepted, :through => :acceptedFriendships
+  has_many :friendsAccepted, :through => :acceptedFriendships, :source => :asker
 
   has_many :userLinksAsked, :foreign_key => "askerId",
            :class_name => "UserLink",
@@ -81,8 +80,6 @@ class User < ActiveRecord::Base
     self.userLinksAsked.create!(:answererId => future_mentor.id, :user_link_type_id => aType.id)
   end
 
-
-
   def ask_partnership_to(future_partner)
     aType=UserLinkType.where(title: "Partner")
     self.userLinksAsked.create!(:answererId => future_partner.id, :user_link_type => aType)
@@ -124,34 +121,5 @@ class User < ActiveRecord::Base
     end
   end
 
-  # get all the mentors of the current employee
-  # def mentors()
-  #   aType=UserLinkType.where(title: "Mentor")
-  #   mentors=current_user.linkedUsersAsked.where(:user_link_type => aType,:isAccepted => true)
-  #
-  # end
-
-  # get all the users for who the current employee is a mentor
-  # def mentorees()
-  #
-  #
-  #
-  # end
-
-  # get all the partners of the current employee
-  # (those who accepted when the current user asked
-  # AND
-  # those who asked the current user and for who the current user has accepted)
-  def partners()
-
-
-
-  end
-
-  # get all the users who were refused by the current employee as partners
-  def refused_partners()
-
-
-  end
 
 end

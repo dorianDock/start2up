@@ -1,32 +1,44 @@
-<tr class="requestLine requestLine<%= user_link.id %>
+<!--<tr class="requestLine  ">-->
+
+  <!--<td>-->
+
+  <!--<td><%= user_link.created_at.strftime("Envoyee le %d/%m/%Y a %H:%M") %></td>-->
+  <td><%=
+#       user_link.isAccepted != nil ? user_link.isAccepted : 'En attente'
+  %></td>
+  <!--<td><%= user_link.user_link_type.title %></td>-->
+<!--</tr>-->
+
+<div class="item">
+  <% if user_link.asker.avatar.exists? %>
+      <%= image_tag user_link.asker.avatar.url(:thumb), :class => "ui avatar image" %>
+  <% else %>
+      <%= image_tag "avatarHomme.png", height: "100", :width => "100", :class => "ui avatar image" %>
+  <% end %>
+
+  <div class="content requestLine<%= user_link.id %>
 <%- if (user_link.isAccepted == true) %>
 positive
 <% end -%>
 <%- if (user_link.isAccepted == false) %>
 negative
-<% end -%> ">
-  <td>
-    <!--<%= link_to "", user_links_accept_or_refuse_request_path, remote: true, class: "fa fa-check validateRequests" %>-->
-
-
-
-        <%- if (user_link.isAccepted == nil) %>
+<% end -%>">
+    <span class="header">
+      <!--<%= link_to "", user_links_accept_or_refuse_request_path, remote: true, class: "fa fa-check validateRequests" %>-->
+      <%- if (user_link.isAccepted == nil) %>
             <a class="fa fa-check validateRequests"
                data-url="<%= user_links_accept_or_refuse_request_path %>"
                data-id="<%= user_link.id %>" data-accept="true" >
-
             </a>
             <a class="fa fa-times validateRequests"
                data-url="<%= user_links_accept_or_refuse_request_path %>"
                data-id="<%= user_link.id %>" data-accept="false" >
             </a>
         <% end -%>
-
-    <%= user_link.asker.name %></td>
-  <td><%= user_link.created_at.strftime("Envoyee le %d/%m/%Y a %H:%M") %></td>
-  <td><%=
-      user_link.isAccepted != nil ? user_link.isAccepted : 'En attente'
-  %></td>
-  <td><%= user_link.user_link_type.title %></td>
-</tr>
-
+      <%= link_to user_link.asker.name, user_path(user_link.asker), :class => "normalText"%></span>
+    <div class="description"><%= user_link.displayDecisionMessage %>
+      <span class="funkyText"><%= user_link.user_link_type.title %></span>
+      <div class="notImportantText"><%= user_link.created_at.strftime("(Le %d/%m/%Y a %H:%M)") %></div>
+    </div>
+  </div>
+</div>

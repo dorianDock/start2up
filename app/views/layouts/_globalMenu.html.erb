@@ -6,58 +6,50 @@
       <img class="logo customLogo" src="<%= image_url "fakeLogo.png" %>"> Start2Up
     </div>
     <%= link_to 'Home', home_index_path, class: "item active" %>
-    <%= link_to 'Contact', home_contact_path, class: "item" %>
-    <%= link_to 'About', home_about_path, class: "item" %>
-    <%= link_to 'Help', home_howto_path, class: "item" %>
     <%= link_to 'Users', users_path, class: "item" %>
-    <%=	if user_signed_in?
-             link_to 'Friends', friends_user_path(current_user.id), class: "item"
-             end
-    %>
-    <%=	if user_signed_in?
-             link_to 'Mentors', mentors_user_path(current_user.id), class: "item"
-           end
-    %>
-    <%=	if user_signed_in?
-             link_to 'Padawans', mentorees_user_path(current_user.id), class: "item"
-           end
-    %>
+    <%- if user_signed_in? %>
+        <%= link_to 'Followers', followers_user_path(current_user.id), class: "item" %>
+        <%= link_to 'People followed', followed_user_path(current_user.id), class: "item" %>
+        <%= link_to 'Mentors', mentors_user_path(current_user.id), class: "item" %>
+        <%= link_to 'Padawans', mentorees_user_path(current_user.id), class: "item" %>
+        <%= link_to 'My Mentor requests', user_links_path, class: "item" %>
+    <%- end %>
+
     <div class="right menu">
-      <%=	if user_signed_in?
-               link_to current_user.email, current_user, class: "item"
-                else
-                  link_to 'Login', new_user_session_path, class: "item"
-                end
+      <%= if user_signed_in?
+            link_to current_user.email, current_user, class: "item"
+          else
+            link_to 'Login', new_user_session_path, class: "item"
+          end
       %>
-      <%=	if user_signed_in?
-               link_to 'Logout', destroy_user_session_path, method: 'delete', class: "item"
-             else
-               link_to 'Register', new_user_registration_path, class: "item"
-             end
+      <%= if user_signed_in?
+            link_to 'Logout', destroy_user_session_path, method: 'delete', class: "item"
+          else
+            link_to 'Register', new_user_registration_path, class: "item"
+          end
       %>
 
 
     </div>
 
 
-
     <!--<a href="#" class="ui simple dropdown item">-->
-      <!--Dropdown <i class="dropdown icon"></i>-->
-      <!--<div class="menu">-->
-        <!--<div class="item">Link Item</div>-->
-        <!--<div class="item">Link Item</div>-->
-        <!--<div class="divider"></div>-->
-        <!--<div class="header">Header Item</div>-->
-        <!--<div class="item">-->
-          <!--<i class="dropdown icon"></i>-->
-          <!--Sub Menu-->
-          <!--<div class="menu">-->
-            <!--<div class="item">Link Item</div>-->
-            <!--<div class="item">Link Item</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="item">Link Item</div>-->
-      <!--</div>-->
+    <!--Dropdown <i class="dropdown icon"></i>-->
+    <!--<div class="menu">-->
+    <!--<div class="item">Link Item</div>-->
+    <!--<div class="item">Link Item</div>-->
+    <!--<div class="divider"></div>-->
+    <!--<div class="header">Header Item</div>-->
+    <!--<div class="item">-->
+    <!--<i class="dropdown icon"></i>-->
+    <!--Sub Menu-->
+    <!--<div class="menu">-->
+    <!--<div class="item">Link Item</div>-->
+    <!--<div class="item">Link Item</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="item">Link Item</div>-->
+    <!--</div>-->
     <!--</a>-->
   </div>
 </div>

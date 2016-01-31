@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   resources :users  do
     member do
       get :friends
+      get :followers
+      get :followed
       get :mentors
       get :mentorees
       post :update_profile_picture

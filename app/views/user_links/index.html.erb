@@ -1,48 +1,34 @@
 <h1>Liste des requetes</h1>
 
 
+
 <div class="">
   <h1>Envoyees</h1>
-  <table class="ui celled table">
-    <thead>
-    <tr>
-      <th>A</th>
-      <th>Quand ?</th>
-      <th>Vous avez accepte ?</th>
-      <th>Type</th>
-    </tr>
-    </thead>
-    <tbody>
+  <div class="ui huge list">
     <% @sent_requests.each do |request| %>
-        <tr>
-          <td><%= request.answerer.name %></td>
-          <td><%= request.created_at.strftime("Envoyee le %d/%m/%Y a %H:%M") %></td>
-          <td><%=
-              request.isAccepted != nil ? request.isAccepted : 'En attente de reponse'
-          %></td>
-          <td><%= request.user_link_type.title %></td>
-        </tr>
+        <div class="item">
+          <% if request.answerer.avatar.exists? %>
+              <%= image_tag request.answerer.avatar.url(:thumb), :class => "ui avatar image" %>
+          <% else %>
+              <%= image_tag "avatarHomme.png", height: "100", :width => "100", :class => "ui avatar image" %>
+          <% end %>
+
+          <div class="content">
+            <span class="header"><span class="statusIcon fa <%= request.acceptanceIcons %>"></span><%= link_to request.answerer.name, user_path(request.answerer), :class => "normalText"%></span>
+            <div class="description"><%= request.displayAcceptanceMessage %>
+              <span class="funkyText"><%= request.user_link_type.title %></span>
+              <div class="notImportantText"><%= request.created_at.strftime("(Le %d/%m/%Y a %H:%M)") %></div>
+            </div>
+          </div>
+        </div>
     <% end %>
-    </tbody>
-  </table>
+  </div>
 
   <h1>Recues</h1>
-  <table class="ui celled table">
-    <thead>
-    <tr class="blue column">
-      <th>De</th>
-      <th>Quand ?</th>
-      <th>Vous avez accepte ?</th>
-      <th>Type</th>
-    </tr>
-    </thead>
-    <tbody class="receivedRequestsTBody">
+  <div class="ui huge list">
     <% @received_requests.each do |user_link| %>
-
         <%= render partial: "requestLine", locals: { user_link: user_link } %>
-
     <% end %>
-    </tbody>
-  </table>
+</div>
 </div>
 
