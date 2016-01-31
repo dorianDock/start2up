@@ -8,6 +8,8 @@
           <% @user.skills.each do |skill| %>
               <%= render 'showSkill', :user_skill => skill %>
           <% end %>
+      <% else %>
+          <span>Section vide pour l'instant</span>
       <% end %>
     </div>
 

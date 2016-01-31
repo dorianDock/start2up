@@ -10,34 +10,36 @@
             <div class="content">
               <div class="center">
                 <%- if (current_user.id != user.id) %>
-                    <%- if (current_user.id != user.id)
-
-                     end %>
-                    <%- if (current_user.id != user.id) %>
-
+                    <%- unless current_user.friendsAsked_ids.include?(user.id) %>
+                        <div class=""><%= render 'follow', :user => user %></div>
                     <%- end %>
-                    <div class=""><%= render 'becomeFriend', :user => user %></div>
-                    <div class=""><%= render 'askForMentorship', :user => user %></div>
+                    <%- unless current_user.linkedUsersAsked_ids.include?(user.id) %>
+                        <div class=""><%= render 'askForMentorship', :user => user %></div>
+                    <%- end %>
+
+
                 <%- end %>
               </div>
             </div>
           </div>
-          <img src="<%= image_url "avatarHomme.png"%>">
+          <% if user.avatar.exists? %>
+              <%= image_tag user.avatar.url(:medium), :class => "" %>
+          <% else %>
+              <%= image_tag "avatarHomme.png" %>
+          <% end %>
+          <!--<img src="<%= image_url "avatarHomme.png"%>">-->
         </div>
         <div class="content">
           <%= link_to user.name, user , class: "header"%>
 
           <div class="meta">
-
-            <span class="date"> <%= user.created_at.strftime("Here since %d/%m/%Y") %></span>
-            <span class="date"> <%= current_user.friendsAsked_ids %></span>
-
+            <span class="date"> <%= user.created_at.strftime("Inscription le %d/%m/%Y") %></span>
           </div>
         </div>
         <div class="extra content">
           <a>
-            <i class="users icon"></i>
-            2 Members
+            <i class="idea icon"></i>
+            <%= user.concepts.count %> Idees
           </a>
         </div>
       </div>

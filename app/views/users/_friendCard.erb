@@ -3,7 +3,11 @@
 
 <div class="ui card">
   <a class="image" href="<%= user_url user.id %>">
-    <img src="<%= image_url "avatarHomme.png" %>">
+    <% if user.avatar.exists? %>
+        <%= image_tag user.avatar.url(:thumb), :class => "" %>
+    <% else %>
+        <%= image_tag "avatarHomme.png", height: "150", :width => "150", :class => "" %>
+    <% end %>
   </a>
   <div class="content">
     <div class="meta">

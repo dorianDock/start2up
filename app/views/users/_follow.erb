@@ -2,5 +2,5 @@
 
 <%= form_for current_user.askedFriendships.build(:answererId => user.id) do |f| %>
     <%= f.hidden_field :answererId %>
-    <%= f.submit "Devenir Pote", class: "ui inverted button" %>
+    <%= f.submit "Suivre", class: "ui inverted button" %>
 <% end %>

@@ -2,7 +2,9 @@
 
 <div class="ui items">
   <h2>Idées de <%= @user.name %></h2>
-
+  <% unless @user.concepts.any? %>
+      <span>Section vide pour l'instant</span>
+  <% end %>
   <% @user.concepts.each do |concept| %>
       <%= render 'showIdea', :user_concept => concept %>
   <% end %>

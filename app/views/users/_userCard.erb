@@ -7,11 +7,15 @@
         <div class="ui dimmer">
           <div class="content">
             <div class="center">
-              <div class=""><%= render 'becomeFriend', :user => @user %></div>
+              <div class=""><%= render 'follow', :user => @user %></div>
             </div>
           </div>
         </div>
-        <%= image_tag @user.avatar.url(:medium) %>
+        <% if user.avatar.exists? %>
+            <%= image_tag user.avatar.url(:medium), :class => "" %>
+        <% else %>
+            <%= image_tag "avatarHomme.png" %>
+        <% end %>
 
       </div>
       <div class="content">
@@ -36,7 +40,7 @@
       <div class="extra content">
         <a>
           <i class="idea icon"></i>
-          2 Idees
+          <%= @user.concepts.count %> Idees
         </a>
       </div>
     </div>

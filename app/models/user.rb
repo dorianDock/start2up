@@ -39,12 +39,12 @@ class User < ActiveRecord::Base
   has_many :userLinksAsked, :foreign_key => "askerId",
            :class_name => "UserLink",
            :dependent => :destroy
-  has_many :linkedUsersAsked, :through => :userLinksAsked
+  has_many :linkedUsersAsked, :through => :userLinksAsked, :source => :answerer
 
   has_many :userLinksAnswered, :foreign_key => "answererId",
            :class_name => "UserLink",
            :dependent => :destroy
-  has_many :linkedUsersAnswered, :through => :userLinksAnswered
+  has_many :linkedUsersAnswered, :through => :userLinksAnswered, :source => :asker
 
 
   #handle concepts
