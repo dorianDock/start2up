@@ -70,24 +70,27 @@ class User < ActiveRecord::Base
   # password validatons
   validates :password, presence: true
 
+  module LinkType
+    MENTOR =1
+    PARTNER = 2
+  end
+
+
   def become_friend_with(new_friend)
     self.askedFriendships.create!(:answererId => new_friend.id)
     # relationships.create!(:followed_id => followed.id)
   end
 
   def ask_mentoring_to(future_mentor)
-    aType=UserLinkType.where(title: "Mentor").first
-    self.userLinksAsked.create!(:answererId => future_mentor.id, :user_link_type_id => aType.id)
+    self.userLinksAsked.create!(:answererId => future_mentor.id, :user_link_type_id => LinkType::MENTOR)
   end
 
   def ask_partnership_to(future_partner)
-    aType=UserLinkType.where(title: "Partner")
-    self.userLinksAsked.create!(:answererId => future_partner.id, :user_link_type => aType)
+    self.userLinksAsked.create!(:answererId => future_partner.id, :user_link_type_id => LinkType::PARTNER)
   end
 
   def accept_mentoring(a_user_link)
-    aType=UserLinkType.where(title: "Mentor")
-    if a_user_link.user_link_type==aType
+    if a_user_link.user_link_type_id==LinkType::MENTOR
       link_to_update=UserLink.where(id: a_user_link.id)
       link_to_update.isAccepted=true
       link_to_update.save
@@ -95,8 +98,7 @@ class User < ActiveRecord::Base
   end
 
   def refuse_mentoring(a_user_link)
-    aType=UserLinkType.where(title: "Mentor")
-    if a_user_link.user_link_type==aType
+    if a_user_link.user_link_type_id==LinkType::MENTOR
       link_to_update=UserLink.where(id: a_user_link.id)
       link_to_update.isAccepted=false
       link_to_update.save
@@ -104,8 +106,7 @@ class User < ActiveRecord::Base
   end
 
   def accept_partnership(a_user_link)
-    aType=UserLinkType.where(title: "Partner")
-    if a_user_link.user_link_type==aType
+    if a_user_link.user_link_type_id==LinkType::PARTNER
       link_to_update=UserLink.where(id: a_user_link.id)
       link_to_update.isAccepted=true
       link_to_update.save
@@ -114,11 +115,41 @@ class User < ActiveRecord::Base
 
   def refuse_partnership(a_user_link)
     aType=UserLinkType.where(title: "Partner")
-    if a_user_link.user_link_type==aType
+    if a_user_link.user_link_type_id==LinkType::PARTNER
       link_to_update=UserLink.where(id: a_user_link.id)
       link_to_update.isAccepted=false
       link_to_update.save
     end
+  end
+
+  attr_reader :mentorsCount
+  attr_reader :mentoreesCount
+  attr_reader :userLinksWaiting
+
+
+
+  def userLinksWaiting
+    tempCount=0
+    if self.linkedUsersAnswered.any?
+      tempCount=self.linkedUsersAnswered.where('user_links.isAccepted' => nil).count
+    end
+    tempCount
+  end
+
+  def mentorsCount
+    tempCount=0
+    if self.linkedUsersAsked.any?
+      tempCount=self.linkedUsersAsked.where('user_links.isAccepted' => true).count
+    end
+    tempCount
+  end
+
+  def mentoreesCount
+    tempCount=0
+    if self.linkedUsersAnswered.any?
+      tempCount=self.linkedUsersAnswered.where('user_links.isAccepted' => true).count
+    end
+    tempCount
   end
 
 

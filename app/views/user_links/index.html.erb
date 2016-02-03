@@ -5,6 +5,9 @@
 <div class="">
   <h1>Envoyees</h1>
   <div class="ui huge list">
+    <% unless @sent_requests.any? %>
+    <span>Pas de requetes envoyees.</span>
+    <% end %>
     <% @sent_requests.each do |request| %>
         <div class="item">
           <% if request.answerer.avatar.exists? %>
@@ -26,6 +29,9 @@
 
   <h1>Recues</h1>
   <div class="ui huge list">
+    <% unless @received_requests.any? %>
+        <span>Pas de requetes recues.</span>
+    <% end %>
     <% @received_requests.each do |user_link| %>
         <%= render partial: "requestLine", locals: { user_link: user_link } %>
     <% end %>

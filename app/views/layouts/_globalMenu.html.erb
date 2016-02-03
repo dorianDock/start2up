@@ -1,3 +1,4 @@
+<% # encoding: utf-8 %>
 <!--<div class="ui fixed inverted menu">-->
 <div class="ui inverted top fixed menu">
 
@@ -6,26 +7,37 @@
       <img class="logo customLogo" src="<%= image_url "fakeLogo.png" %>"> Start2Up
     </div>
     <%= link_to 'Home', home_index_path, class: "item active" %>
-    <%= link_to 'Users', users_path, class: "item" %>
+    <%= link_to 'Entrepreneurs', users_path, class: "item" %>
     <%- if user_signed_in? %>
         <%= link_to 'Followers', followers_user_path(current_user.id), class: "item" %>
         <%= link_to 'People followed', followed_user_path(current_user.id), class: "item" %>
-        <%= link_to 'Mentors', mentors_user_path(current_user.id), class: "item" %>
-        <%= link_to 'Padawans', mentorees_user_path(current_user.id), class: "item" %>
-        <%= link_to 'My Mentor requests', user_links_path, class: "item" %>
+        <a href="<%= mentors_user_path(current_user.id) %>" class="item">
+          <i class="icon trophy"></i> Mentors
+          <div class="ui grey label"><%= current_user.mentorsCount %></div>
+        </a>
+        <a href="<%= mentorees_user_path(current_user.id) %>" class="item">
+          <i class="icon student"></i> Apprentis
+          <div class="ui grey label"><%= current_user.mentoreesCount %></div>
+        </a>
+        <a href="<%= user_links_path %>" class="item">
+          <i class="icon send outline"></i> Requêtes
+          <div class="ui red label"><%= current_user.userLinksWaiting %></div>
+        </a>
+
+
     <%- end %>
 
     <div class="right menu">
       <%= if user_signed_in?
-            link_to current_user.email, current_user, class: "item"
+            link_to 'Profil', current_user, class: "item"
           else
-            link_to 'Login', new_user_session_path, class: "item"
+            link_to 'Connexion', new_user_session_path, class: "item"
           end
       %>
       <%= if user_signed_in?
-            link_to 'Logout', destroy_user_session_path, method: 'delete', class: "item"
+            link_to 'Déconnexion', destroy_user_session_path, method: 'delete', class: "item"
           else
-            link_to 'Register', new_user_registration_path, class: "item"
+            link_to "S'inscrire", new_user_registration_path, class: "item"
           end
       %>
 

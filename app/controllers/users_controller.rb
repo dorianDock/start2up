@@ -7,23 +7,19 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
   end
 
   def edit
     @user = User.find(params[:id])
-
-
   end
 
   def update
-
-
   end
 
   # def create
   #   @user = User.create( user_params )
   # end
+
 
   def update_profile_picture
     @user=User.find(params[:id])
@@ -84,9 +80,6 @@ class UsersController < ApplicationController
                  .paginate(:page => params[:page])
     render 'mentors'
   end
-
-
-
 
 
 
