@@ -2,49 +2,6 @@
 
 <div class="eight wide column">
   <div class="ui stackable special cards">
-    <div class="card">
-      <div class="blurring dimmable image">
-        <div class="ui dimmer">
-          <div class="content">
-            <div class="center">
-              <div class=""><%= render 'follow', :user => @user %></div>
-            </div>
-          </div>
-        </div>
-        <% if user.avatar.exists? %>
-            <%= image_tag user.avatar.url(:medium), :class => "" %>
-        <% else %>
-            <%= image_tag "avatarHomme.png" %>
-        <% end %>
-
-      </div>
-      <div class="content">
-        <span class="header"><%= @user.name %></span>
-        <div class="meta">
-          <span class="date"> <%= @user.created_at.strftime("Here since %d/%m/%Y") %></span>
-          <% if current_user.id==user.id %>
-              <%= form_for(@user, :method => "post",html:{ multipart:true, class: "ui form customFormForSessions"}, url: update_profile_picture_user_path) do |f| %>
-                  <div class="field">
-                    <%= f.label :avatar %>
-                    <div class="one fields">
-                      <div class="field">
-                        <%= f.file_field :avatar %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="actions">
-                    <%= f.submit "Change Picture",class: "ui button" %>
-                  </div>
-              <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class="extra content">
-        <a>
-          <i class="idea icon"></i>
-          <%= @user.concepts.count %> Idees
-        </a>
-      </div>
-    </div>
+    <%= render 'simpleUserCard', :user => @user %>
   </div>
 </div>

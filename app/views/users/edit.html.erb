@@ -2,18 +2,16 @@
 <h1>Profil de <%= @user.name %></h1>
 <p></p>
 <div class="userProfile" data-userid="<%= @user.id %>">
-
-
+      <a class="ui button blue" href="<%= user_path %>"><i class="icon eye"></i>Voir comment les autres voient mon profil</a>
   <div class="ui grid">
+
     <%= render 'userCard', :user => @user %>
 
     <div class="eight wide column">
       <%= render 'talentsEditForProfile', :user => @user %>
       <%= render 'friendsForProfile', :user => @user %>
     </div>
+
   </div>
   <%= render 'editUserIdeas', :user_concepts => @user.concepts %>
-
-
-
 </div>

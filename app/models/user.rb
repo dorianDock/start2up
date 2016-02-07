@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   :format   => { :with => email_regex },
       :uniqueness => { :case_sensitive => false }
   # password validatons
-  validates :password, presence: true
+  # validates :password, presence: true
 
   module LinkType
     MENTOR =1

@@ -3,17 +3,18 @@
 <p></p>
 <div class="userProfile">
 
+  <% if @user.id==current_user.id %>
+  <a class="ui button blue" href="<%= edit_user_path %>"><i class="icon pencil"></i>Editer mon profil</a>
+  <br>
+  <a class="ui button blue" href="<%= edit_user_registration_path %>"><i class="icon pencil"></i>Changer mes identifiants</a>
+  <% end %>
 
   <div class="ui grid">
     <%= render 'userCard', :user => @user %>
-
     <div class="eight wide column">
       <%= render 'talentsForProfile', :user => @user %>
       <%= render 'friendsForProfile', :user => @user %>
     </div>
   </div>
   <%= render 'userIdeas', :user => @user %>
-
-
-
 </div>

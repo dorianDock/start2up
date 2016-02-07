@@ -11,6 +11,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if current_user.id != @user.id
+      redirect_to home_index_path
+    end
   end
 
   def update
@@ -36,13 +39,11 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @users = @user.friendsAccepted.paginate(:page => params[:page])
-    render 'index'
   end
 
   def followed
     @user = User.find(params[:id])
     @users = @user.friendsAsked.paginate(:page => params[:page])
-    render 'index'
   end
 
   def friends

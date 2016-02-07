@@ -1,7 +1,7 @@
 <% # encoding: utf-8 %>
 
 <div class="talentsForProfile">
-  <h2>Les talents de <%= @user.name %></h2>
+  <h2>Vos talents</h2>
   <div class="userTalents">
     <select name="skills" multiple="" class="ui dropdown search userSkills fluid"
             data-url="<%= data_source_skill_list_url %>"
@@ -11,7 +11,7 @@
 <br>
 
     <button class="ui primary button right floated validationForUserSkills" data-url="<%= skill_update_user_skills_path %>">
-      Save
+      Enregistrer
     </button>
     <!--<button class="ui button right floated">-->
       <!--Discard-->

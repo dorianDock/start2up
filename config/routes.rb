@@ -29,8 +29,7 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :users, :path_prefix => 'session'
-
+  devise_for :users, :path_prefix => 'session' ,controllers: {registrations: 'registrations'}
   # devise_for :users, :path_prefix => 'session', controllers: {registrations: 'registrations'}
 
   resources :users  do

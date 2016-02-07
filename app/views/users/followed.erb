@@ -1,0 +1,18 @@
+<% # encoding: utf-8 %>
+<h1>Les personnes que vous suivez</h1>
+<% unless @users.any? %>
+    <h2>Section vide pour l'instant: N'hesitez pas à suivre des entrepreneurs pour accéder à leur actualité plus facilement !</h2>
+<% else %>
+    <h2>Que font-ils actuellement ? La réponse ici :)</h2>
+<% end %>
+
+
+<%= will_paginate %>
+
+<div class="ui three stackable special cards">
+  <% @users.each do |user| %>
+      <%= render 'simpleUserCard', :user => user %>
+  <% end %>
+</div>
+
+<%= will_paginate %>
