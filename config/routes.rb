@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   # get 'data_source/category_list/:query', :controller => 'data_source', :action => 'category_list'
   get 'data_source/category_list'
   get 'data_source/skill_list'
+  get 'data_source/useful_link_category_list'
+
+
+
 
   get 'concepts/add_concept_for_user'
   get 'concepts/remove_concept_for_user'
@@ -22,6 +26,11 @@ Rails.application.routes.draw do
   post 'concepts/edit_user_concept'
   get 'concepts/ask_for_concept_review'
   get 'concepts/publish_concept'
+
+  get 'useful_link/index'
+  post 'useful_link/create'
+
+
 
 
 

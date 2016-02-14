@@ -42,3 +42,15 @@ Skill.create(label: "Coding")
 Skill.create(label: "Computer")
 Skill.create(label: "Communication")
 Skill.create(label: "Content Strategy")
+
+# UsefulLinks Categories
+UsefulLinkCategory.delete_all
+UsefulLinkCategory.create(label: "Law")
+UsefulLinkCategory.create(label: "Money")
+UsefulLinkCategory.create(label: "Info")
+UsefulLinkCategory.create(label: "Mentorship")
+UsefulLinkCategory.create(label: "Associates")
+UsefulLinkCategory.create(label: "Housing")
+UsefulLinkCategory.create(label: "BusinessIdea")
+
+
