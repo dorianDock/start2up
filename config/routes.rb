@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
 
+  get 'useful_link/index'
+
   get 'registrations/update_resource'
 
   get 'skill/update_user_skills'

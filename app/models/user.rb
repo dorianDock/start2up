@@ -16,6 +16,11 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
+#  firstname              :string
 #
 
 class User < ActiveRecord::Base
@@ -63,7 +68,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,password_length: 6..128
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  # validates :nom, presence: true, :length   => { :maximum => 50 }
+  validates :name, presence: true, :length   => { :maximum => 100 }
+  validates :firstname, presence: true, :length   => { :maximum => 100 }
   validates :email, presence: true,
   :format   => { :with => email_regex },
       :uniqueness => { :case_sensitive => false }
@@ -114,7 +120,6 @@ class User < ActiveRecord::Base
   end
 
   def refuse_partnership(a_user_link)
-    aType=UserLinkType.where(title: "Partner")
     if a_user_link.user_link_type_id==LinkType::PARTNER
       link_to_update=UserLink.where(id: a_user_link.id)
       link_to_update.isAccepted=false
@@ -125,6 +130,8 @@ class User < ActiveRecord::Base
   attr_reader :mentorsCount
   attr_reader :mentoreesCount
   attr_reader :userLinksWaiting
+  attr_reader :displayName
+
 
 
 
@@ -150,6 +157,18 @@ class User < ActiveRecord::Base
       tempCount=self.linkedUsersAnswered.where('user_links.isAccepted' => true).count
     end
     tempCount
+  end
+
+  def displayName
+    tempName=""
+    unless self.firstname.nil?
+      tempName+=firstname
+      tempName+=" "
+    end
+    unless self.name.nil?
+      tempName+=name
+    end
+    tempName
   end
 
 

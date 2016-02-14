@@ -23,7 +23,7 @@
     <% end %>
   </div>
   <div class="content">
-    <%= link_to (user.name+' '+user.firstname), user , class: "header"%>
+    <%= link_to user.displayName, user , class: "header"%>
     <div class="meta">
       <span class="date"> <%= user.created_at.strftime("Inscription le %d/%m/%Y") %></span>
     </div>

@@ -11,7 +11,7 @@ $(document).
         $('.conceptCategorySelect').each(function(index, element){
             var conceptId=$(element).data('objectlinkid');
             var nameOfTheElementClass="conceptCategory"+conceptId;
-            InitializeSelectList(nameOfTheElementClass, 'Choisir une categorie'+conceptId);
+            InitializeSelectList(nameOfTheElementClass, 'Choisir une categorie');
         });
 
 

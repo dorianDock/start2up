@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208212842) do
+ActiveRecord::Schema.define(version: 20160214211942) do
 
   create_table "concept_categories", force: :cascade do |t|
     t.string   "label"
@@ -61,6 +61,20 @@ ActiveRecord::Schema.define(version: 20160208212842) do
     t.string   "skill_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "useful_link_categories", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "useful_links", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "useful_link_category_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "user_link_types", force: :cascade do |t|
