@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Start2Up</title>
-  <link rel="icon" type="image/png" <%= image_path("images/icon.png")   %>> />
+  <link rel="icon" type="image/png" href="<%= image_path("tools.png")%>" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -51,7 +51,7 @@
     </div>
   </div>
   <% end -%>
-  <%= params.inspect %>
+  <% #params.inspect %>
   <%= yield %>
 </div>
 <!--<p class="notice">-->
