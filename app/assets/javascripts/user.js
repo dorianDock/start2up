@@ -3,7 +3,10 @@ $(document).
     on('page:change', function () {
 
         // when page is loading: we fill those lists
-        InitializeSelectList('userSkills', 'Choisir des skills');
+        if($('.userSkills').any){
+            InitializeSelectList('userSkills', 'Choisir des skills');
+        }
+
 
         // We initialize each category component
         var numberOfConcepts=$('.conceptCategorySelect').length;

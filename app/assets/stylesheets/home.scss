@@ -54,9 +54,14 @@
 
 }
 
+.homeSquareInvisible{
+  border-right: white 1px dashed;
+}
+
 .homeSquare3 > img{
   width: 100%;
   height: 100%;
+  border-right: white 1px dashed;
 
   border-bottom: black 0px dashed;
 }

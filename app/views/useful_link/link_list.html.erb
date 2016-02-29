@@ -1,0 +1,34 @@
+<% # encoding: utf-8   %>
+<h1><%= @page_title %></h1>
+
+<div class="ui divided items">
+
+<%- @usefulLinks.each do |useful_link| %>
+
+      <div class="item">
+        <div class="image">
+          <% if useful_link.picture.exists? %>
+              <%= image_tag useful_link.picture.url(:thumb),  height: "150", :width => "150", :class => "" %>
+          <% else %>
+              <%= image_tag "basicPicture.png", height: "150", :width => "150", :class => "" %>
+          <% end %>
+
+          <!--<img src="../images/avatarHomme.png">-->
+        </div>
+        <div class="content">
+          <a class="header"><%= useful_link.title %></a>
+          <div class="meta">
+            <span>Description</span>
+          </div>
+          <div class="description">
+            <div class="textForItemDescription"><%= simple_format(useful_link.description) %></div>
+          </div>
+          <div class="extra">
+            <div class=""><%= useful_link.created_at.strftime("%d/%m/%Y") %></div>
+          </div>
+        </div>
+      </div>
+
+
+<% end %>
+</div>

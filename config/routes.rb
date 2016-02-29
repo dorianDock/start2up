@@ -28,7 +28,11 @@ Rails.application.routes.draw do
   get 'concepts/publish_concept'
 
   get 'useful_link/index'
+  get 'useful_link/link_list'
   post 'useful_link/create'
+  post 'useful_link/update'
+  post 'useful_link/destroy'
+  get 'useful_link/category_for_useful_link'
 
 
 

@@ -1,9 +1,9 @@
-<h2>Log in</h2>
+<h2>Se connecter</h2>
 
 <%= form_for(resource, as: resource_name, html:{ class: "ui form customFormForSessions"}, url: session_path(resource_name)) do |f| %>
 
     <div class="field">
-      <%= f.label :email %>
+      <label>E-mail</label>
       <div class="one fields">
         <div class="field">
           <%= f.email_field :email, autofocus: true %>
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="field">
-      <%= f.label :password %>
+      <label>Mot de passe</label>
       <div class="one fields">
         <div class="field">
           <%= f.password_field :password, autocomplete: "off" %>
@@ -26,29 +26,16 @@
     <div class="inline field">
       <div class="ui slider checkbox">
         <%= f.check_box :remember_me %>
-        <label>Remember Me</label>
+        <label>Se souvenir de moi</label>
       </div>
       <label></label>
     </div>
 
-        <!--<div class="field">-->
-        <!--<%= f.label :email %><br />-->
-        <!--<%= f.email_field :email, autofocus: true %>-->
-        <!--</div>-->
 
-
-        <!--<div class="field">-->
-        <!--<%= f.label :password %><br />-->
-        <!--<%= f.password_field :password, autocomplete: "off" %>-->
-        <!--</div>-->
-    <!--<div class="field">-->
-      <!--<%= f.check_box :remember_me %>-->
-      <!--<%= f.label :remember_me %>-->
-    <!--</div>-->
   <% end -%>
 
   <div class="">
-    <%= f.submit "Log in", class: "ui button" %>
+    <%= f.submit "Connexion", class: "ui button" %>
   </div>
 <% end %>
 
