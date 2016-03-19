@@ -25,4 +25,7 @@ test:
 production:
   <<: *default
   database: db/start2up_production
+  host: localhost
+    username: pguser
+    password: <%= ENV['APPNAME_DATABASE_PASSWORD'] %>
 
