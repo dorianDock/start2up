@@ -1,4 +1,4 @@
-
+//encoding: utf-8
 /**
  * Created by Dorian on 27/10/2015.
  */

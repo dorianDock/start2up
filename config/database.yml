@@ -10,9 +10,8 @@ development:
   <<: *default
   database: db/start2up_dev
   host: localhost
-  username: postgres
-#  username: postgres
-  password: ddcc4224
+  username: pguser
+  password: pguser
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,6 +25,6 @@ production:
   <<: *default
   database: db/start2up_production
   host: localhost
-    username: pguser
-    password: <%= ENV['APPNAME_DATABASE_PASSWORD'] %>
+  username: pguser
+  password: pguser
 

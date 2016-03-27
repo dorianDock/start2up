@@ -1,11 +1,11 @@
 //encoding: utf-8
 $(document).
     on('page:change', function () {
-        InitializeSelectList('usefulLinksCategory', 'Choisir une catégorie');
+        InitializeSelectList('usefulLinksCategory', 'Choisir une catÃ©gorie');
 
         $('.usefulLinksCategoryEdit').each(function(index, element){
             var elementId=$(element).data('objectlinkid');
             var nameOfTheElementClass="usefulLinksCategory"+elementId;
-            InitializeSelectList(nameOfTheElementClass, 'Choisir une catégorie');
+            InitializeSelectList(nameOfTheElementClass, 'Choisir une catÃ©gorie');
         });
     });
