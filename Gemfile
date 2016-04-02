@@ -55,8 +55,14 @@ group :development, :test do
   gem 'factory_girl_rails'
   # fake a lot of data
   gem 'faker'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 
 end
+
 
 group :production do
 
@@ -64,6 +70,7 @@ group :production do
 
 end
 
+gem 'puma'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
