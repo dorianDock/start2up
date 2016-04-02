@@ -25,6 +25,6 @@ production:
   <<: *default
   database: db/start2up_production
   host: localhost
-  username: pguser
-  password: pguser
+  username: normal_user
+  password: normal_user
 
