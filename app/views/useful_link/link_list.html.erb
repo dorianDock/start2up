@@ -1,5 +1,8 @@
 <% # encoding: utf-8   %>
 <h1><%= @page_title %></h1>
+<%- if current_user.admin? %>
+    <a class="fa fa-pencil" href="<%= useful_link_index_url %>"></a>
+<%- end %>
 
 <div class="ui divided items">
 
@@ -16,7 +19,10 @@
           <!--<img src="../images/avatarHomme.png">-->
         </div>
         <div class="content">
-          <a class="header"><%= useful_link.title %></a>
+          <a class="header">
+
+            <%= useful_link.title %>
+          </a>
           <div class="meta">
             <span>Description</span>
           </div>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   get 'useful_link/index'
   get 'useful_link/link_list'
+  get 'useful_link/new'
   post 'useful_link/create'
   post 'useful_link/update'
   post 'useful_link/destroy'

@@ -1,5 +1,7 @@
 <% # encoding: utf-8   %>
-<h1>Gérer les liens</h1>
+<h1><%- if current_user.admin? %>
+      <a class="fa fa-plus" href="<%= useful_link_new_url %>"></a>
+  <%- end %> Gérer les liens</h1>
 
 
 

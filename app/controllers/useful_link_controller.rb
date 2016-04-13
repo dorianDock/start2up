@@ -13,8 +13,13 @@ class UsefulLinkController < ApplicationController
 
   def index
     @usefulLinks=UsefulLink.joins(:useful_link_category).all
-    @newUsefulLink=UsefulLink.new()
+    @newUsefulLink=UsefulLink.new
   end
+
+  def new
+    @newUsefulLink=UsefulLink.new
+  end
+
 
   def create
     useful_link = params[:useful_link]

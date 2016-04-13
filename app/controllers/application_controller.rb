@@ -9,4 +9,6 @@ class ApplicationController < ActionController::Base
   # def configure_permitted_parameter
   #   devise_parameter_sanitizer.for(:update_profile_picture) { |u| u.permit(:avatar) }
   # end
+
+
 end
