@@ -45,11 +45,11 @@
                 @emptyComment.commentable_type= 'UsefulLink'
               %>
 
-              <div class="ui text">
+              <div class="ui text replyToComment" data-commentid="0">
                 <i class="fa fa-reply"></i> Reply
               </div>
 
-              <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form newCommentOnLink'}   do |f| %>
+              <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form formForComment formForComment0 newCommentOnLink'}   do |f| %>
                   <div class="field">
                     <%= f.text_area :body, placeholder: 'Ajouter un commentaire' %>
                   </div>

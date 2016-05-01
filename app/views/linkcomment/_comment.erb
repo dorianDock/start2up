@@ -7,20 +7,20 @@
     <div class="content">
       <a class="author">Elliot Fu</a>
       <div class="metadata">
-        <span class="date">Yesterday at 12:30AM</span>
+        <span class="date"><%= comment.created_at.strftime('%d/%m/%Y à %H:%M') %></span>
       </div>
       <div class="text">
         <p><%= comment.body %></p>
       </div>
       <div class="actions">
-        <a class="reply">Reply</a>
+        <a class="reply replyToComment" data-commentid="<%= comment.id%>">Reply</a>
         <%-
           @emptyComment=LinkComment.new
           @emptyComment.commentable_id= comment.id
           @emptyComment.commentable_type= 'LinkComment'
         %>
 
-        <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form'} do |f| %>
+        <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form formForComment formForComment'+comment.id.to_s} do |f| %>
             <%= f.text_area :body, placeholder: 'Répondre' %>
             <%= f.hidden_field :commentable_id %>
             <%= f.hidden_field :commentable_type %>
