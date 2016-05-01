@@ -1,7 +1,7 @@
 <% # encoding: utf-8   %>
 <h1><%= @page_title %></h1>
 <%- if current_user.admin? %>
-    <a class="fa fa-pencil" href="<%= useful_link_index_url %>"></a>
+    <a class="ui primary button" href="<%= new_useful_link_path %>"><i class="fa fa-plus"></i> Ajouter un lien</a>
 <%- end %>
 
 <div class="ui divided items">
@@ -9,14 +9,14 @@
 <%- @usefulLinks.each do |useful_link| %>
 
       <div class="item">
-        <div class="image">
+        <div class="image ui">
           <% if useful_link.picture.exists? %>
-              <%= image_tag useful_link.picture.url(:thumb),  height: "150", :width => "150", :class => "" %>
+              <%= image_tag useful_link.picture.url(:medium),  height: '300', :width => '300', :class => '' %>
           <% else %>
-              <%= image_tag "basicPicture.png", height: "150", :width => "150", :class => "" %>
+              <%= image_tag 'basicPicture.png', height: '300', :width => '300', :class => '' %>
           <% end %>
 
-          <!--<img src="../images/avatarHomme.png">-->
+
         </div>
         <div class="content">
           <a class="header">

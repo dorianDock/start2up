@@ -11,7 +11,7 @@
 #
 
 FactoryGirl.define do
-  factory :useful_link do
+  factory :useful_links do
     title "MyString"
 description "MyString"
 useful_link_category_id 1

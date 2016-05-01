@@ -2,23 +2,16 @@ Rails.application.routes.draw do
 
 
 
-  get 'useful_link/index'
-
   get 'registrations/update_resource'
-
   get 'skill/update_user_skills'
-
   get 'skill/skills_for_user'
-
-
-
   # get 'data_source/category_list/:query', :controller => 'data_source', :action => 'category_list'
   get 'data_source/category_list'
   get 'data_source/skill_list'
   get 'data_source/useful_link_category_list'
 
 
-
+  #concepts
 
   get 'concepts/add_concept_for_user'
   get 'concepts/remove_concept_for_user'
@@ -27,21 +20,28 @@ Rails.application.routes.draw do
   get 'concepts/ask_for_concept_review'
   get 'concepts/publish_concept'
 
-  get 'useful_link/index'
-  get 'useful_link/link_list'
-  get 'useful_link/new'
-  post 'useful_link/create'
-  post 'useful_link/update'
-  post 'useful_link/destroy'
-  get 'useful_link/category_for_useful_link'
+  # useful_links and their comments
 
+  resources :useful_links do
+    collection do
+      get 'index'
+      get 'new'
+      get 'link_list'
+      get 'category_for_useful_link'
+      post 'create'
+    end
 
+    member do
+      patch 'update'
+      post 'destroy'
+    end
 
+    resources :comments
+  end
 
-
-
-
-
+  resources :comments do
+    resources :comments
+  end
 
 
 

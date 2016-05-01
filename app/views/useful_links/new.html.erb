@@ -1,6 +1,6 @@
 <% # encoding: utf-8   %>
 
-<%= form_for @newUsefulLink, url: {controller: "useful_link", action: "create"}, method: "post", html: {:multipart => true, class: "ui form"} do |f| %>
+<%= form_for @newUsefulLink, url: {controller: "useful_links", action: "create"}, method: "post", html: {:multipart => true, class: "ui form"} do |f| %>
     <% theStringId=@newUsefulLink.id.to_s %>
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <div class="field">

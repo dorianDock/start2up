@@ -1,4 +1,4 @@
-class UsefulLinkController < ApplicationController
+class UsefulLinksController < ApplicationController
 
 
 
@@ -12,7 +12,7 @@ class UsefulLinkController < ApplicationController
   end
 
   def index
-    @usefulLinks=UsefulLink.joins(:useful_link_category).all
+    @usefulLinks=UsefulLink.joins(:useful_link_category).reverse_order.all
     @newUsefulLink=UsefulLink.new
   end
 
@@ -26,7 +26,7 @@ class UsefulLinkController < ApplicationController
     permitted_params=permitted_parameters(useful_link)
     newUsefulLink= UsefulLink.new(permitted_params)
     newUsefulLink.save!
-    redirect_to useful_link_index_path
+    redirect_to useful_links_path
   end
 
   def update
@@ -41,8 +41,7 @@ class UsefulLinkController < ApplicationController
       useful_link.update_attributes(permitted_params)
       useful_link.save
     end
-
-    redirect_to useful_link_index_path
+    redirect_to useful_links_path
   end
 
   def destroy
