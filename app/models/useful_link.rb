@@ -12,7 +12,7 @@
 
 class UsefulLink < ActiveRecord::Base
   belongs_to :useful_link_category
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, class_name: 'LinkComment'
 
   attr_accessor :picture
   #handle attachments
