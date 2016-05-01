@@ -25,6 +25,8 @@ class UsefulLinksController < ApplicationController
     else
       @usefulLinks=UsefulLink.joins(:useful_link_category).reverse_order.publicLinks
     end
+    @emptyComment=LinkComment.new
+
     @page_title='un Test'
   end
 

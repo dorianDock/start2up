@@ -19,13 +19,17 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:link_comment).permit(:body,:commentable_id,:commentable_type)
   end
 
   def find_commentable
     # the commentable variable will help us to register the correct type into database
-    @commentable=LinkComment.find_by_id(params[:comment_id]) if params[:comment_id]
-    @commentable=UsefulLink.find_by_id(params[:link_id]) if params[:link_id]
+    if params[:link_comment][:commentable_type]=='UsefulLink'
+      @commentable=UsefulLink.find_by id: (params[:link_comment][:commentable_id])
+    end
+    if params[:link_comment][:commentable_type]=='LinkComment'
+      @commentable=LinkComment.find_by id: (params[:link_comment][:commentable_id])
+    end
   end
 
 end

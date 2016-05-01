@@ -30,10 +30,49 @@
             <div class="textForItemDescription"><%= simple_format(useful_link.description) %></div>
           </div>
           <div class="extra">
-            <div class=""><%= useful_link.created_at.strftime("%d/%m/%Y") %></div>
+            <div class=""><%= useful_link.created_at.strftime('%d/%m/%Y') %></div>
           </div>
+          <div>
+
+
+            <div class="ui comments">
+              <h3 class="ui dividing header">Comments</h3>
+
+              <%= render(partial: 'linkcomment/comment',collection: useful_link.comments) %>
+
+              <%-
+                @emptyComment.commentable_id= useful_link.id
+                @emptyComment.commentable_type= 'UsefulLink'
+              %>
+
+              <div class="ui text">
+                <i class="fa fa-reply"></i> Reply
+              </div>
+
+              <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form newCommentOnLink'}   do |f| %>
+                  <div class="field">
+                    <%= f.text_area :body, placeholder: 'Ajouter un commentaire' %>
+                  </div>
+                  <%= f.hidden_field :commentable_id %>
+                  <%= f.hidden_field :commentable_type %>
+                  <%= f.submit 'Valider',class: 'ui primary button' %>
+              <% end %>
+
+
+            </div>
+
+
+
+
+
+          </div>
+
         </div>
       </div>
+
+
+
+
 
 
 <% end %>

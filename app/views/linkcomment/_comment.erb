@@ -1,0 +1,49 @@
+
+
+<div class="comment">
+    <a class="avatar">
+      <%= image_tag 'basicPicture.png', height: '50', :width => '50', :class => '' %>
+    </a>
+    <div class="content">
+      <a class="author">Elliot Fu</a>
+      <div class="metadata">
+        <span class="date">Yesterday at 12:30AM</span>
+      </div>
+      <div class="text">
+        <p><%= comment.body %></p>
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+        <%-
+          @emptyComment=LinkComment.new
+          @emptyComment.commentable_id= comment.id
+          @emptyComment.commentable_type= 'LinkComment'
+        %>
+
+        <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form'} do |f| %>
+            <%= f.text_area :body, placeholder: 'Répondre' %>
+            <%= f.hidden_field :commentable_id %>
+            <%= f.hidden_field :commentable_type %>
+            <%= f.submit 'Valider',class: 'ui primary button' %>
+        <% end %>
+
+      </div>
+    </div>
+
+
+    <div class="comments">
+      <%= render(partial: 'linkcomment/comment',collection: comment.comments) %>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
