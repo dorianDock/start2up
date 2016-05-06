@@ -11,6 +11,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
 
@@ -18,6 +19,7 @@
 // Loads all Semantic javascripts
 //= require semantic-ui
 //= require_tree .
+
 
 // load checkboxes
 //$('.ui.checkbox')
@@ -55,6 +57,9 @@ function InitializeSelectList(aCssClass, placeHolder) {
 
 
     var myUrl = $('.' + aCssClass).data('url');
+    if(myUrl==undefined){
+        myUrl = $('.' + aCssClass+' > select').data('url');
+    }
     $.ajax({
         url: myUrl,
         data: {}
