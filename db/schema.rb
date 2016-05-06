@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413181315) do
+ActiveRecord::Schema.define(version: 20160506205411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160413181315) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.boolean  "is_public",               default: false, null: false
+    t.string   "url"
   end
 
   create_table "user_link_types", force: :cascade do |t|

@@ -20,13 +20,17 @@
         </div>
         <div class="content">
           <a class="header">
-
             <%= useful_link.title %>
+
           </a>
+          <div class="textForItemUrl">
+            <a href="<%= useful_link.url %>"><%= useful_link.url %></a>
+          </div>
           <div class="meta">
             <span>Description</span>
           </div>
           <div class="description">
+
             <div class="textForItemDescription"><%= simple_format(useful_link.description) %></div>
           </div>
           <div class="extra">
@@ -36,7 +40,7 @@
 
 
             <div class="ui comments">
-              <h3 class="ui dividing header">Comments</h3>
+              <h3 class="ui dividing header">Commentaires</h3>
 
               <%= render(partial: 'linkcomment/comment',collection: useful_link.comments) %>
 
@@ -46,10 +50,11 @@
               %>
 
               <div class="ui text replyToComment" data-commentid="0">
-                <i class="fa fa-reply"></i> Reply
+                <i class="fa fa-comment"></i> Commenter
               </div>
 
-              <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form formForComment formForComment0 newCommentOnLink'}   do |f| %>
+              <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',
+                           html: {class: 'ui reply form formForComment formForComment0 newCommentOnLink'}   do |f| %>
                   <div class="field">
                     <%= f.text_area :body, placeholder: 'Ajouter un commentaire' %>
                   </div>

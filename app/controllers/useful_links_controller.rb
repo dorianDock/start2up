@@ -86,7 +86,7 @@ class UsefulLinksController < ApplicationController
   protected
 
   def permitted_parameters(params)
-    params.permit(:title, :description, :useful_link_category_id, :picture, :is_public)
+    params.permit(:title, :description, :useful_link_category_id, :picture, :is_public, :url)
 
   end
 
