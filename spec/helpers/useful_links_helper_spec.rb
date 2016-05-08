@@ -10,6 +10,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe UsefulLinkHelper, type: :helper do
+RSpec.describe UsefulLinksHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

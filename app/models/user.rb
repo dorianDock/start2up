@@ -33,35 +33,39 @@ class User < ActiveRecord::Base
 
   #handle relationships
 
-  has_many :askedFriendships, :foreign_key => "askerId",
-           :class_name => "FriendLink",
+  has_many :askedFriendships, :foreign_key => 'askerId',
+           :class_name => 'FriendLink',
            :dependent => :destroy
   has_many :friendsAsked, :through => :askedFriendships, :source => :answerer
-  has_many :acceptedFriendships,:foreign_key => "answererId",
-           :class_name => "FriendLink",
+  has_many :acceptedFriendships,:foreign_key => 'answererId',
+           :class_name => 'FriendLink',
            :dependent => :destroy
   has_many :friendsAccepted, :through => :acceptedFriendships, :source => :asker
 
-  has_many :userLinksAsked, :foreign_key => "askerId",
-           :class_name => "UserLink",
+  has_many :userLinksAsked, :foreign_key => 'askerId',
+           :class_name => 'UserLink',
            :dependent => :destroy
   has_many :linkedUsersAsked, :through => :userLinksAsked, :source => :answerer
 
-  has_many :userLinksAnswered, :foreign_key => "answererId",
-           :class_name => "UserLink",
+  has_many :userLinksAnswered, :foreign_key => 'answererId',
+           :class_name => 'UserLink',
            :dependent => :destroy
   has_many :linkedUsersAnswered, :through => :userLinksAnswered, :source => :asker
 
 
   #handle concepts
-  has_many :concepts, foreign_key: "author_id"
+  has_many :concepts, foreign_key: 'author_id'
 
   #handle skills
   has_and_belongs_to_many :skills,
-                          join_table: "user_skills",
-                          class_name: "Skill",
-                          foreign_key: "user_id",
-                          association_foreign_key: "skill_id"
+                          join_table: 'user_skills',
+                          class_name: 'Skill',
+                          foreign_key: 'user_id',
+                          association_foreign_key: 'skill_id'
+
+  #handle comments
+  has_many :link_comments, foreign_key: 'author_id'
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -132,9 +136,6 @@ class User < ActiveRecord::Base
   attr_reader :mentoreesCount
   attr_reader :userLinksWaiting
   attr_reader :displayName
-
-
-
 
   def userLinksWaiting
     tempCount=0

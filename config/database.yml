@@ -19,6 +19,9 @@ development:
 test:
   <<: *default
   database: db/start2up_test
+  host: localhost
+  username: pguser
+  password: pguser
 
 
 production:

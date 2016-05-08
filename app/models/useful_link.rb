@@ -13,6 +13,7 @@
 #  picture_file_size       :integer
 #  picture_updated_at      :datetime
 #  is_public               :boolean          default(FALSE), not null
+#  url                     :string
 #
 
 class UsefulLink < ActiveRecord::Base

@@ -29,7 +29,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   # before doing any tests
   before(:each) do
-    @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite' }
+    @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'La pirouette' }
   end
 
   it 'should create a valid user' do
@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'should reject passwords too short' do
-    aPassword="a"*3
+    aPassword='a'*3
     shortPassUser = User.new(@attr.merge(:password => aPassword))
     expect(shortPassUser).to_not be_valid
   end
@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  it 'shouldnt accept invalid emails' do
+  it 'should not accept invalid emails' do
     invalidAdresses = %w[user@foo,com user_at_foo.org example.user@foo.]
     invalidAdresses.each do |address|
       invalid_email_user = User.new(@attr.merge(:email => address))
@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  it "should not accepta duplicate mail" do
+  it 'should not accepta duplicate mail' do
     User.create!(@attr)
     user_with_duplicate_email = User.new(@attr)
     expect(user_with_duplicate_email).to_not be_valid

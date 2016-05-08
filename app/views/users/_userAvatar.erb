@@ -1,0 +1,7 @@
+<% # encoding: utf-8 %>
+
+<% if user.avatar.exists? %>
+    <%= image_tag user.avatar.url(:medium), :class => '' %>
+<% else %>
+    <%= image_tag 'avatarHomme.png' %>
+<% end %>

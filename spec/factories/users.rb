@@ -31,5 +31,7 @@ FactoryGirl.define do
     email                 "truite@truite.com"
     password              "truite"
     password_confirmation "truite"
+    firstname             'Thierry'
+    admin                 false
   end
 end

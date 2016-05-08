@@ -55,7 +55,8 @@ Rails.application.routes.draw do
       get :followed
       get :mentors
       get :mentorees
-      post :update_profile_picture
+      get :change_profile_picture
+      patch :update_profile_picture
     end
   end
 

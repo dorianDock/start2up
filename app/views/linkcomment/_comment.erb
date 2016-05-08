@@ -2,10 +2,10 @@
 
 <div class="comment">
     <a class="avatar">
-      <%= image_tag 'basicPicture.png', height: '50', :width => '50', :class => '' %>
+      <%= image_tag comment.user.avatar.url(:thumb), height: '50', :width => '50', :class => '' %>
     </a>
     <div class="content">
-      <a class="author">Elliot Fu</a>
+      <a class="author"><%= comment.user.displayName %></a>
       <div class="metadata">
         <span class="date"><%= comment.created_at.strftime('%d/%m/%Y à %H:%M') %></span>
       </div>
@@ -21,7 +21,7 @@
         %>
 
         <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',html: {class: 'ui reply form formForComment formForComment'+comment.id.to_s} do |f| %>
-            <%= f.text_area :body, placeholder: 'Répondre' %>
+            <%= f.text_area :body, placeholder: 'Répondre', class: 'commentTextarea' %>
             <%= f.hidden_field :commentable_id %>
             <%= f.hidden_field :commentable_type %>
             <%= f.submit 'Valider',class: 'ui primary button' %>

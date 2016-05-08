@@ -16,11 +16,8 @@
         </div>
       </div>
     </div>
-    <% if user.avatar.exists? %>
-        <%= image_tag user.avatar.url(:medium), :class => "" %>
-    <% else %>
-        <%= image_tag "avatarHomme.png" %>
-    <% end %>
+    <%= render 'userAvatar', :user => user %>
+
   </div>
   <div class="content">
     <%= link_to user.displayName, user , class: "header"%>

@@ -1,0 +1,30 @@
+<% # encoding: utf-8 %>
+<h2>Changer la photo de profil</h2>
+
+<%= form_for(@user, html:{ multipart:true, class: "ui form customFormForSessions"}, url: update_profile_picture_user_path ) do |f| %>
+
+
+    <div>
+      <div style="margin-bottom: 10px;">Image Actuelle</div>
+      <%= render 'userAvatar', :user => @user %>
+
+    </div>
+
+
+    <div class="field">
+      <%= f.label :avatar %>
+      <div class="one fields">
+        <div class="six wide field">
+          <%= f.file_field :avatar %>
+        </div>
+      </div>
+    </div>
+
+
+
+  <div class="actions">
+    <%= f.submit 'Valider',class: "ui button" %>
+  </div>
+<% end %>
+
+

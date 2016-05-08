@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment=@commentable.comments.new comment_params
+    @comment.author_id=current_user.id
 
     if @comment.save
       redirect_to :back, notice: 'Votre commentaire a bien été pris en compte'

@@ -32,11 +32,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by id: params[:id]
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by id: params[:id]
     if current_user.id != @user.id
       redirect_to home_index_path
     end
@@ -49,9 +49,15 @@ class UsersController < ApplicationController
   #   @user = User.create( user_params )
   # end
 
+  def change_profile_picture
+    @user = User.find_by id: params[:id]
+    if current_user.id != @user.id
+      redirect_to home_index_path
+    end
+  end
 
   def update_profile_picture
-    @user=User.find(params[:id])
+    @user=User.find_by id: params[:id]
     trueParams=params[:user].permit(:avatar)
 
     if @user.update_attribute(:avatar, trueParams[:avatar])
@@ -63,24 +69,21 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @user = User.find(params[:id])
+    @user = User.find_by id: params[:id]
     @users = @user.friendsAccepted.paginate(:page => params[:page])
   end
 
   def followed
-    @user = User.find(params[:id])
+    @user = User.find_by id: params[:id]
     @users = @user.friendsAsked.paginate(:page => params[:page])
   end
 
   def friends
-    @user = User.find(params[:id])
-    # @users = @user.friendsAccepted.paginate(:page => params[:page])
-    # @users += @user.friendsAsked.paginate(:page => params[:page])
+    @user = User.find_by id: params[:id]
     friendsAcceptedByUser=@user.friendsAccepted
     friendsAskedByUser=@user.friendsAsked
     @users=(friendsAcceptedByUser+friendsAskedByUser)
-    @users=@users.sort_by { |el| el.name }
-    .paginate(:page => params[:page])
+    @users=@users.sort_by { |el| el.name }.paginate(:page => params[:page])
     render 'index'
   end
 
@@ -92,7 +95,7 @@ class UsersController < ApplicationController
   # end
 
   def mentorees
-      @user = User.find(params[:id])
+      @user = User.find_by id: params[:id]
       @users = User.joins(:userLinksAsked)
                    .where('user_links.isAccepted' => true,'user_links.answererId' => @user.id)
                    .paginate(:page => params[:page])
@@ -101,7 +104,7 @@ class UsersController < ApplicationController
 
 
   def mentors
-    @user = User.find(params[:id])
+    @user = User.find_by id: params[:id]
     @users = User.joins(:userLinksAnswered)
                  .where('user_links.isAccepted' => true,'user_links.askerId' => @user.id)
                  .paginate(:page => params[:page])

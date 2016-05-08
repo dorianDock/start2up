@@ -5,6 +5,8 @@
 
   <% if @user.id==current_user.id %>
   <a class="ui button blue" href="<%= edit_user_path %>"><i class="icon pencil"></i>Editer mon profil</a>
+      <br>
+      <a class="ui button blue" href="<%= change_profile_picture_user_path %>"><i class="icon pencil"></i>Changer ma photo</a>
   <br>
   <a class="ui button blue" href="<%= edit_user_registration_path %>"><i class="icon pencil"></i>Changer mes identifiants</a>
   <% end %>

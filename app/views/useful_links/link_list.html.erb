@@ -47,6 +47,7 @@
               <%-
                 @emptyComment.commentable_id= useful_link.id
                 @emptyComment.commentable_type= 'UsefulLink'
+
               %>
 
               <div class="ui text replyToComment" data-commentid="0">
@@ -56,10 +57,11 @@
               <%= form_for @emptyComment, url: {controller: 'comments', action: 'create'}, method: 'post',
                            html: {class: 'ui reply form formForComment formForComment0 newCommentOnLink'}   do |f| %>
                   <div class="field">
-                    <%= f.text_area :body, placeholder: 'Ajouter un commentaire' %>
+                    <%= f.text_area :body, placeholder: 'Ajouter un commentaire', class: 'commentTextarea' %>
                   </div>
                   <%= f.hidden_field :commentable_id %>
                   <%= f.hidden_field :commentable_type %>
+
                   <%= f.submit 'Valider',class: 'ui primary button' %>
               <% end %>
 
