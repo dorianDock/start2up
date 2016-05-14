@@ -104,8 +104,6 @@ class ConceptsController < ApplicationController
 
   def ask_for_concept_review
     concept_id=params[:conceptid]
-
-
     respond_to do |format|
       format.json {
         render json: {:message => response, :conceptid => concept_id}
@@ -115,8 +113,6 @@ class ConceptsController < ApplicationController
 
   def publish_concept
     concept_id=params[:conceptid]
-
-
     respond_to do |format|
       format.json {
         render json: {:message => response, :conceptid => concept_id}

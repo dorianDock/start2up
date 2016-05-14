@@ -29,7 +29,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   # before doing any tests
   before(:each) do
-    @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'La pirouette' }
+    @attr = { :email => 'truite5@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'La pirouette' }
   end
 
   it 'should create a valid user' do

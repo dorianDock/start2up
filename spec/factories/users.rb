@@ -25,13 +25,21 @@
 #
 
 FactoryGirl.define do
-  factory :users do
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+end
 
-    name                  "MrTruite"
-    email                 "truite@truite.com"
-    password              "truite"
-    password_confirmation "truite"
+FactoryGirl.define do
+  factory :user do
+
+    name                  'MrTruite'
+    email
+    password              'truite'
+    password_confirmation 'truite'
     firstname             'Thierry'
     admin                 false
   end
 end
+
+

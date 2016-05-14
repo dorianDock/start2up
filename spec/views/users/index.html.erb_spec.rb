@@ -1,5 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "user/index.html.erb", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe 'users/index.html.erb', type: :view do
+
+
+  describe 'Display users' do
+    it 'Displays all the users of the app' do
+
+    end
+  end
+
+
+
 end
