@@ -61,11 +61,20 @@ class HomeController < ApplicationController
     @usefulLinks=UsefulLink.reverse_order.all.info
     @page_title='un Test'
     build_empty_comment
-    render "useful_links/link_list"
+    render 'useful_links/link_list'
   end
+
+  def technical_links
+    @usefulLinks=UsefulLink.reverse_order.all.technical
+    @page_title='Liens Techniques'
+    build_empty_comment
+    render 'useful_links/link_list'
+  end
+
 
   def about
   end
+
   def howto
   end
 

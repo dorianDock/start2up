@@ -61,10 +61,9 @@ Rails.application.routes.draw do
   end
 
   resources :friend_links
-  resources :user_links, :only => [:new, :create,:index]
+  resources :user_links, :only => [:new,:create,:index]
 
   get 'user_links/accept_or_refuse_request'
-
   get 'users/logout'
 
   get 'home/index'
@@ -80,6 +79,7 @@ Rails.application.routes.draw do
   get 'home/the_godfather'
   get 'home/find_your_roof'
   get 'home/low_cost_consulting'
+  get 'home/technical_links'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

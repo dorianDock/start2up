@@ -15,13 +15,10 @@
           <% else %>
               <%= image_tag 'basicPicture.png', height: '300', :width => '300', :class => '' %>
           <% end %>
-
-
         </div>
         <div class="content">
           <a class="header">
             <%= useful_link.title %>
-
           </a>
           <div class="textForItemUrl">
             <a href="<%= useful_link.url %>"><%= useful_link.url %></a>
@@ -30,15 +27,12 @@
             <span>Description</span>
           </div>
           <div class="description">
-
             <div class="textForItemDescription"><%= simple_format(useful_link.description) %></div>
           </div>
           <div class="extra">
             <div class=""><%= useful_link.created_at.strftime('%d/%m/%Y') %></div>
           </div>
           <div>
-
-
             <div class="ui comments">
               <h3 class="ui dividing header">Commentaires</h3>
 
@@ -64,23 +58,9 @@
 
                   <%= f.submit 'Valider',class: 'ui primary button' %>
               <% end %>
-
-
             </div>
-
-
-
-
-
           </div>
-
         </div>
       </div>
-
-
-
-
-
-
 <% end %>
 </div>
