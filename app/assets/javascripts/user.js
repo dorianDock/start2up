@@ -3,11 +3,10 @@ $(document).
     on('page:change', function () {
 
         // when page is loading: we fill those lists
-        if($('.userSkills').any){
+        if($('.userSkills').length >0){
             InitializeSelectList('userSkills', 'Choisir des skills');
         }
-
-
+    
         // We initialize each category component
         var numberOfConcepts=$('.conceptCategorySelect').length;
 
@@ -16,9 +15,6 @@ $(document).
             var nameOfTheElementClass="conceptCategory"+conceptId;
             InitializeSelectList(nameOfTheElementClass, 'Choisir une categorie');
         });
-
-
-
 
         $('.special.cards .image').dimmer({
             on: 'hover'
@@ -66,14 +62,10 @@ $(document).
                     showSuccess(data.message,'')
                     $('.concept'+data.conceptid).hide();
                 }
-
             };
             var conceptid=$(this).data('conceptid');
             var parameters={conceptid: conceptid};
             AjaxRequest($(this).data('url'), parameters, myReturnFunction);
         });
-
-
-
 
     });

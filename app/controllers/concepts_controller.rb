@@ -21,10 +21,10 @@ class ConceptsController < ApplicationController
     user_id=params[:userid]
     the_user=User.find(user_id)
 
-    the_user.concepts.create(:title => "Une nouvelle idée")
+    the_user.concepts.create(:title => 'Une nouvelle top idée')
     the_created_concept=Concept.last
 
-    my_html=render_to_string("users/_editIdea", :formats => [:html], :layout => false, :locals => {:user_concept => the_created_concept})
+    my_html=render_to_string('users/_editIdea', :formats => [:html], :layout => false, :locals => {:user_concept => the_created_concept})
 
     respond_to do |format|
       format.json {

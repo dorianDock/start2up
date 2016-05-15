@@ -8,7 +8,7 @@ class DataSourceController < ApplicationController
     if string_query.nil? || string_query.empty?
       the_list=UsefulLinkCategory.all().order(:label)
     else
-      the_list=UsefulLinkCategory.all().where("label LIKE '%#{string_query}%'").order(:label)
+      the_list=UsefulLinkCategory.all().where("label ILIKE '%#{string_query}%'").order(:label)
     end
 
     final_list= Array.new
@@ -33,7 +33,7 @@ class DataSourceController < ApplicationController
     if string_query.nil? || string_query.empty?
       the_list=ConceptCategory.all().order(:label)
     else
-      the_list=ConceptCategory.all().where("label LIKE '%#{string_query}%'").order(:label)
+      the_list=ConceptCategory.all().where("label ILIKE '%#{string_query}%'").order(:label)
     end
 
     final_list= Array.new
@@ -59,7 +59,7 @@ class DataSourceController < ApplicationController
     if string_query.nil? || string_query.empty?
       the_list=Skill.all().order(:label)
     else
-      the_list=Skill.all().where("label LIKE '%#{string_query}%'").order(:label)
+      the_list=Skill.all().where("label ILIKE '%#{string_query}%'").order(:label)
     end
 
     final_list= Array.new

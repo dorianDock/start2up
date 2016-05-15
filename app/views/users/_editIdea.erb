@@ -10,24 +10,21 @@
     </div>
   </div>
   <div class="content">
-    <a class="header">Des machines a remonter le temps</a>
+    <a class="header"><%= user_concept.title %></a>
     <!--<i class="fa fa-2x fa-toggle-off"></i>-->
 
     <a class="ui icon red button right floated removeConcept"
        data-conceptid="<%= user_concept.id %>" data-url="<%= concepts_remove_concept_for_user_path %>">
       <i class="icon fa fa-times"></i>
     </a>
-    <a class="ui icon orange button right floated askForConceptReview"
-       data-conceptid="<%= user_concept.id %>" data-url="<%= concepts_ask_for_concept_review_path %>">
-      <i class="icon fa fa-share-alt"></i>
-    </a>
+    <!--<a class="ui icon orange button right floated askForConceptReview"-->
+       <!--data-conceptid="<%= user_concept.id %>" data-url="<%= concepts_ask_for_concept_review_path %>">-->
+      <!--<i class="icon fa fa-share-alt"></i>-->
+    <!--</a>-->
     <!--<a class="ui icon button right floated publishConcept"-->
        <!--data-conceptid="<%= user_concept.id %>" data-url="<%= concepts_publish_concept_path %>">-->
       <!--<i class="icon fa fa-toggle-off"></i>-->
     <!--</a>-->
-
-
-
 
     <div class="meta">
       <span></span>
@@ -76,7 +73,6 @@
           <%= select_tag(:category_ids, "", multiple: true, class: "ui dropdown search conceptCategorySelect conceptCategory"+theStringId,
                          data: {:url => data_source_category_list_url,
                                 :initializeurl => concepts_categories_for_concepts_url, :objectlinkid => user_concept.id}) %>
-
           <br>
           <br>
           <%= f.submit "Valider", class: "ui primary button right floated validationForUserConcepts" %>

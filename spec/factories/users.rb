@@ -39,7 +39,7 @@ FactoryGirl.define do
     firstname             'Thierry'
     admin                 false
   end
-  
+
 end
 
 
