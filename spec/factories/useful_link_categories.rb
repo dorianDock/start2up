@@ -10,7 +10,7 @@
 
 FactoryGirl.define do
   factory :useful_link_category do
-    label "MyString"
+    label 'MyString'
   end
 
 end

@@ -3,9 +3,14 @@ require 'rails_helper'
 RSpec.describe DataSourceController, type: :controller do
 
   before(:each) do
-    @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'Chaussure' }
+
     @user= FactoryGirl.create(:user)
     sign_in @user
+
+    @skill= FactoryGirl.create(:skill)
+    @category_for_useful_link= FactoryGirl.create(:useful_link_category)
+    @concept_category= FactoryGirl.create(:concept_category)
+
   end
 
   describe 'GET #useful_link_category_list' do
@@ -23,19 +28,18 @@ RSpec.describe DataSourceController, type: :controller do
 
   end
 
-  describe 'GET #category_list' do
-    it 'Categories for skills are reached' do
+  describe 'GET #concept_category_list' do
+    it 'Categories for concepts are reached' do
       get :category_list, format: :json
       json_body= JSON.parse(response.body)
       expect(json_body).to include('success' => true)
     end
 
     it 'Categories for skills are existing in the db' do
-      get :useful_link_category_list, format: :json
+      get :category_list, format: :json
       json_body= JSON.parse(response.body)
       expect(json_body).to_not include('results' => [])
     end
-
   end
 
   describe 'GET #skill_list' do
@@ -45,7 +49,7 @@ RSpec.describe DataSourceController, type: :controller do
       expect(json_body).to include('success' => true)
     end
     it 'Skills are existing in the db' do
-      get :useful_link_category_list, format: :json
+      get :skill_list, format: :json
       json_body= JSON.parse(response.body)
       expect(json_body).to_not include('results' => [])
     end

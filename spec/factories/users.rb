@@ -32,7 +32,6 @@ end
 
 FactoryGirl.define do
   factory :user do
-
     name                  'MrTruite'
     email
     password              'truite'

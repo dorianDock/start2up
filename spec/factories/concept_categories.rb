@@ -10,7 +10,6 @@
 
 FactoryGirl.define do
   factory :concept_category do
-    label "MyString"
+    label 'MyString'
   end
-
 end

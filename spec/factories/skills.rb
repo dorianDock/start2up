@@ -11,8 +11,9 @@
 
 FactoryGirl.define do
   factory :skill do
-    label "MyString"
-skill_category_id "MyString"
+    label 'MyString'
+
   end
 
 end
+
