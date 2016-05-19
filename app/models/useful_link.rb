@@ -27,7 +27,7 @@ class UsefulLink < ActiveRecord::Base
   validates_attachment_content_type :picture, content_type: %w(image/jpg image/jpeg image/png image/gif)
   # equivalent to doing: ['image/jpg','image/jpeg', ..]
 
-  scope :publicLinks, -> { where(is_public: true) }
+  scope :public_links, -> { where(is_public: true) }
   scope :reverse_order, -> { order(created_at: :desc) }
   scope :natural_order, -> { order(created_at: :asc) }
 

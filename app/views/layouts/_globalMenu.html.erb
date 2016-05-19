@@ -17,7 +17,10 @@
           Liens Utiles
           <i class="dropdown icon"></i>
           <div class="menu">
-            <%= link_to 'Tous les liens', useful_links_path, class: "item" %>
+            <%- if current_user.admin %>
+                <%= link_to 'Tous les liens', useful_links_path, class: "item" %>
+            <%- end %>
+
             <%= link_to "Idées d'entreprise", home_good_or_bad_idea_path , class: "item" %>
             <%= link_to "S'associer", home_find_your_soul_path , class: "item" %>
             <%= link_to 'Le légal', home_law_is_law_path , class: "item" %>

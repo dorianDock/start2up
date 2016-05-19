@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
   resources :users  do
     member do
+      get :make_an_admin_from_user
       get :friends
       get :followers
       get :followed

@@ -12,6 +12,7 @@
               <%- unless current_user.linkedUsersAsked_ids.include?(user.id) %>
                   <div class=""><%= render 'askForMentorship', :user => user %></div>
               <%- end %>
+
           <%- end %>
         </div>
       </div>

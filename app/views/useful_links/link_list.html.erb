@@ -9,11 +9,11 @@
 <%- @usefulLinks.each do |useful_link| %>
 
       <div class="item">
-        <div class="image ui">
+        <div class="image">
           <% if useful_link.picture.exists? %>
-              <%= image_tag useful_link.picture.url(:medium),  height: '300', :width => '300', :class => '' %>
+              <%= image_tag useful_link.picture.url(:medium),  height: '300', :width => '300', :class => 'linkPicture' %>
           <% else %>
-              <%= image_tag 'basicPicture.png', height: '300', :width => '300', :class => '' %>
+              <%= image_tag 'basicPicture.png', height: '300px', :width => '300px', :class => 'linkPicture' %>
           <% end %>
         </div>
         <div class="content">

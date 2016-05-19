@@ -56,6 +56,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def make_an_admin_from_user
+    @user = User.find_by id: params[:id]
+    @user.admin = !(@user.admin)
+    @user.save
+    redirect_to users_path
+  end
+
   def update_profile_picture
     @user=User.find_by id: params[:id]
     trueParams=params[:user].permit(:avatar)

@@ -10,6 +10,11 @@
   <br>
   <a class="ui button blue" href="<%= edit_user_registration_path %>"><i class="icon pencil"></i>Changer mes identifiants</a>
   <% end %>
+  <%- if current_user.admin == true && !@user.admin %>
+      <a class="ui button orange" href="<%= make_an_admin_from_user_user_path %>">
+        <i class="icon pencil"></i>Transformer en Admin
+      </a>
+  <%- end %>
 
   <div class="ui grid">
     <%= render 'userCard', :user => @user %>
