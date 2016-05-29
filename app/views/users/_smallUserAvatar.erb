@@ -1,0 +1,8 @@
+<% # encoding: utf-8 %>
+
+<% if user.avatar.exists? %>
+    <%= image_tag user.avatar.url(:thumb), height: '50', :width => '50', :class => '' %>
+<% else %>
+
+    <%= image_tag 'avatarHomme.png', height: '50', :width => '50', :class => '' %>
+<% end %>

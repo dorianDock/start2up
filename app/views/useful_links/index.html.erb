@@ -9,58 +9,54 @@
 
 <%- @usefulLinks.each do |useful_link| %>
     <%= form_for useful_link,  html: {:multipart => true, class: 'ui form'} do |f| %>
-
         <%= f.hidden_field :id %>
-        <h3>Lien #<%= useful_link.id%></h3>
+        <h3>Lien #<%= useful_link.id%>: <%= %></h3>
 
         <div class="field">
-          <label>Titre</label>
-          <%= f.text_field :title %>
+          <label>Catégorie</label>
+          <select name="useful_link[useful_link_category_id]"  class="ui dropdown search usefulLinksCategoryEdit usefulLinksCategory<%= useful_link.id %>"
+                  data-url="<%= data_source_useful_link_category_list_url %>"
+                  data-initializeurl="<%= category_for_useful_link_useful_links_path %>"
+                  data-objectlinkid="<%= useful_link.id %>">
+          </select>
         </div>
 
-        <div class="field">
-          <label>Url</label>
-          <%= f.text_field :url %>
-        </div>
 
-        <div class="two fields">
-          <div class="field">
+
+
+        <div class="fields">
+          <div class="four wide field">
             <label>Image courante:</label>
             <% if useful_link.picture.exists? %>
                 <%= image_tag useful_link.picture.url(:thumb), height: '100', :width => '100', :class => '' %>
             <% else %>
                 <%= image_tag "basicPicture.png", height: '100', :width => '100', :class => '' %>
             <% end %>
+            <div class="field">
+              <label>Image</label>
+              <%= f.file_field :picture %>
+            </div>
           </div>
-          <div class="field">
+          <div class="twelve wide field">
+            <div class="field">
+              <label>Titre</label>
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <label>Url</label>
+              <%= f.text_field :url %>
+            </div>
             <label>Publier ?</label>
             <%= f.check_box :is_public %>
           </div>
-
         </div>
 
-        <div class="field">
-          <label>Image</label>
-          <%= f.file_field :picture %>
-        </div>
         <div class="field">
           <label>Description</label>
-          <%= f.text_area :description, size: "60x12" %>
+          <%= f.text_area :description, class: 'commentTextarea' %>
         </div>
-
-        <h4>Catégorie</h4>
-        <select name="useful_link[useful_link_category_id]"  class="ui dropdown search usefulLinksCategoryEdit usefulLinksCategory<%= useful_link.id %>"
-                data-url="<%= data_source_useful_link_category_list_url %>"
-                data-initializeurl="<%= category_for_useful_link_useful_links_path %>"
-                data-objectlinkid="<%= useful_link.id %>">
-        </select>
-
-        <br>
-        <br>
         <%= f.submit "Valider",class: "ui primary button right floated" %>
 
     <% end %>
-
-<br>
 
 <% end %>

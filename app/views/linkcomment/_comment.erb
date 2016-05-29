@@ -2,7 +2,8 @@
 
 <div class="comment">
     <a class="avatar">
-      <%= image_tag comment.user.avatar.url(:thumb), height: '50', :width => '50', :class => '' %>
+      <%= render './users/smallUserAvatar', :user => comment.user %>
+      <!--<%= image_tag comment.user.avatar.url(:thumb), height: '50', :width => '50', :class => '' %>-->
     </a>
     <div class="content">
       <a class="author"><%= comment.user.displayName %></a>
