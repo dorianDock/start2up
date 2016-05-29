@@ -1,5 +1,6 @@
 <% # encoding: utf-8   %>
-<h1><%= @page_title %></h1>
+<h1 class="usefulLinksTitle"><%= @page_title %></h1>
+
 <%- if current_user.admin? %>
     <a class="ui primary button" href="<%= new_useful_link_path %>"><i class="fa fa-plus"></i> Ajouter un lien</a>
 <%- end %>

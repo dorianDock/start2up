@@ -149,7 +149,18 @@ body{
   min-height: 6em !important;
 }
 
+.usefulLinksTitle{
+  text-align: center;
+}
 
+.pictureForLinkLists{
+  text-align: center;
+  height: 80px;
+}
+
+.pictureForLinkLists > img {
+  height: 100%;
+}
 
 
 
