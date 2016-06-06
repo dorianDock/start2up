@@ -28,7 +28,7 @@ $(document).
             var yContainer=myElement.offset().top;
             yContainer=yContainer+myElement.height()/2;
             var distanceToBlock=CalculateDistance(xContainer,x,yContainer,y);
-            if(distanceToBlock<=400){
+            if(distanceToBlock<=300){
                 myElement
                     .popup('show')
                 ;

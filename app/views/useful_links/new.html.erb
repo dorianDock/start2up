@@ -2,30 +2,50 @@
 
 <%= form_for @newUsefulLink, url: {controller: 'useful_links', action: 'create'}, method: 'post', html: {:multipart => true, class: 'ui form'} do |f| %>
     <% theStringId=@newUsefulLink.id.to_s %>
+    <h1>Quel magnifique lien veux-tu partager <%= current_user.firstname %> ?</h1>
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <div class="field">
-      <label>Titre</label>
-      <%= f.text_field :title %>
+
+    <div class="fields">
+      <div class="six wide field">
+
+        <div class="field">
+          <label>Image</label>
+          <%= f.file_field :picture %>
+        </div>
+        <div class="field">
+          <label>Catégorie</label>
+          <%= select_tag("useful_link[useful_link_category_id]", "",id: "useful_link_useful_link_category_id", class: "ui dropdown search usefulLinksCategory usefulLinksCategory"+theStringId,
+                         data: {:url => data_source_useful_link_category_list_url
+                         }) %>
+        </div>
+
+
+      </div>
+      <div class="one wide field">
+
+
+      </div>
+      <div class="nine wide field">
+        <div class="field">
+          <label>Titre</label>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <label>Url</label>
+          <%= f.text_field :url %>
+        </div>
+
+      </div>
     </div>
-    <div class="field">
-      <label>Url</label>
-      <%= f.text_field :url %>
-    </div>
-    <div class="field">
-      <label>Image</label>
-      <%= f.file_field :picture %>
-    </div>
+
+
 
 
     <div class="field">
       <label>Description</label>
-      <%= f.text_area :description, size: "60x12" %>
+      <%= f.text_area :description %>
     </div>
-    <h4>Catégorie</h4>
-    <%= select_tag("useful_link[useful_link_category_id]", "",id: "useful_link_useful_link_category_id", class: "ui dropdown search usefulLinksCategory usefulLinksCategory"+theStringId,
-                   data: {:url => data_source_useful_link_category_list_url
-                   }) %>
-    <br>
-    <br>
+
+
     <%= f.submit "Valider", class: "ui primary button right floated" %>
 <% end %>
