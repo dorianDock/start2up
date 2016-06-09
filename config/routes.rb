@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
     member do
       patch 'update'
-      post 'destroy'
+
     end
 
     resources :comments

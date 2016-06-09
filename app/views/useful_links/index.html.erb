@@ -9,12 +9,15 @@
 
 <%- @usefulLinks.each do |useful_link| %>
 
+
+
     <%= form_for useful_link,  html: {:multipart => true, class: 'ui form'} do |f| %>
         <%= f.hidden_field :id %>
         <h3 class="ui horizontal divider header">
           <i class="fa fa-link icon"></i>
           Lien #<%= useful_link.id%>
         </h3>
+
 
 
         <div class="field">
@@ -57,7 +60,14 @@
           <label>Description</label>
           <%= f.text_area :description, class: 'commentTextarea' %>
         </div>
+
         <%= f.submit 'Valider',class: 'ui primary button right floated' %>
+        <%= link_to 'Destroy',  useful_link,  method: :delete, remote: true %>
+
+        <a class='ui red button right floated deleteALink' data-url="" data-linkid="<%= useful_link.id %>">
+          <i class="fa fa-trash"></i>
+        </a>
+
         <br>
         <br>
     <% end %>

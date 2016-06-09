@@ -22,4 +22,9 @@ $(document).
             $('.formForComment'+commentToReplyTo).toggle();
         });
 
+        $('.deleteALink').click(function(){
+            var linkId=$(this).data('linkid');
+            var linkDeletionUrl=$(this).data('url');
+            DisplayConfirmationPopup(linkDeletionUrl,linkId);
+        });
     });

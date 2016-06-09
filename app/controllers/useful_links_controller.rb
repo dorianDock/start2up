@@ -65,8 +65,16 @@ class UsefulLinksController < ApplicationController
   end
 
   def destroy
-
-
+    useful_link_id=params[:objectid]
+    the_useful_link=UsefulLink.find_by(id: useful_link_id)
+    if the_useful_link!=null
+      UsefulLink.destroy(the_useful_link)
+    end
+    respond_to do |format|
+      format.json {
+        render json: {:isError => !(the_useful_link.destroyed?), :responseMessage => 'Le lien a bien été supprimé' }
+      }
+    end
   end
 
 

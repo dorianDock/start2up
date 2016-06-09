@@ -93,6 +93,29 @@ function InitializeSelectList(aCssClass, placeHolder) {
 
 }
 
+function CloseModal(){
+    return false;
+}
+
+// Function about modals and confirmation modals
+
+function DisplayConfirmationPopup(actionToPerform,objectId){
+    $('.confirmationModal')
+        .modal({
+            closable  : true,
+            onDeny    : function(){
+                CloseModal();
+            },
+            onApprove : function() {
+                var parameters = {objectid: objectId};
+                AjaxRequest(actionToPerform, parameters, CloseModal);
+            }
+        })
+        .modal('setting', 'transition', 'horizontal flip')
+        .modal('show')
+    ;
+}
+
 
 
 
