@@ -18,26 +18,26 @@ $(document).
     ;
 
     $('body').on('mousemove',function(event){
-        var x = event.clientX;
-        var y = event.clientY;
-
-        $('.homeSquare').each(function() {
-            var myElement= $(this);
-            var xContainer=myElement.offset().left;
-            xContainer=xContainer+myElement.width()/2;
-            var yContainer=myElement.offset().top;
-            yContainer=yContainer+myElement.height()/2;
-            var distanceToBlock=CalculateDistance(xContainer,x,yContainer,y);
-            if(distanceToBlock<=300){
-                myElement
-                    .popup('show')
-                ;
-            } else{
-                myElement
-                    .popup('hide')
-                ;
-            }
-        });
+        // var x = event.clientX;
+        // var y = event.clientY;
+        //
+        // $('.homeSquare').each(function() {
+        //     var myElement= $(this);
+        //     var xContainer=myElement.offset().left;
+        //     xContainer=xContainer+myElement.width()/2;
+        //     var yContainer=myElement.offset().top;
+        //     yContainer=yContainer+myElement.height()/2;
+        //     var distanceToBlock=CalculateDistance(xContainer,x,yContainer,y);
+        //     if(distanceToBlock<=300){
+        //         myElement
+        //             .popup('show')
+        //         ;
+        //     } else{
+        //         myElement
+        //             .popup('hide')
+        //         ;
+        //     }
+        // });
     });
 
 

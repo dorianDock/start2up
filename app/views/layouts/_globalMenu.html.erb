@@ -21,14 +21,24 @@
                 <%= link_to 'Tous les liens', useful_links_path, class: "item" %>
             <%- end %>
 
-            <%= link_to "Idées d'entreprise", home_good_or_bad_idea_path , class: "item" %>
-            <%= link_to "S'associer", home_find_your_soul_path , class: "item" %>
-            <%= link_to 'Le légal', home_law_is_law_path , class: "item" %>
-            <%= link_to 'Financement', home_money_broke_path , class: "item" %>
-            <%= link_to 'Infos utiles', home_useful_information_path , class: "item" %>
-            <%= link_to 'Trouver un parrain', home_the_godfather_path , class: "item" %>
-            <%= link_to 'Les bureaux', home_find_your_roof_path , class: "item" %>
-            <%= link_to 'Liens techniques', home_technical_links_path , class: "item" %>
+            <%= custom_menu_link(home_good_or_bad_idea_path,'idea',"Idées d'entreprise",'teal label', 0,'grey label',@links_for_ideas) %>
+            <%= custom_menu_link(home_find_your_soul_path,'unlink',"S'associer",'teal label', 0) %>
+            <%= custom_menu_link(home_law_is_law_path,'book','Le légal','teal label', 0) %>
+            <%= custom_menu_link(home_money_broke_path,'money','Financement','teal label', 0) %>
+            <%= custom_menu_link(home_useful_information_path,'info','Infos utiles','teal label', 0) %>
+            <%= custom_menu_link(home_the_godfather_path,'user','Trouver un parrain','teal label', 0) %>
+            <%= custom_menu_link(home_find_your_roof_path,'home','Les bureaux','teal label', 0) %>
+            <%= custom_menu_link(home_technical_links_path,'computer','Liens techniques','teal label', 0) %>
+
+
+            <!--<%= link_to "Idées d'entreprise", home_good_or_bad_idea_path , class: "item" %>-->
+            <!--<%= link_to "S'associer", home_find_your_soul_path , class: "item" %>-->
+            <!--<%= link_to 'Le légal', home_law_is_law_path , class: "item" %>-->
+            <!--<%= link_to 'Financement', home_money_broke_path , class: "item" %>-->
+            <!--<%= link_to 'Infos utiles', home_useful_information_path , class: "item" %>-->
+            <!--<%= link_to 'Trouver un parrain', home_the_godfather_path , class: "item" %>-->
+            <!--<%= link_to 'Les bureaux', home_find_your_roof_path , class: "item" %>-->
+            <!--<%= link_to 'Liens techniques', home_technical_links_path , class: "item" %>-->
           </div>
         </div>
 
@@ -38,18 +48,17 @@
           <div class=" menu">
             <%= link_to 'Followers', followers_user_path(current_user.id), class: "item" %>
             <%= link_to 'People followed', followed_user_path(current_user.id), class: "item" %>
-            <a href="<%= mentors_user_path(current_user.id) %>" class="item">
-              <i class="icon trophy"></i> Mentors
-              <div class="ui grey label"><%= current_user.mentorsCount %></div>
-            </a>
-            <a href="<%= mentorees_user_path(current_user.id) %>" class="item">
-              <i class="icon student"></i> Apprentis
-              <div class="ui grey label"><%= current_user.mentoreesCount %></div>
-            </a>
-            <a href="<%= user_links_path %>" class="item">
-              <i class="icon send outline"></i> Requêtes
-              <div class="ui red label"><%= current_user.userLinksWaiting %></div>
-            </a>
+
+            <%= custom_menu_link(mentors_user_path(current_user.id),'trophy','Mentors','grey label', current_user.mentorsCount) %>
+
+            <%= custom_menu_link(mentorees_user_path(current_user.id),'student','Apprentis','grey label', current_user.mentoreesCount) %>
+
+            <%= custom_menu_link(user_links_path,'send outline','Requêtes','red label', current_user.userLinksWaiting) %>
+
+            <!--<a href="<%= user_links_path %>" class="item">-->
+              <!--<i class="icon send outline"></i> Requests-->
+              <!--<div class="ui red label"><%= current_user.userLinksWaiting %></div>-->
+            <!--</a>-->
           </div>
         </div>
 

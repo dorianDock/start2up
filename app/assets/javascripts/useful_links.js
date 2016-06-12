@@ -25,6 +25,15 @@ $(document).
         $('.deleteALink').click(function(){
             var linkId=$(this).data('linkid');
             var linkDeletionUrl=$(this).data('url');
-            DisplayConfirmationPopup(linkDeletionUrl,linkId);
+            var afterAction=function(data){
+                if(data.isError===false){
+                    $('#edit_useful_link_'+linkId).remove();
+                }
+
+                HandleMessageFromServer(data);
+                CloseModal();
+            };
+
+            DisplayConfirmationPopup(linkDeletionUrl,linkId,afterAction);
         });
     });

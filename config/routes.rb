@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'concepts/ask_for_concept_review'
   get 'concepts/publish_concept'
 
+  get :link_counters, controller:'application'
+
   # useful_links and their comments
 
   resources :useful_links do
@@ -32,7 +34,9 @@ Rails.application.routes.draw do
     end
 
     member do
-      patch 'update'
+      # patch 'update'
+      # delete 'destroy'
+      get 'destroy_by_popup'
 
     end
 

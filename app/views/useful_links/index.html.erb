@@ -62,9 +62,9 @@
         </div>
 
         <%= f.submit 'Valider',class: 'ui primary button right floated' %>
-        <%= link_to 'Destroy',  useful_link,  method: :delete, remote: true %>
+        <%= link_to 'Destroy', useful_link_path(useful_link.id) ,method: :delete, remote: true %>
 
-        <a class='ui red button right floated deleteALink' data-url="" data-linkid="<%= useful_link.id %>">
+        <a class='ui red button right floated deleteALink' data-url="<%= destroy_by_popup_useful_link_path(useful_link.id) %>" data-linkid="<%= useful_link.id %>">
           <i class="fa fa-trash"></i>
         </a>
 

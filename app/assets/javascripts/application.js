@@ -36,6 +36,11 @@ $(document).on('page:change', function () {
     ;
 
     $('.myCustomSuccessMessage').hide();
+    $('.myCustomErrorMessage').hide();
+
+    $('.ui.modal')
+        .modal('hide')
+    ;
 
 });
 
@@ -46,11 +51,21 @@ function AjaxRequest(targetUrl, parameters, callBackFunction) {
     }).done(callBackFunction);
 }
 
-function showSuccess(headerText, contentText) {
-    $('.myCustomSuccessMessage > .myCustomSuccessMessageHeader').html(headerText);
-    $('.myCustomSuccessMessage > .myCustomSuccessMessageContent').html(contentText);
-    $('.myCustomSuccessMessage').show();
+function showMessage(classToUseForContainer,classToUseForHeader, classToUseForContent, headerText, contentText){
+    $(classToUseForContainer+' > '+classToUseForHeader).html(headerText);
+    $(classToUseForContainer+' > '+classToUseForContent).html(contentText);
+    $(classToUseForContainer).show();
 }
+
+function showSuccess(headerText, contentText) {
+    showMessage('.myCustomSuccessMessage','.myCustomSuccessMessageHeader','.myCustomSuccessMessageContent',headerText,contentText);
+}
+
+function showError(headerText, contentText) {
+    showMessage('.myCustomErrorMessage','.myCustomErrorMessageHeader','.myCustomErrorMessageContent',headerText,contentText);
+}
+
+
 
 // Initialize function for select lists
 function InitializeSelectList(aCssClass, placeHolder) {
@@ -97,9 +112,19 @@ function CloseModal(){
     return false;
 }
 
+// Help to manage the errors and the messages coming back form the server
+function HandleMessageFromServer(data){
+    if(data.isError===true){
+        showError(data.responseMessage);
+    } else{
+        showSuccess(data.responseMessage);
+    }
+}
+
+
 // Function about modals and confirmation modals
 
-function DisplayConfirmationPopup(actionToPerform,objectId){
+function DisplayConfirmationPopup(actionToPerform,objectId,afterAction){
     $('.confirmationModal')
         .modal({
             closable  : true,
@@ -108,7 +133,7 @@ function DisplayConfirmationPopup(actionToPerform,objectId){
             },
             onApprove : function() {
                 var parameters = {objectid: objectId};
-                AjaxRequest(actionToPerform, parameters, CloseModal);
+                AjaxRequest(actionToPerform, parameters, afterAction);
             }
         })
         .modal('setting', 'transition', 'horizontal flip')

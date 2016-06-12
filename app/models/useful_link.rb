@@ -28,6 +28,7 @@ class UsefulLink < ActiveRecord::Base
   # equivalent to doing: ['image/jpg','image/jpeg', ..]
 
   scope :public_links, -> { where(is_public: true) }
+  scope :public_links_with_categories, -> { joins(:useful_link_category).where(is_public: true) }
   scope :reverse_order, -> { order(created_at: :desc) }
   scope :natural_order, -> { order(created_at: :asc) }
 

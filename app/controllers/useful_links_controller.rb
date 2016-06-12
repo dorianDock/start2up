@@ -64,15 +64,22 @@ class UsefulLinksController < ApplicationController
     redirect_to useful_links_path
   end
 
-  def destroy
+  def destroy_by_popup
     useful_link_id=params[:objectid]
     the_useful_link=UsefulLink.find_by(id: useful_link_id)
-    if the_useful_link!=null
-      UsefulLink.destroy(the_useful_link)
+    unless the_useful_link.nil?
+      the_useful_link.destroy
+    end
+    responseMessage=''
+
+    if (the_useful_link.destroyed?)
+      responseMessage='Le lien a bien été supprimé';
+    else
+      responseMessage='Il y a eu un problème lors de la suppression du lien';
     end
     respond_to do |format|
       format.json {
-        render json: {:isError => !(the_useful_link.destroyed?), :responseMessage => 'Le lien a bien été supprimé' }
+        render json: {:isError => !(the_useful_link.destroyed?), :responseMessage => responseMessage }
       }
     end
   end
