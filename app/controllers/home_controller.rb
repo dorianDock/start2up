@@ -18,6 +18,7 @@ class HomeController < ApplicationController
     @usefulLinks=UsefulLink.reverse_order.public_links.all.associates
     @page_title="S'associer"
     build_empty_comment
+    build_empty_link_interaction
   end
 
   def law_is_law
@@ -76,6 +77,11 @@ class HomeController < ApplicationController
 
   def build_empty_comment
     @emptyComment=LinkComment.new
+  end
+
+  def build_empty_link_interaction
+    @empty_link_interaction=LinkInteraction.new
+
   end
 
 end

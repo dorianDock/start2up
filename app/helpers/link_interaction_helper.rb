@@ -1,0 +1,2 @@
+module LinkInteractionHelper
+end

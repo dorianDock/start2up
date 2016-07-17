@@ -28,12 +28,14 @@ class UsefulLinksController < ApplicationController
     end
     @emptyComment=LinkComment.new
 
+
     @page_title='un Test'
   end
 
   def index
     @usefulLinks=UsefulLink.joins(:useful_link_category).reverse_order.all
     @newUsefulLink=UsefulLink.new
+
   end
 
   def new

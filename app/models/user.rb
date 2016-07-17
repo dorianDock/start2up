@@ -93,8 +93,23 @@ class User < ActiveRecord::Base
 
   # create an Interaction Type structure to avoid to query the db each time we want to reach an interaction type
   module InteractionType
-    MENTOR =1
-    PARTNER = 2
+    TO_READ =1
+    ALREADY_READ = 2
+    USELESS = 3
+    PRIORITY = 4
+  end
+
+  # for a specific user, take all the links he/she should still read
+  # is has to be links:
+  # - with no interactions attached
+  # OR
+  # - with interactions different than 'ALREADY_READ'
+  def links_already_read
+    links_concerned= []
+    if self.link_interactions.any?
+      links_concerned=self.link_interactions.where('interaction_type_id' => InteractionType::ALREADY_READ).to_a
+    end
+    links_concerned
   end
 
 

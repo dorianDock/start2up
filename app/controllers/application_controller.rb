@@ -13,9 +13,14 @@ class ApplicationController < ActionController::Base
   # we will initialize counters there
   def link_counters
     useful_link_number=UsefulLink.public_links_with_categories.includes(:useful_link_category).to_enum
+    links_already_read=current_user.links_already_read
+
 
     @links_for_ideas=useful_link_number.select{ |i| i.useful_link_category.label == 'BusinessIdea'}.count
     @links_for_associates=useful_link_number.select{ |i| i.useful_link_category.label == 'Associates'}.count
+
+
+
 
     # @links_for_law=useful_link_number.law.count
     # @links_for_money=useful_link_number.money.count

@@ -2,6 +2,20 @@ Rails.application.routes.draw do
 
 
 
+  get 'link_interactions/index'
+
+  get 'link_interactions/show'
+
+  get 'link_interactions/edit'
+
+  get 'link_interactions/update'
+
+  get 'link_interactions/new'
+
+  get 'link_interactions/create'
+
+  get 'link_interactions/destroy'
+
   get 'registrations/update_resource'
   get 'skill/update_user_skills'
   get 'skill/skills_for_user'
@@ -47,6 +61,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  # all basic routes for link_interactions
+  resources :link_interactions
 
 
   devise_for :users, :path_prefix => 'session' ,controllers: {registrations: 'registrations'}

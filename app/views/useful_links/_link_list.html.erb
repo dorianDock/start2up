@@ -9,6 +9,8 @@
 
 <%- @usefulLinks.each do |useful_link| %>
 
+
+
       <div class="item">
         <div class="image">
           <% if useful_link.picture.exists? %>
@@ -17,9 +19,14 @@
               <%= image_tag 'basicPicture.png', height: '300px', :width => '300px', :class => 'linkPicture' %>
           <% end %>
         </div>
+
         <div class="content">
+
+
           <a class="header">
             <%= useful_link.title %>
+
+
           </a>
           <div class="textForItemUrl">
             <a href="<%= useful_link.url %>"><%= useful_link.url %></a>
@@ -33,7 +40,14 @@
           <div class="extra">
             <div class=""><%= useful_link.created_at.strftime('%d/%m/%Y') %></div>
           </div>
+
           <div>
+            <%= form_for @empty_link_interaction, html: {class: 'ui form newlinkInteraction newlinkInteraction'+useful_link.id.to_s}, remote:true   do |f| %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.hidden_field :useful_link_id, :value => useful_link.id %>
+                <%= f.hidden_field :interaction_type_id, :value => User::InteractionType::ALREADY_READ %>
+                <%= f.submit "J'ai lu",class: 'ui inverted button' %>
+            <% end %>
             <div class="ui comments">
               <h3 class="ui dividing header">Commentaires</h3>
 
