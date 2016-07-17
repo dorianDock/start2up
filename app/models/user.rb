@@ -66,6 +66,11 @@ class User < ActiveRecord::Base
   #handle comments
   has_many :link_comments, foreign_key: 'author_id'
 
+  #handle link interactions
+  has_many :link_interactions
+
+
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -82,6 +87,12 @@ class User < ActiveRecord::Base
   # validates :password, presence: true
 
   module LinkType
+    MENTOR =1
+    PARTNER = 2
+  end
+
+  # create an Interaction Type structure to avoid to query the db each time we want to reach an interaction type
+  module InteractionType
     MENTOR =1
     PARTNER = 2
   end
