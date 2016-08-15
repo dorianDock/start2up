@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
   #   devise_parameter_sanitizer.for(:update_profile_picture) { |u| u.permit(:avatar) }
   # end
 
+  # create an Interaction Type structure to avoid to query the db each time we want to reach an interaction type
+  module InteractionType
+    TO_READ =1
+    ALREADY_READ = 2
+    USELESS = 3
+    PRIORITY = 4
+  end
+
   # we will initialize counters there
   def link_counters
     useful_link_number=UsefulLink.public_links_with_categories.includes(:useful_link_category).to_enum

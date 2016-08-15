@@ -12,4 +12,13 @@ require 'rails_helper'
 
 RSpec.describe UsefulLinkCategory, type: :model do
 
+  describe 'Data State' do
+    before(:each) do
+    end
+
+    it 'we should have possible categories for useful links in db' do
+      expect(UsefulLinkCategory.count).to be > 30
+    end
+
+  end
 end

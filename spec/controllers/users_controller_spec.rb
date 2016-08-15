@@ -56,19 +56,12 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-
-
-
-
   describe 'GET main pages' do
     before(:each) do
-
       @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'LaTruite' }
       @user= FactoryGirl.create(:user)
-@user.save!
+      @user.save!
       sign_in @user
-
-
     end
 
 
@@ -79,7 +72,27 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'We can show the page of a user' do
-      get :show, :id => 1
+      get :show, :id => @user.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'We can show the mentors of a user' do
+      get :mentors, :id => @user.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'We can show the mentorees of a user' do
+      get :mentorees, :id => @user.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'We can show the followed people of a user' do
+      get :followed, :id => @user.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'We can show the followers of a user' do
+      get :followers, :id => @user.id
       expect(response).to have_http_status(:success)
     end
 
@@ -125,9 +138,26 @@ RSpec.describe UsersController, type: :controller do
 
   end
 
+  describe 'Making an admin from a user' do
+    before(:each) do
+      @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'LaTruite' }
+      @future_admin= FactoryGirl.create(:user)
+      @future_admin.save!
+      sign_in @future_admin
+    end
 
+    it 'make_an_admin_from_user should be reachable' do
 
+      get :make_an_admin_from_user, :id => @future_admin.id
+      expect(response).to redirect_to(users_path)
+    end
 
+    it 'user could be switched to an admin' do
+      is_currently_admin= @future_admin.admin
+      get :make_an_admin_from_user, :id => @future_admin.id
+      expect(is_currently_admin).to eq(@future_admin.admin)
+    end
 
+  end
 
 end

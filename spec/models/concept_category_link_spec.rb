@@ -13,4 +13,14 @@ require 'rails_helper'
 
 RSpec.describe ConceptCategoryLink, type: :model do
 
+  describe 'Data State' do
+    before(:each) do
+    end
+
+    it 'we should have several links between categories and concepts in db' do
+      expect(ConceptCategoryLink.count).to be > 3
+    end
+
+  end
+
 end

@@ -80,10 +80,8 @@ class User < ActiveRecord::Base
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true, :length   => { :maximum => 100 }
   validates :firstname, presence: true, :length   => { :maximum => 100 }
-  validates :email, presence: true,
-  :format   => { :with => email_regex },
-      :uniqueness => { :case_sensitive => false }
-  # password validatons
+  validates :email, presence: true, :format   => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
+  # password validations
   # validates :password, presence: true
 
   module LinkType
@@ -91,13 +89,7 @@ class User < ActiveRecord::Base
     PARTNER = 2
   end
 
-  # create an Interaction Type structure to avoid to query the db each time we want to reach an interaction type
-  module InteractionType
-    TO_READ =1
-    ALREADY_READ = 2
-    USELESS = 3
-    PRIORITY = 4
-  end
+
 
   # for a specific user, take all the links he/she should still read
   # is has to be links:
