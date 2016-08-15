@@ -15,4 +15,10 @@ require 'rails_helper'
 
 RSpec.describe UserLinksController, type: :controller do
 
+  it 'user_links#index asks for authenticating' do
+    get :index
+    expect(response).to redirect_to(:controller => 'devise/sessions', :action => 'new')
+    # redirected to the sign in page
+  end
+
 end

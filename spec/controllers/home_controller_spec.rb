@@ -3,12 +3,21 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :controller do
 
 
-  describe 'Home is reachable without authenticating' do
-    it 'Skills for user are reachable' do
+  describe 'Public pages can be reached by anonymous' do
+    it 'home#index anonymous' do
       get :index
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'Anonymous must be authenticated to see one of the links pages' do
+    it 'home#law_is_law asks for authenticating' do
+      get :law_is_law
+      expect(response).to have_http_status(:redirect)
+      # redirected to the sign in page
+    end
+  end
+
 
   describe 'Authenticating user for home squares' do
 

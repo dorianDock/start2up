@@ -28,19 +28,103 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  before(:each) do
-    @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'Chaussure' }
-    @user= FactoryGirl.create(:user)
-    sign_in @user
-  end
-
-
-  describe 'GET #index' do
-    it 'Index is accessible after authenticating' do
+  describe 'Anonymous must be authenticated to see the list of users' do
+    it 'users#index asks for authenticating' do
       get :index
-      expect(response).to have_http_status(:success)
+      expect(response).to redirect_to(:controller => 'devise/sessions', :action => 'new')
+      # redirected to the sign in page
+    end
+    it 'users#1#followed asks for authenticating' do
+      get :followed, :id => 1
+      expect(response).to redirect_to(:controller => 'devise/sessions', :action => 'new')
+      # redirected to the sign in page
+    end
+    it 'users#1#followers asks for authenticating' do
+      get :followers, :id => 1
+      expect(response).to redirect_to(:controller => 'devise/sessions', :action => 'new')
+      # redirected to the sign in page
+    end
+    it 'users#1 profile show asks for authenticating' do
+      get :show, :id => 1
+      expect(response).to redirect_to(:controller => 'devise/sessions', :action => 'new')
+      # redirected to the sign in page
+    end
+    it 'users#1 profile edit asks for authenticating' do
+      get :edit, :id => 1
+      expect(response).to redirect_to(:controller => 'devise/sessions', :action => 'new')
+      # redirected to the sign in page
     end
   end
+
+
+
+
+
+  describe 'GET main pages' do
+    before(:each) do
+
+      @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'LaTruite' }
+      @user= FactoryGirl.create(:user)
+@user.save!
+      sign_in @user
+
+
+    end
+
+
+    it 'Index is accessible after authenticating' do
+      get :index
+      # expect(response).to have_http_status(:success)
+      expect(response).to render_template(:index)
+    end
+
+    it 'We can show the page of a user' do
+      get :show, :id => 1
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'The user can edit his/her own profile' do
+      get :edit, :id => @user.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'The user can edit his/her own picture' do
+      get :change_profile_picture, :id => @user.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'The user cannot edit someone elses profile' do
+      # the id exists in the database
+      get :edit, :id => 1010
+      # the page was redirected
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it 'The user can edit edit someone elses picture' do
+      # the id exists in the database
+      get :change_profile_picture, :id => 1010
+      # the page was redirected
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it 'Editing a profile but user doesn t exist' do
+      # is does not match any user
+      get :edit, :id => 1
+      # the page was redirected
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it 'Editing a picture but user doesn t exist' do
+      # is does not match any user
+      get :change_profile_picture, :id => 1
+      # the page was redirected
+      expect(response).to have_http_status(:redirect)
+    end
+
+
+
+  end
+
 
 
 

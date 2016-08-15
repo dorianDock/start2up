@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by id: params[:id]
-    if current_user.id != @user.id
+    if @user.nil? || current_user.id != @user.id
       redirect_to home_index_path
     end
   end
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
   def change_profile_picture
     @user = User.find_by id: params[:id]
-    if current_user.id != @user.id
+    if @user.nil? || current_user.id != @user.id
       redirect_to home_index_path
     end
   end

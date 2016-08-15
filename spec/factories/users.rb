@@ -32,11 +32,11 @@ end
 
 FactoryGirl.define do
   factory :user do
-    name                  'MrTruite'
-    email
+    name                  'Truite'
+    email                 'jeantruite@riviere.com'
     password              'truite'
     password_confirmation 'truite'
-    firstname             'Thierry'
+    firstname             'Jean'
     admin                 false
   end
 

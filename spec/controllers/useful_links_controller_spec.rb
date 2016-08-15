@@ -21,14 +21,24 @@ require 'rails_helper'
 RSpec.describe UsefulLinksController, type: :controller do
 
 
-  before(:each) do
-    @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'Chaussure' }
-    @user= FactoryGirl.create(:user)
-    sign_in @user
+  describe 'Anonymous must be authenticated to see the list of useful links' do
+    it 'useful_links#index asks for authenticating' do
+      get :index
+      expect(response).to redirect_to(:controller => 'devise/sessions', :action => 'new')
+      # redirected to the sign in page
+    end
   end
 
 
+
+
   describe 'GET #index' do
+    before(:each) do
+      @attr = { :email => 'truite@truite.com', :password => 'truite', :password_confirmation => 'truite', :firstname => 'Thierry', :name => 'Chaussure' }
+      @user= FactoryGirl.create(:user)
+      sign_in @user
+    end
+
     it 'Index of useful links is reachable' do
       get :index
       expect(response).to have_http_status(:success)
