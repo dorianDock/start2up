@@ -21,13 +21,12 @@ class UsefulLink < ActiveRecord::Base
   #handle link interactions
   has_many :link_interactions
 
-
   belongs_to :useful_link_category
   has_many :comments, as: :commentable, class_name: 'LinkComment'
 
-
-
-
+  validates_presence_of :title, :useful_link_category_id, :url
+  validates :title, :length   => { :maximum => 100 }
+  validates :is_public, inclusion: { in: [ true, false ] }
 
   attr_accessor :picture
   #handle attachments
@@ -38,6 +37,8 @@ class UsefulLink < ActiveRecord::Base
 
   scope :public_links, -> { where(is_public: true) }
   scope :public_links_with_categories, -> { joins(:useful_link_category).where(is_public: true) }
+  scope :private_links, -> { where(is_public: false) }
+
   scope :reverse_order, -> { order(created_at: :desc) }
   scope :natural_order, -> { order(created_at: :asc) }
 
@@ -50,6 +51,11 @@ class UsefulLink < ActiveRecord::Base
   scope :ideas, -> { joins(:useful_link_category).where('useful_link_categories.label' => 'BusinessIdea') }
   scope :technical, -> { joins(:useful_link_category).where('useful_link_categories.label' => 'Technical') }
 
+  #we call this method to make a link public or not public
+  def toggle_public
+    self.is_public=!self.is_public
+    self.save
+  end
 
   # def ask_mentoring_to(future_mentor)
   #   self.userLinksAsked.create!(:answererId => future_mentor.id, :user_link_type_id => LinkType::MENTOR)

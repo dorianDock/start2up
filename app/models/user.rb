@@ -180,10 +180,10 @@ class User < ActiveRecord::Base
   end
 
   def displayName
-    tempName=""
+    tempName=''
     unless self.firstname.nil?
       tempName+=firstname
-      tempName+=" "
+      tempName+=' '
     end
     unless self.name.nil?
       tempName+=name

@@ -10,10 +10,16 @@
 #
 
 FactoryGirl.define do
-  factory :skill do
-    label 'MyString'
-
+  sequence :label_for_skill do |n|
+    "My skill number #{n}"
   end
+end
+
+FactoryGirl.define do
+  factory :skill do
+    label :label_for_skill
+  end
+
 
 end
 

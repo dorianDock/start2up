@@ -16,11 +16,11 @@
 
 FactoryGirl.define do
   factory :concepts do
-    title "MyString"
-associate_number 1
-associate_wished_number 1
-concept_type_id 1
-concept_status_id 1
+    title 'A talking coffee machine'
+    associate_number 1
+    associate_wished_number 1
+    concept_type_id 1
+    concept_status_id 1
   end
 
 end

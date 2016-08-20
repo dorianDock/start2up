@@ -13,6 +13,28 @@
 require 'rails_helper'
 
 RSpec.describe LinkInteraction, type: :model do
+  describe 'Interactions' do
+    it 'belongs to an interaction type' do
+      association=described_class.reflect_on_association(:interaction_type)
+      expect(association.macro).to eq :belongs_to
+    end
+    it 'belongs to a user' do
+      association=described_class.reflect_on_association(:user)
+      expect(association.macro).to eq :belongs_to
+    end
+    it 'belongs to a useful link' do
+      association=described_class.reflect_on_association(:useful_link)
+      expect(association.macro).to eq :belongs_to
+    end
+
+  end
+
+
+
+
+
+
+
   # describe 'Validation' do
   #   before(:each) do
   #     @attr = { :interaction_type_id => ApplicationController::InteractionType::TO_READ,

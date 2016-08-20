@@ -17,10 +17,12 @@
 #
 
 FactoryGirl.define do
-  factory :useful_links do
-    title "MyString"
-description "MyString"
-useful_link_category_id 1
+  factory :useful_link do
+    title 'About something'
+    description 'This is an article about something'
+    useful_link_category_id 1
+    is_public false
+    url 'aaa.fr'
   end
 
 end
