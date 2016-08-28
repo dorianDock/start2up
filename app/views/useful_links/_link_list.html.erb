@@ -6,6 +6,10 @@
 <%- end %>
 
 <div class="ui divided items">
+  <% unless @usefulLinks.any? %>
+      <span>Pas de liens disponibles pour l'instant, repassez plus tard :)</span>
+  <% end %>
+
 
 <%- @usefulLinks.each do |useful_link| %>
 

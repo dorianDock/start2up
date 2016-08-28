@@ -155,6 +155,10 @@ class User < ActiveRecord::Base
   attr_reader :userLinksWaiting
   attr_reader :displayName
 
+  def toggle_admin
+    self.admin = !(self.admin)
+  end
+
   def userLinksWaiting
     tempCount=0
     if self.linkedUsersAnswered.any?

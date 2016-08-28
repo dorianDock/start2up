@@ -58,7 +58,8 @@ class UsersController < ApplicationController
 
   def make_an_admin_from_user
     @user = User.find_by id: params[:id]
-    @user.admin = !(@user.admin)
+    @user.toggle_admin
+
     @user.save
     redirect_to users_path
   end
