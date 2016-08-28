@@ -45,11 +45,12 @@
             <div class=""><%= useful_link.created_at.strftime('%d/%m/%Y') %></div>
           </div>
 
+          <% @empty_link_interaction=LinkInteraction.new %>
           <div>
             <%= form_for @empty_link_interaction, html: {class: 'ui form newlinkInteraction newlinkInteraction'+useful_link.id.to_s}, remote:true   do |f| %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
                 <%= f.hidden_field :useful_link_id, :value => useful_link.id %>
-                <%= f.hidden_field :interaction_type_id, :value => User::InteractionType::ALREADY_READ %>
+                <%= f.hidden_field :interaction_type_id, :value => InteractionType::InteractionTypes::ALREADY_READ %>
                 <%= f.submit "J'ai lu",class: 'ui inverted button' %>
             <% end %>
             <div class="ui comments">

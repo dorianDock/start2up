@@ -160,11 +160,90 @@ RSpec.describe User, type: :model do
       association=described_class.reflect_on_association(:skills)
       expect(association.macro).to eq :has_and_belongs_to_many
     end
+  end
+
+  describe 'Quick methods' do
+    before(:each) do
+      @user= FactoryGirl.create(:user, :firstname =>'Thierry' ,:name=>'LaTruite')
+      @user.save!
+
+    end
+
+    it 'display name is correct' do
+      full_name=@user.displayName
+      expect(full_name).to eq 'Thierry LaTruite'
+    end
+
+    it 'display name is correct if name is nil' do
+      @user.firstname=nil
+      full_name=@user.displayName
+      expect(full_name).to eq 'LaTruite'
+    end
+
+    it 'display name is correct if firstname is nil' do
+      @user.name=nil
+      full_name=@user.displayName
+      expect(full_name).to eq 'Thierry '
+    end
+
+    it 'display name is correct if name and first name are nil' do
+      @user.firstname=nil
+      @user.name=nil
+      full_name=@user.displayName
+      expect(full_name).to eq ''
+    end
+
+    it 'displays zero links read by default' do
+      expect(@user.links_already_read).to eq []
+    end
+
+    it 'displays zero waiting requests by default' do
+      expect(@user.userLinksWaiting).to eq 0
+    end
+
+    it 'displays zero mentors by default' do
+      expect(@user.mentorsCount).to eq 0
+    end
+
+    it 'displays zero mentors by default' do
+      expect(@user.mentoreesCount).to eq 0
+    end
+
+    it 'changes a non admin in admin when I toggle the is_admin boolean' do
+      @user.toggle_admin
+      expect(@user.admin?).to eq true
+    end
+
+    it 'changes an admin in non admin when I toggle the is_admin boolean again' do
+      @user.toggle_admin
+      @user.toggle_admin
+      expect(@user.admin?).to eq false
+    end
+
+  end
+
+  describe 'Links Interactions' do
+    before(:each) do
+      @user= FactoryGirl.create(:user, :firstname =>'Thierry' ,:name=>'LaTruite')
+      @user.save!
+    end
+
+    it 'Does not create a link interaction if the link does not exist' do
+      @user.i_read_this_link(0)
+      expect(@user.link_interactions).to eq []
+    end
+
+    it 'Does create a link interaction when we provide a correct useful link' do
+      @a_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      @a_link.save!
+      @user.i_read_this_link(@a_link.id)
+      expect(LinkInteraction.exists?(:user_id => @user.id, :useful_link_id => @a_link.id)).to eq true
+    end
+
 
 
 
   end
-
 
 
 end

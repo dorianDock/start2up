@@ -15,4 +15,6 @@ class LinkInteraction < ActiveRecord::Base
   belongs_to :user
   belongs_to :useful_link
 
+
+
 end

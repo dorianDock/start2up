@@ -81,7 +81,6 @@ class HomeController < ApplicationController
 
   def build_empty_link_interaction
     @empty_link_interaction=LinkInteraction.new
-
   end
 
 end

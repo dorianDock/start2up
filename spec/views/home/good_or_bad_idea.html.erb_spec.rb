@@ -8,10 +8,10 @@ RSpec.describe 'home/good_or_bad_idea.html.erb', type: :view do
     before(:each) do
       @user= FactoryGirl.create(:user)
       sign_in @user
-
-      @link_on_first_idea= FactoryGirl.create(:useful_link, is_public: true, useful_link_category_id:608)
+      @emptyComment=LinkComment.new
+      @link_on_first_idea= FactoryGirl.create(:useful_link, is_public: true, useful_link_category_id:FakeLinkCategories::IDEAS)
       @link_on_first_idea.save!
-      @link_on_second_idea= FactoryGirl.create(:useful_link, is_public: true, useful_link_category_id:608)
+      @link_on_second_idea= FactoryGirl.create(:useful_link, is_public: true, useful_link_category_id:FakeLinkCategories::IDEAS)
       @link_on_second_idea.save!
 
       @usefulLinks=UsefulLink.reverse_order.public_links.all.ideas
@@ -47,6 +47,16 @@ RSpec.describe 'home/good_or_bad_idea.html.erb', type: :view do
       expect(number_of_found_links).to eq 2
     end
 
+    it 'displays properly two "I read" buttons' do
+      number_of_found_links=rendered.scan('<form class="ui form newlinkInteraction').size
+      expect(number_of_found_links).to eq 2
+    end
+
+    it 'displays properly two Comment forms' do
+      number_of_found_forms=rendered.scan('<form class="ui reply form formForComment').size
+      expect(number_of_found_forms).to eq 2
+    end
+
     it 'should not display the new link button' do
       expect(rendered).to_not match('<i class="fa fa-plus"></i> Ajouter un lien</a>')
     end
@@ -55,12 +65,12 @@ RSpec.describe 'home/good_or_bad_idea.html.erb', type: :view do
 
 
   describe 'Display correctly the page for admin' do
-
-
     before(:each) do
       @user= FactoryGirl.create(:user)
       @user.toggle_admin
+      @user.save!
       sign_in @user
+      @emptyComment=LinkComment.new
       @usefulLinks=UsefulLink.reverse_order.public_links.all.ideas
       render
     end
@@ -74,6 +84,7 @@ RSpec.describe 'home/good_or_bad_idea.html.erb', type: :view do
     before(:each) do
       @user= FactoryGirl.create(:user)
       sign_in @user
+      @emptyComment=LinkComment.new
       @usefulLinks=UsefulLink.reverse_order.public_links.all.ideas
       render
     end
@@ -86,7 +97,6 @@ RSpec.describe 'home/good_or_bad_idea.html.erb', type: :view do
     it 'displays a specific message' do
       expect(rendered).to match('<span>Pas de liens disponibles pour')
     end
-
 
   end
 

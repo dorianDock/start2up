@@ -104,6 +104,13 @@ class User < ActiveRecord::Base
     links_concerned
   end
 
+  # we declare that we read a specific link
+  def i_read_this_link(link_id)
+    if UsefulLink.exists?(:id => link_id)
+      self.link_interactions.create!(:useful_link_id => link_id, :interaction_type_id => InteractionType::InteractionTypes::ALREADY_READ)
+    end
+  end
+
 
   def become_friend_with(new_friend)
     self.askedFriendships.create!(:answererId => new_friend.id)

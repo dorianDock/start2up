@@ -9,6 +9,20 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'devise'
 require 'support/controller_helpers'
+
+module FakeLinkCategories
+  LAW = 602
+  MONEY = 603
+  INFO = 604
+  MENTORSHIP = 605
+  ASSOCIATES = 606
+  HOUSING = 607
+  IDEAS = 608
+  TECHNICAL = 609
+end
+
+
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end

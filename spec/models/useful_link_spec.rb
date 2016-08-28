@@ -96,15 +96,15 @@ RSpec.describe UsefulLink, type: :model do
 
   describe 'Scopes' do
     before(:each) do
-      @link_for_law= FactoryGirl.create(:useful_link, title: 'Link for Law', description: 'This is a link talking about Law', useful_link_category_id: 602, is_public:true)
-      @link_for_money= FactoryGirl.create(:useful_link, title: 'Link for Money', description: 'This is a link talking about Money', useful_link_category_id: 603,is_public: false)
-      @link_for_info= FactoryGirl.create(:useful_link, title: 'Link for Info', description: 'This is a link talking about Info', useful_link_category_id: 604,is_public: false)
-      @link_for_mentorship= FactoryGirl.create(:useful_link, title: 'Link for Mentorship', description: 'This is a link talking about Mentorship', useful_link_category_id: 605, is_public:true)
-      @link_for_associates= FactoryGirl.create(:useful_link, title: 'Link for Associates', description: 'This is a link talking about Associates', useful_link_category_id: 606,is_public: false)
-      @link_for_housing= FactoryGirl.create(:useful_link, title: 'Link for Housing', description: 'This is a link talking about Housing', useful_link_category_id: 607,is_public: false)
-      @link_for_ideas= FactoryGirl.create(:useful_link, title: 'Link for Ideas', description: 'This is a link talking about Ideas', useful_link_category_id: 608, is_public:true)
-      @link_for_technical= FactoryGirl.create(:useful_link, title: 'Link for Technical', description: 'This is a link talking about Technical', useful_link_category_id: 609,is_public: false)
-      @link_for_technical_second= FactoryGirl.create(:useful_link, title: 'Second Link for Technical', description: 'This is a Second link talking about Technical', useful_link_category_id: 609,is_public: false)
+      @link_for_law= FactoryGirl.create(:useful_link, title: 'Link for Law', description: 'This is a link talking about Law', useful_link_category_id: FakeLinkCategories::LAW, is_public:true)
+      @link_for_money= FactoryGirl.create(:useful_link, title: 'Link for Money', description: 'This is a link talking about Money', useful_link_category_id: FakeLinkCategories::MONEY,is_public: false)
+      @link_for_info= FactoryGirl.create(:useful_link, title: 'Link for Info', description: 'This is a link talking about Info', useful_link_category_id: FakeLinkCategories::INFO,is_public: false)
+      @link_for_mentorship= FactoryGirl.create(:useful_link, title: 'Link for Mentorship', description: 'This is a link talking about Mentorship', useful_link_category_id: FakeLinkCategories::MENTORSHIP, is_public:true)
+      @link_for_associates= FactoryGirl.create(:useful_link, title: 'Link for Associates', description: 'This is a link talking about Associates', useful_link_category_id: FakeLinkCategories::ASSOCIATES,is_public: false)
+      @link_for_housing= FactoryGirl.create(:useful_link, title: 'Link for Housing', description: 'This is a link talking about Housing', useful_link_category_id: FakeLinkCategories::HOUSING,is_public: false)
+      @link_for_ideas= FactoryGirl.create(:useful_link, title: 'Link for Ideas', description: 'This is a link talking about Ideas', useful_link_category_id: FakeLinkCategories::IDEAS, is_public:true)
+      @link_for_technical= FactoryGirl.create(:useful_link, title: 'Link for Technical', description: 'This is a link talking about Technical', useful_link_category_id: FakeLinkCategories::TECHNICAL,is_public: false)
+      @link_for_technical_second= FactoryGirl.create(:useful_link, title: 'Second Link for Technical', description: 'This is a Second link talking about Technical', useful_link_category_id: FakeLinkCategories::TECHNICAL,is_public: false)
 
       @array_of_links=[@link_for_law,@link_for_money,@link_for_info,@link_for_mentorship,@link_for_associates,
                       @link_for_housing,@link_for_ideas,@link_for_technical,@link_for_technical_second]
