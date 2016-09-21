@@ -226,6 +226,8 @@ RSpec.describe User, type: :model do
     before(:each) do
       @user= FactoryGirl.create(:user, :firstname =>'Thierry' ,:name=>'LaTruite')
       @user.save!
+      @a_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      @a_link.save!
     end
 
     it 'Does not create a link interaction if the link does not exist' do
@@ -234,12 +236,61 @@ RSpec.describe User, type: :model do
     end
 
     it 'Does create a link interaction when we provide a correct useful link' do
-      @a_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
-      @a_link.save!
       @user.i_read_this_link(@a_link.id)
-      expect(LinkInteraction.exists?(:user_id => @user.id, :useful_link_id => @a_link.id)).to eq true
+      expect(LinkInteraction.exists?(:user_id => @user.id, :useful_link_id => @a_link.id,:interaction_type_id => InteractionType::ALREADY_READ)).to eq true
     end
 
+    it 'retrieves one link read when we said we read it' do
+      ids_of_read_links=@user.links_already_read
+      expect(ids_of_read_links[0]).to eq @a_link.id
+    end
+
+    it 'retrieves zero link read when we create 3 links but read no' do
+      @user.link_interactions=[]
+      a_first_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_first_link.save!
+      a_second_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_second_link.save!
+      a_third_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_third_link.save!
+
+      ids_of_read_links=@user.links_already_read
+      expect(ids_of_read_links.count).to eq 0
+    end
+
+    it 'retrieves two links read when we create 3 links and read two' do
+      @user.link_interactions=[]
+      a_first_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_first_link.save!
+      a_second_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_second_link.save!
+      a_third_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_third_link.save!
+
+      @user.i_read_this_link(a_first_link.id)
+      @user.i_read_this_link(a_second_link.id)
+
+      ids_of_read_links=@user.links_already_read
+      expect(ids_of_read_links.count).to eq 2
+    end
+
+    it 'retrieves zero link to read when we create 3 links but dont explicitly say that I should read one' do
+      @user.link_interactions=[]
+      a_first_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_first_link.save!
+      a_second_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_second_link.save!
+      a_third_link=FactoryGirl.create(:useful_link, :useful_link_category_id => 609)
+      a_third_link.save!
+
+      ids_of_links_to_read=@user.links_declared_as_to_read
+      expect(ids_of_links_to_read.count).to eq 0
+    end
+
+
+    # it 'retrieves two links to read read when we create 3 links and say that we have to read two' do
+    #
+    # end
 
 
 

@@ -29,11 +29,12 @@ class LinkInteractionsController < ApplicationController
   def create
     finalParams=params[:link_interaction]
     @new_link_interaction = LinkInteraction.new(permitted_parameters(finalParams))
-    interaction_already_existing=LinkInteraction.select{|interaction| interaction.useful_link_id=@new_link_interaction.useful_link_id}.first
+    interaction_already_existing=LinkInteraction.select{|interaction| interaction.useful_link_id==@new_link_interaction.useful_link_id &&
+        interaction.user_id==current_user.id}.first
 
     respond_to do |format|
       unless interaction_already_existing.nil?
-        interaction_already_existing.interaction_type_id=User::InteractionType::ALREADY_READ
+        interaction_already_existing.interaction_type_id=InteractionType::ALREADY_READ
         interaction_already_existing.save
         format.json { render json: interaction_already_existing}
       else

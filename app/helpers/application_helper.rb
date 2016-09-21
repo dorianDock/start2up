@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-
+  # this menu link will help us to make some badges appear
   def custom_menu_link(url,icon,text,class_for_count,count,second_class_for_count='',second_count=1)
     icon_for_link=content_tag(:i,'',:class => 'icon '+icon)
     div_for_link=content_tag(:i)

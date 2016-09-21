@@ -21,14 +21,14 @@
                 <%= link_to 'Tous les liens', useful_links_path, class: "item" %>
             <%- end %>
 
-            <%= custom_menu_link(home_good_or_bad_idea_path,'idea',"Idées d'entreprise",'teal label', 0,'grey label',@links_for_ideas) %>
+            <%= custom_menu_link(home_good_or_bad_idea_path,'idea',"Idées d'entreprise",'teal label', @links_for_ideas) %>
             <%= custom_menu_link(home_find_your_soul_path,'unlink',"S'associer",'teal label', @links_for_associates) %>
-            <%= custom_menu_link(home_law_is_law_path,'book','Le légal','teal label', 0) %>
-            <%= custom_menu_link(home_money_broke_path,'money','Financement','teal label', 0) %>
-            <%= custom_menu_link(home_useful_information_path,'info','Infos utiles','teal label', 0) %>
-            <%= custom_menu_link(home_the_godfather_path,'user','Trouver un parrain','teal label', 0) %>
-            <%= custom_menu_link(home_find_your_roof_path,'home','Les bureaux','teal label', 0) %>
-            <%= custom_menu_link(home_technical_links_path,'computer','Liens techniques','teal label', 0) %>
+            <%= custom_menu_link(home_law_is_law_path,'book','Le légal','teal label', @links_for_law) %>
+            <%= custom_menu_link(home_money_broke_path,'money','Financement','teal label', @links_for_money) %>
+            <%= custom_menu_link(home_useful_information_path,'info','Infos utiles','teal label', @links_for_info) %>
+            <%= custom_menu_link(home_the_godfather_path,'user','Trouver un parrain','teal label', @links_for_godfather) %>
+            <%= custom_menu_link(home_find_your_roof_path,'home','Les bureaux','teal label', @links_for_offices) %>
+            <%= custom_menu_link(home_technical_links_path,'computer','Liens techniques','teal label', @links_for_technics) %>
 
 
             <!--<%= link_to "Idées d'entreprise", home_good_or_bad_idea_path , class: "item" %>-->

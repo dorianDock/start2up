@@ -11,9 +11,9 @@
 #
 
 FactoryGirl.define do
-  factory :link_interactions do
-    interaction_type_id ""
-    userd_id ""
-    useful_link_id ""
+  factory :link_interaction do
+    interaction_type_id 2
+    user_id 1010
+    useful_link_id 1
   end
 end

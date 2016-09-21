@@ -35,6 +35,8 @@ RSpec.describe LinkInteraction, type: :model do
 
 
 
+
+
   # describe 'Validation' do
   #   before(:each) do
   #     @attr = { :interaction_type_id => ApplicationController::InteractionType::TO_READ,

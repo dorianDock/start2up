@@ -16,11 +16,13 @@
 #  url                     :string
 #
 
+
+
 FactoryGirl.define do
   factory :useful_link do
     title 'About something'
     description 'This is an article about something'
-    useful_link_category_id 1
+    useful_link_category_id 602
     is_public false
     url 'aaa.fr'
   end

@@ -17,4 +17,5 @@ class LinkInteraction < ActiveRecord::Base
 
 
 
+
 end

@@ -99,7 +99,15 @@ class User < ActiveRecord::Base
   def links_already_read
     links_concerned= []
     if self.link_interactions.any?
-      links_concerned=self.link_interactions.where('interaction_type_id' => InteractionType::ALREADY_READ).to_a
+      links_concerned=self.link_interactions.where('interaction_type_id' => InteractionType::ALREADY_READ).to_a.map{ |i| i.useful_link_id}
+    end
+    links_concerned
+  end
+
+  def links_declared_as_to_read
+    links_concerned= []
+    if self.link_interactions.any?
+      links_concerned=self.link_interactions.where('interaction_type_id' => InteractionType::TO_READ).to_a.map{ |i| i.useful_link_id}
     end
     links_concerned
   end
@@ -107,7 +115,7 @@ class User < ActiveRecord::Base
   # we declare that we read a specific link
   def i_read_this_link(link_id)
     if UsefulLink.exists?(:id => link_id)
-      self.link_interactions.create!(:useful_link_id => link_id, :interaction_type_id => InteractionType::InteractionTypes::ALREADY_READ)
+      self.link_interactions.create!(:useful_link_id => link_id, :interaction_type_id => InteractionType::ALREADY_READ)
     end
   end
 

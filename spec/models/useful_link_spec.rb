@@ -35,6 +35,92 @@ RSpec.describe UsefulLink, type: :model do
     end
   end
 
+
+  describe 'Link Interactions' do
+    before(:each) do
+      @user_id=1010;
+      # we create the link
+      @useful_link_to_read= FactoryGirl.create(:useful_link)
+      @useful_link_read= FactoryGirl.create(:useful_link)
+      @useful_link_useless= FactoryGirl.create(:useful_link)
+      @useful_link_priority= FactoryGirl.create(:useful_link)
+
+      @useful_link_naked= FactoryGirl.create(:useful_link)
+
+
+      @useful_link_to_read.save!
+      @useful_link_read.save!
+      @useful_link_useless.save!
+      @useful_link_priority.save!
+
+      @useful_link_naked.save!
+      # we create a TO READ interaction
+      @to_read_link_interaction = FactoryGirl.create(:link_interaction, :interaction_type_id => InteractionType::TO_READ, :user_id => @user_id, :useful_link_id => @useful_link_to_read.id)
+      # we create a READ interaction
+      @read_link_interaction = FactoryGirl.create(:link_interaction, :interaction_type_id => InteractionType::ALREADY_READ, :user_id => @user_id, :useful_link_id => @useful_link_read.id)
+      # we create a USELESS interaction
+      @useless_link_interaction = FactoryGirl.create(:link_interaction, :interaction_type_id => InteractionType::USELESS, :user_id => @user_id, :useful_link_id => @useful_link_useless.id)
+      # we create a PRIORITY interaction
+      @priority_link_interaction = FactoryGirl.create(:link_interaction, :interaction_type_id => InteractionType::PRIORITY, :user_id => @user_id, :useful_link_id => @useful_link_priority.id)
+    end
+
+    it 'should be read when I indicate it was read' do
+      @read_link_interaction.save!
+
+      # now, our link should be marked as read
+      expect(@useful_link_read.is_already_read?(@user_id)).to be true
+    end
+
+    it 'should not be marked as read by default' do
+      expect(@useful_link_naked.is_already_read?(@user_id)).to be false
+    end
+
+    it 'should not be marked as priority by default' do
+      expect(@useful_link_naked.is_priority?(@user_id)).to be false
+    end
+
+    it 'should not be marked as useless by default' do
+      expect(@useful_link_naked.is_useless?(@user_id)).to be false
+    end
+
+    it 'should be to read by default' do
+      expect(@useful_link_naked.is_to_read?(@user_id)).to be true
+    end
+
+    it 'should not be marked as read when we set an association to "TO READ"' do
+      @to_read_link_interaction.save!
+      expect(@useful_link_to_read.is_already_read?(@user_id)).to be false
+    end
+
+    it 'should not be to read when we I said I have to read it' do
+      @to_read_link_interaction.save!
+      expect(@useful_link_to_read.is_to_read?(@user_id)).to be true
+    end
+
+    it 'should not be to read when we set an association to "READ"' do
+      @to_read_link_interaction.save!
+      expect(@useful_link_read.is_to_read?(@user_id)).to be false
+    end
+
+    it 'should be in priority when I set the priority status' do
+      @priority_link_interaction.save!
+      expect(@useful_link_priority.is_priority?(@user_id)).to be true
+    end
+
+    it 'should not be marked as prioritized when I said it was useless' do
+      @useless_link_interaction.save!
+      expect(@useful_link_useless.is_priority?(@user_id)).to be false
+    end
+
+    it 'should be useless when I said it was useless' do
+      @useless_link_interaction.save!
+      expect(@useful_link_useless.is_useless?(@user_id)).to be true
+    end
+
+
+
+  end
+
   describe 'Validations' do
     before(:each) do
       @regular_link= FactoryGirl.create(:useful_link, title: 'Link for Law', description: 'This is a link talking about Law', useful_link_category_id: 1,

@@ -57,6 +57,41 @@ class UsefulLink < ActiveRecord::Base
     self.save
   end
 
+  # to know if the link was already read or not (it should check on the linked links interactions)
+  # read or not means: read or not by the current user
+  def is_already_read?(user_id)
+    concerned_user_interaction= self.link_interactions.where(:user_id => user_id).first
+    if concerned_user_interaction.nil?
+      return false
+    end
+    return concerned_user_interaction.interaction_type_id==InteractionType::ALREADY_READ
+  end
+
+  def is_to_read?(user_id)
+    concerned_user_interaction= self.link_interactions.where(:user_id => user_id).first
+    if concerned_user_interaction.nil?
+      return true
+    end
+    return concerned_user_interaction.interaction_type_id==InteractionType::TO_READ
+  end
+
+  def is_useless?(user_id)
+    concerned_user_interaction= self.link_interactions.where(:user_id => user_id).first
+    if concerned_user_interaction.nil?
+      return false
+    end
+    return concerned_user_interaction.interaction_type_id==InteractionType::USELESS
+  end
+
+  def is_priority?(user_id)
+    concerned_user_interaction= self.link_interactions.where(:user_id => user_id).first
+    if concerned_user_interaction.nil?
+      return false
+    end
+    return concerned_user_interaction.interaction_type_id==InteractionType::PRIORITY
+  end
+
+
   # def ask_mentoring_to(future_mentor)
   #   self.userLinksAsked.create!(:answererId => future_mentor.id, :user_link_type_id => LinkType::MENTOR)
   # end

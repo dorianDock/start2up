@@ -42,6 +42,14 @@ $(document).on('page:change', function () {
         .modal('hide')
     ;
 
+    $('.isPopup')
+        .popup({
+            inline   : true,
+            hoverable: true,
+
+        })
+    ;
+
 });
 
 function AjaxRequest(targetUrl, parameters, callBackFunction) {

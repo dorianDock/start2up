@@ -10,36 +10,33 @@ class ApplicationController < ActionController::Base
   #   devise_parameter_sanitizer.for(:update_profile_picture) { |u| u.permit(:avatar) }
   # end
 
-  # create an Interaction Type structure to avoid to query the db each time we want to reach an interaction type
-  module InteractionType
-    TO_READ =1
-    ALREADY_READ = 2
-    USELESS = 3
-    PRIORITY = 4
-  end
+
 
   # we will initialize counters there
   def link_counters
-    useful_link_number=UsefulLink.public_links_with_categories.includes(:useful_link_category).to_enum
-    # Come back here after the big test fuss
-    # links_already_read=current_user.links_already_read
+    if user_signed_in?
+    useful_links_available=UsefulLink.public_links_with_categories.to_a
+    useful_links_already_read=current_user.links_already_read
+    links_not_read=useful_links_available.reject{ |element| useful_links_already_read.include?(element.id)}
 
-
-    @links_for_ideas=useful_link_number.select{ |i| i.useful_link_category.label == 'BusinessIdea'}.count
-    @links_for_associates=useful_link_number.select{ |i| i.useful_link_category.label == 'Associates'}.count
-
-
-
-
-    # @links_for_law=useful_link_number.law.count
-    # @links_for_money=useful_link_number.money.count
-    # @links_for_info=useful_link_number.info.count
-    # @links_for_godfather=useful_link_number.mentorship.count
-    # @links_for_offices=useful_link_number.housing.count
-    # @links_for_technics=useful_link_number.technical.count
-
+    # for each type of link. we substract the number of read link
+    @links_for_ideas=links_not_read.select{ |i| i.useful_link_category.label == 'BusinessIdea'}.count
+    @links_for_associates=links_not_read.select{ |i| i.useful_link_category.label == 'Associates'}.count
+    @links_for_law=links_not_read.select{ |i| i.useful_link_category.label == 'Law'}.count
+    @links_for_money=links_not_read.select{ |i| i.useful_link_category.label == 'Money'}.count
+    @links_for_info=links_not_read.select{ |i| i.useful_link_category.label == 'Info'}.count
+    @links_for_godfather=links_not_read.select{ |i| i.useful_link_category.label == 'Mentorship'}.count
+    @links_for_offices=links_not_read.select{ |i| i.useful_link_category.label == 'Housing'}.count
+    @links_for_technics=links_not_read.select{ |i| i.useful_link_category.label == 'Technical'}.count
+    end
 
 
   end
+
+  # useful_links_with_to_read_interaction=UsefulLink.public_links_with_categories
+  #                                           .joins(:link_interactions)
+  #                                      .where(link_interactions: {user_id: current_user.id})
+  #                                           .where(link_interactions: {interaction_type_id: InteractionType::TO_READ})
+  #                                      .includes(:useful_link_category).to_a
 
 end
