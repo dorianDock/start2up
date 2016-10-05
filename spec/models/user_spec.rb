@@ -241,6 +241,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'retrieves one link read when we said we read it' do
+      @user.i_read_this_link(@a_link.id)
       ids_of_read_links=@user.links_already_read
       expect(ids_of_read_links[0]).to eq @a_link.id
     end

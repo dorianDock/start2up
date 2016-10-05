@@ -25,10 +25,16 @@ RSpec.describe LinkInteractionsController, type: :controller do
       @useful_link= FactoryGirl.create(:useful_link)
       @useful_link.save!
       request.accept = "application/json"
-      link_interaction_params = { :interaction_type_id => 2, :user_id => 1010, :useful_link_id => @useful_link.id}
-      expect { post :create, :link_interaction => link_interaction_params }.to change(LinkInteraction, :count).by(1)
-      link_interaction_params = { :interaction_type_id => 2, :user_id => 1010, :useful_link_id => @useful_link.id}
-      expect { post :create, :link_interaction => link_interaction_params }.to change(LinkInteraction, :count).by(0)
+      number_of_link_interactions=LinkInteraction.count
+      link_interaction_params = { :interaction_type_id => 2, :user_id => @user.id, :useful_link_id => @useful_link.id}
+      post :create, :link_interaction => link_interaction_params
+      second_number=LinkInteraction.count
+      link_interaction_params = { :interaction_type_id => 2, :user_id => @user.id, :useful_link_id => @useful_link.id}
+      post :create, :link_interaction => link_interaction_params
+      third_number=LinkInteraction.count
+      expect(second_number-number_of_link_interactions).to eq 1
+      expect(third_number-number_of_link_interactions).to eq 1
+      # expect { post :create, :link_interaction => link_interaction_params }.to change(LinkInteraction, :count).by(0)
     end
 
 

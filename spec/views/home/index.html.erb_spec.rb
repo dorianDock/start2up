@@ -25,6 +25,23 @@ RSpec.describe 'home/index.html.erb', type: :view do
       number_of_found_images=rendered.scan('<a').size
       expect(number_of_found_images).to eq 8
     end
+
   end
+
+  # describe 'Display correctly the page' do
+  #   before(:each) do
+  #     # we sign it the user and create links to see for the category:
+  #     #
+  #     #
+  #
+  #   end
+  #
+  #   it 'displays the welcome message' do
+  #     expect(rendered).to match('<p> Tout commence dans un garage: Trouvez les bons outils !</p>')
+  #   end
+  #
+  #
+  #
+  # end
 
 end
